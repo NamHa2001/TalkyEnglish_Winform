@@ -166,7 +166,7 @@
             guna2GradientPanel1.Location = new Point(0, 0);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            guna2GradientPanel1.Size = new Size(251, 753);
+            guna2GradientPanel1.Size = new Size(232, 753);
             guna2GradientPanel1.TabIndex = 0;
             // 
             // btnMenuCourses
@@ -188,7 +188,7 @@
             btnMenuCourses.Location = new Point(7, 150);
             btnMenuCourses.Name = "btnMenuCourses";
             btnMenuCourses.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnMenuCourses.Size = new Size(236, 56);
+            btnMenuCourses.Size = new Size(214, 56);
             btnMenuCourses.TabIndex = 7;
             btnMenuCourses.Text = "Quản lý khóa học";
             btnMenuCourses.TextOffset = new Point(25, 0);
@@ -212,7 +212,7 @@
             btnMenuInstructors.Location = new Point(9, 212);
             btnMenuInstructors.Name = "btnMenuInstructors";
             btnMenuInstructors.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnMenuInstructors.Size = new Size(236, 56);
+            btnMenuInstructors.Size = new Size(212, 56);
             btnMenuInstructors.TabIndex = 6;
             btnMenuInstructors.Text = "Quản lý giảng viên";
             btnMenuInstructors.TextOffset = new Point(29, 0);
@@ -236,7 +236,7 @@
             btnMenuReports.Location = new Point(9, 398);
             btnMenuReports.Name = "btnMenuReports";
             btnMenuReports.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnMenuReports.Size = new Size(236, 56);
+            btnMenuReports.Size = new Size(212, 56);
             btnMenuReports.TabIndex = 5;
             btnMenuReports.Text = "Báo cáo thống kê";
             btnMenuReports.TextOffset = new Point(24, 0);
@@ -260,7 +260,7 @@
             btnMenuSalary.Location = new Point(9, 336);
             btnMenuSalary.Name = "btnMenuSalary";
             btnMenuSalary.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnMenuSalary.Size = new Size(236, 56);
+            btnMenuSalary.Size = new Size(212, 56);
             btnMenuSalary.TabIndex = 4;
             btnMenuSalary.Text = "Quản lý lương";
             btnMenuSalary.TextOffset = new Point(13, 0);
@@ -284,7 +284,7 @@
             btnMenuStudents.Location = new Point(9, 274);
             btnMenuStudents.Name = "btnMenuStudents";
             btnMenuStudents.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnMenuStudents.Size = new Size(236, 56);
+            btnMenuStudents.Size = new Size(212, 56);
             btnMenuStudents.TabIndex = 3;
             btnMenuStudents.Text = "Quản lý học viên";
             btnMenuStudents.TextOffset = new Point(22, 0);
@@ -308,7 +308,7 @@
             btnMenuDashboard.Location = new Point(7, 88);
             btnMenuDashboard.Name = "btnMenuDashboard";
             btnMenuDashboard.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnMenuDashboard.Size = new Size(236, 56);
+            btnMenuDashboard.Size = new Size(214, 56);
             btnMenuDashboard.TabIndex = 2;
             btnMenuDashboard.Text = "Trang chủ";
             // 
@@ -317,7 +317,7 @@
             pictureBox1.Image = Properties.Resources.side_bar_TrangChu;
             pictureBox1.Location = new Point(0, -3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(251, 753);
+            pictureBox1.Size = new Size(229, 753);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -327,10 +327,10 @@
             guna2Panel1.Controls.Add(btnLogout);
             guna2Panel1.CustomizableEdges = customizableEdges17;
             guna2Panel1.Dock = DockStyle.Top;
-            guna2Panel1.Location = new Point(251, 0);
+            guna2Panel1.Location = new Point(232, 0);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            guna2Panel1.Size = new Size(1031, 82);
+            guna2Panel1.Size = new Size(1050, 82);
             guna2Panel1.TabIndex = 1;
             // 
             // btnLogout
@@ -722,10 +722,10 @@
             guna2Panel6.Controls.Add(guna2Panel5);
             guna2Panel6.Controls.Add(guna2Panel4);
             guna2Panel6.CustomizableEdges = customizableEdges43;
-            guna2Panel6.Location = new Point(251, 88);
+            guna2Panel6.Location = new Point(232, 88);
             guna2Panel6.Name = "guna2Panel6";
             guna2Panel6.ShadowDecoration.CustomizableEdges = customizableEdges44;
-            guna2Panel6.Size = new Size(1031, 225);
+            guna2Panel6.Size = new Size(1050, 225);
             guna2Panel6.TabIndex = 5;
             // 
             // pnlMainContent
@@ -736,10 +736,10 @@
             pnlMainContent.Controls.Add(chartStatistics);
             pnlMainContent.Controls.Add(gunaChart2);
             pnlMainContent.CustomizableEdges = customizableEdges45;
-            pnlMainContent.Location = new Point(251, 319);
+            pnlMainContent.Location = new Point(232, 319);
             pnlMainContent.Name = "pnlMainContent";
             pnlMainContent.ShadowDecoration.CustomizableEdges = customizableEdges46;
-            pnlMainContent.Size = new Size(1031, 434);
+            pnlMainContent.Size = new Size(1050, 434);
             pnlMainContent.TabIndex = 6;
             // 
             // frmDashboard_Admin
