@@ -41,7 +41,7 @@ namespace TalkyEnglish.GUI
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            // 2. Kiểm tra nhanh (Validation)
+            // 2. Kiểm tra nhanh (Validation) trước khi gọi xuống Database
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ Email và Mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -58,32 +58,20 @@ namespace TalkyEnglish.GUI
                     // Đăng nhập thành công
                     MessageBox.Show($"Chào mừng {user.FullName} ({user.Role}) đã quay trở lại!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 4. ĐIỀU HƯỚNG DỰA TRÊN ROLE
-                    if (user.Role == "Admin") // Đảm bảo chuỗi "Admin" khớp với dữ liệu trong DB của bạn
-                    {
-                        // Mở trang Admin Dashboard
-                        frmDashboard_Admin adminDash = new frmDashboard_Admin();
-                        adminDash.Show();
-                    }
-                    else
-                    {
-                        // Mở trang dành cho người dùng thường (Học viên/Giảng viên)
-                        // Hiện tại mình giả định bạn sẽ dùng chung một trang hoặc cập nhật sau
-                        // frmMain main = new frmMain(user);
-                        // main.Show();
-                        MessageBox.Show("Bạn đang đăng nhập với quyền người dùng thường.");
-                    }
-
-                    // 5. Ẩn form đăng nhập hiện tại
-                    this.Hide();
+                    // Tạm thời để đây, sau này ta sẽ mở trang Dashboard chính tại đây
+                    // frmMain main = new frmMain(user);
+                    // main.Show();
+                    // this.Hide();
                 }
                 else
                 {
+                    // Thất bại
                     MessageBox.Show("Email hoặc mật khẩu không chính xác. Vui lòng thử lại!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
+                // Xử lý nếu có lỗi kết nối Database
                 MessageBox.Show("Lỗi kết nối hệ thống: " + ex.Message, "Lỗi kỹ thuật", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

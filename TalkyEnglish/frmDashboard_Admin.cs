@@ -12,7 +12,9 @@ namespace TalkyEnglish.GUI
     {
         // 1. KHAI BÁO BIẾN TẦNG BUS (Rất quan trọng)
         private readonly UserBUS _userBUS = new UserBUS();
-
+        // Khai báo biến toàn cục trong Form chính
+        ucInstructorManagement _ucInstructor;
+        ucCourseManagement _ucCourse;
         public frmDashboard_Admin()
         {
             InitializeComponent();
@@ -29,6 +31,28 @@ namespace TalkyEnglish.GUI
         private void frmDashboard_Admin_Load(object sender, EventArgs e)
         {
             LoadThongKeConSo();
+        }
+
+        // Hàm dùng để nạp các UserControl vào vùng trống chính của Dashboard
+        private void addUserControl(UserControl userControl)
+        {
+            // 1. Dọn dẹp: Xóa bỏ các Control đang hiển thị ở vùng chính (ví dụ cái biểu đồ cũ)
+            pnlMainContent1.Controls.Clear();
+
+            // 2. Thiết lập: Để trang mới này tràn đầy và vừa khít với Panel chứa nó
+            userControl.Dock = DockStyle.Fill;
+
+            // 3. Hiển thị: Đưa trang mới vào và đẩy lên trên cùng
+            pnlMainContent1.Controls.Add(userControl);
+            userControl.BringToFront();
+        }
+
+        private void ShowUserControl(UserControl uc)
+        {
+            // Giả sử cái Panel lớn ở giữa của bạn tên là 'pnlMain'
+            pnlMainContent1.Controls.Clear(); // Xóa cái đang hiện (Học viên hoặc Dashboard cũ)
+            uc.Dock = DockStyle.Fill; // Để UC tràn đầy cái Panel
+            pnlMainContent1.Controls.Add(uc); // Thêm UC mới vào
         }
 
         /// <summary>
@@ -94,6 +118,45 @@ namespace TalkyEnglish.GUI
                 login.Show();
                 this.Close();
             }
+        }
+
+        private void btnMenuStudents_Click(object sender, EventArgs e)
+        {
+            ucStudentManagement ucStudent = new ucStudentManagement();
+
+            // 2. Gọi hàm nạp để nó "nhảy" ra màn hình chính
+            addUserControl(ucStudent);
+        }
+
+        private void btnMenuInstructors_Click(object sender, EventArgs e)
+        {
+            // Nếu UC chưa được tạo thì mới tạo mới
+            if (_ucInstructor == null)
+            {
+                _ucInstructor = new ucInstructorManagement();
+            }
+
+            // Gọi hàm LoadData để chắc chắn dữ liệu luôn mới khi bấm vào
+            _ucInstructor.LoadData();
+
+            // Hiển thị nó lên vùng chính
+            ShowUserControl(_ucInstructor);
+        }
+
+        private void btnMenuCourses_Click(object sender, EventArgs e)
+        {
+            // Nếu UC chưa được tạo thì mới tạo mới
+            if (_ucCourse == null)
+            {
+                _ucCourse = new ucCourseManagement();
+            }
+
+            // Gọi hàm LoadData để chắc chắn dữ liệu luôn mới khi bấm vào
+            _ucCourse.LoadData();
+
+            // Hiển thị nó lên vùng chính
+            ShowUserControl(_ucCourse);
+            btnMenuCourses.BackColor = Color.FromArgb(197, 160, 89); // Màu Heritage Gold
         }
     }
 }

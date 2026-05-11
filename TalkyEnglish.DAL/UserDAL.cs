@@ -2,77 +2,112 @@
 using System.Collections.Generic;
 using System.Linq;
 using TalkyEnglish.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace TalkyEnglish.DAL
 {
     public class UserDAL
     {
-        // Khởi tạo DbContext để kết nối Database
-        private readonly TalkyDbContext _context = new TalkyDbContext();
+        // XÓA BỎ biến private readonly TalkyDbContext _context cũ ở đây.
+        // Tất cả các hàm bên dưới sẽ tự mở và đóng kết nối riêng để đảm bảo dữ liệu luôn tươi.
 
-        /// <summary>
-        /// Lấy toàn bộ danh sách người dùng từ Database
-        /// </summary>
         public List<UserDTO> GetAllUsers()
         {
-            try
+            using (var db = new TalkyDbContext())
             {
-                return _context.Users.ToList();
-            }
-            catch (Exception ex)
-            {
-                // Log lỗi nếu cần thiết
-                throw new Exception("Lỗi khi lấy danh sách người dùng: " + ex.Message);
+                try
+                {
+                    return db.Users.ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL GetAllUsers: " + ex.Message);
+                }
             }
         }
 
-        /// <summary>
-        /// Thêm một người dùng mới vào Database (Dùng cho Đăng ký)
-        /// </summary>
-        /// <param name="user">Đối tượng UserDTO chứa thông tin cần lưu</param>
-        /// <returns>True nếu thành công, False nếu thất bại</returns>
+        public List<UserDTO> GetAllInstructors()
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    // Lọc những người có Role là "Instructor"
+                    return db.Users
+                        .Where(u => u.Role == "Instructor")
+                        .AsNoTracking()
+                        .ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL GetAllInstructors: " + ex.Message);
+                }
+            }
+        }
+
         public bool AddUser(UserDTO user)
         {
-            try
+            using (var db = new TalkyDbContext())
             {
-                // Thêm đối tượng vào tập hợp Users của DbContext
-                _context.Users.Add(user);
-
-                // Thực thi lệnh INSERT xuống SQL Server
-                int result = _context.SaveChanges();
-
-                // Nếu số dòng bị ảnh hưởng > 0 nghĩa là đã lưu thành công
-                return result > 0;
-            }
-            catch (Exception)
-            {
-                // Có thể xảy ra lỗi nếu trùng Email (Unique) hoặc mất kết nối
-                return false;
+                try
+                {
+                    db.Users.Add(user);
+                    return db.SaveChanges() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL AddUser: " + ex.Message);
+                }
             }
         }
 
-        /// <summary>
-        /// Cập nhật thông tin người dùng (Dùng cho đổi mật khẩu hoặc sửa hồ sơ)
-        /// </summary>
         public bool UpdateUser(UserDTO user)
         {
-            try
+            using (var db = new TalkyDbContext())
             {
-                var existingUser = _context.Users.Find(user.UserID);
-                if (existingUser != null)
+                try
                 {
-                    _context.Entry(existingUser).CurrentValues.SetValues(user);
-                    return _context.SaveChanges() > 0;
+                    var existingUser = db.Users.Find(user.UserID);
+                    if (existingUser != null)
+                    {
+                        // Cập nhật giá trị mới vào thực thể đang được theo dõi
+                        db.Entry(existingUser).CurrentValues.SetValues(user);
+
+                        // Đảm bảo trạng thái là Modified để EF sinh lệnh UPDATE
+                        db.Entry(existingUser).State = EntityState.Modified;
+
+                        return db.SaveChanges() > 0;
+                    }
+                    return false;
                 }
-                return false;
-            }
-            catch
-            {
-                return false;
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL UpdateUser: " + (ex.InnerException?.Message ?? ex.Message));
+                }
             }
         }
 
-        // Đếm tổng số học viên
+        public bool DeleteUser(int userId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    var user = db.Users.Find(userId);
+                    if (user != null)
+                    {
+                        db.Users.Remove(user);
+                        return db.SaveChanges() > 0;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL DeleteUser: " + ex.Message);
+                }
+            }
+        }
+
         public int GetTotalStudents()
         {
             using (var db = new TalkyDbContext())
@@ -81,12 +116,97 @@ namespace TalkyEnglish.DAL
             }
         }
 
-        // Đếm tổng số giảng viên
         public int GetTotalInstructors()
         {
             using (var db = new TalkyDbContext())
             {
                 return db.Users.Count(u => u.Role == "Instructor");
+            }
+        }
+
+        public List<UserDTO> SearchStudents(string keyword)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                // Lọc danh sách: phải là Student VÀ (Tên chứa từ khóa HOẶC Email chứa từ khóa)
+                return db.Users
+                    .Where(u => u.Role == "Student" &&
+                               (u.FullName.Contains(keyword) || u.Email.Contains(keyword)))
+                    .AsNoTracking()
+                    .ToList();
+            }
+        }
+
+        // Hàm Thêm mới Giảng viên
+        public bool InsertInstructor(UserDTO user)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    // Ép cứng Role là Instructor để không bị lẫn lộn
+                    user.Role = "Instructor";
+                    user.CreatedAt = DateTime.Now;
+
+                    db.Users.Add(user);
+                    return db.SaveChanges() > 0;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL Insert: " + ex.Message);
+                }
+            }
+        }
+
+        // Hàm Cập nhật Giảng viên
+        public bool UpdateInstructor(UserDTO user)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    var existingUser = db.Users.Find(user.UserID);
+                    if (existingUser != null)
+                    {
+                        existingUser.FullName = user.FullName;
+                        existingUser.Email = user.Email;
+                        existingUser.PhoneNumber = user.PhoneNumber;
+                        existingUser.Birthday = user.Birthday;
+                        existingUser.Gender = user.Gender;
+                        existingUser.Specialization = user.Specialization;
+                        existingUser.Degree = user.Degree;
+                        existingUser.Status = user.Status;
+                        // Không cập nhật Password và Role ở đây để bảo mật
+
+                        return db.SaveChanges() > 0;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL Update: " + ex.Message);
+                }
+            }
+        }
+
+        public bool DeleteInstructor(int userId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    var user = db.Users.Find(userId);
+                    if (user != null)
+                    {
+                        db.Users.Remove(user);
+                        return db.SaveChanges() > 0;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL Delete: " + ex.Message);
+                }
             }
         }
     }

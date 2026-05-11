@@ -103,5 +103,57 @@ namespace TalkyEnglish.BUS
 
         public int GetStudentCount() => _userDAL.GetTotalStudents();
         public int GetInstructorCount() => _userDAL.GetTotalInstructors();
+        public List<UserDTO> GetAllStudents()
+        {
+            // Lọc danh sách User, chỉ lấy những người có Role là "Student"
+            return _userDAL.GetAllUsers().Where(u => u.Role == "Student").ToList();
+        }
+
+
+        //Kiểm tra email đã có trong db chưa
+        public bool IsEmailExist(string email)
+        {
+            // Lấy toàn bộ user và kiểm tra xem có ai trùng email không
+            return _userDAL.GetAllUsers().Any(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public bool DeleteUser(int userId)
+        {
+            return _userDAL.DeleteUser(userId);
+        }
+        public bool UpdateUser(UserDTO user)
+        {
+            // 1. Kiểm tra logic nghiệp vụ nếu cần (ví dụ: FullName không được rỗng)
+            if (string.IsNullOrEmpty(user.FullName)) return false;
+
+            // 2. Gọi xuống tầng DAL để lưu vào Database
+            return _userDAL.UpdateUser(user);
+        }
+        public List<UserDTO> SearchStudents(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword)) return GetAllStudents();
+            return _userDAL.SearchStudents(keyword.Trim());
+        }
+
+        public List<UserDTO> GetAllInstructors()
+        {
+            // Gọi xuống hàm ở DAL mà bạn vừa thêm lúc nãy
+            return _userDAL.GetAllInstructors();
+        }
+
+        public bool InsertInstructor(UserDTO user)
+        {
+            return _userDAL.InsertInstructor(user);
+        }
+
+        public bool UpdateInstructor(UserDTO user)
+        {
+            return _userDAL.UpdateInstructor(user);
+        }
+
+        public bool DeleteInstructor(int userId)
+        {
+            return _userDAL.DeleteInstructor(userId);
+        }
     }
 }
