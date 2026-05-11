@@ -22,12 +22,13 @@ namespace TalkyEnglish.GUI
             InitializeComponent();
             _currentCourse = null; // Xác nhận đây là thêm mới
             this.Text = "Thêm Khóa Học Mới";
-            txtCourseCode.Text = "Hệ thống tự sinh";
+            txtCourseCode.Text = _courseBUS.GenerateCourseCode();
         }
         public frmCourseDetail(CourseDTO course)
         {
             InitializeComponent();
             _currentCourse = course; // Lưu lại dữ liệu cũ
+            lblTitle.Text = "Chỉnh Sửa Thông Tin Khóa Học";
             this.Text = "Chỉnh Sửa Khóa Học";
         }
 
@@ -74,6 +75,7 @@ namespace TalkyEnglish.GUI
         {
             if (_currentCourse != null)
             {
+                txtDuration.Text = _currentCourse.Duration;
                 txtCourseCode.Text = _currentCourse.CourseCode;
                 txtCourseName.Text = _currentCourse.CourseName;
                 txtPrice.Text = _currentCourse.Price?.ToString();
@@ -86,47 +88,66 @@ namespace TalkyEnglish.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra dữ liệu đầu vào cơ bản (Validation)
+            // 1. Validation: Tên khóa học không được để trống
             if (string.IsNullOrWhiteSpace(txtCourseName.Text))
             {
                 MessageBox.Show("Vui lòng nhập tên khóa học!");
+                txtCourseName.Focus();
                 return;
             }
 
-            // 2. Thu thập dữ liệu từ giao diện vào một đối tượng DTO
+            // 2. Thu thập dữ liệu vào DTO
+            // Nếu _currentCourse null thì tạo mới, nếu không thì dùng lại cái cũ để Update
             CourseDTO course = _currentCourse ?? new CourseDTO();
+
+            course.CourseCode = txtCourseCode.Text.Trim();
             course.CourseName = txtCourseName.Text.Trim();
             course.Description = txtDescription.Text.Trim();
+            course.Duration = txtDuration.Text.Trim(); // Thu thập thời lượng
             course.Level = cboLevel.SelectedItem?.ToString();
             course.Status = cboStatus.SelectedItem?.ToString();
             course.InstructorID = (int?)cboInstructor.SelectedValue;
 
-            // Xử lý chuyển đổi giá tiền (tránh lỗi nhập chữ)
+            // Xử lý giá tiền
             if (decimal.TryParse(txtPrice.Text, out decimal price))
-                course.Price = price;
-
-            // 3. Gọi BUS để lưu
-            bool result;
-            if (_currentCourse == null) // Trường hợp Thêm mới
             {
+                course.Price = price;
+            }
+            else
+            {
+                course.Price = 0;
+            }
+
+            // 3. Thực hiện lưu thông qua tầng BUS
+            bool result;
+            if (_currentCourse == null)
+            {
+                // Thêm mới thì gán ngày tạo
+                course.CreatedAt = DateTime.Now;
                 result = _courseBUS.AddCourse(course);
             }
-            else // Trường hợp Sửa
+            else
             {
                 result = _courseBUS.UpdateCourse(course);
             }
 
-            // 4. Thông báo kết quả
+            // 4. Phản hồi người dùng
             if (result)
             {
-                MessageBox.Show("Lưu thông tin thành công!");
-                this.DialogResult = DialogResult.OK; // Đóng Form và báo cho trang danh sách biết để load lại
+                MessageBox.Show("Lưu thông tin khóa học thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Có lỗi xảy ra khi lưu dữ liệu.");
+                MessageBox.Show("Có lỗi xảy ra trong quá trình lưu dữ liệu vào cơ sở dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close(); // Nút Hủy bỏ
         }
     }
 }
+

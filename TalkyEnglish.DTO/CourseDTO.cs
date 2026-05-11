@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,28 +10,43 @@ namespace TalkyEnglish.DTO
 {
     public class CourseDTO
     {
+        // Sử dụng [Browsable(false)] cho những cột bạn muốn có dữ liệu nhưng KHÔNG hiện lên bảng
+        [DisplayName(" ID")]
         public int CourseID { get; set; }
 
-        // 1. Mã khóa học tự sinh (KH001, KH002...)
+        [DisplayName("Mã Khóa Học")]
         public string? CourseCode { get; set; }
 
+        [DisplayName("Tên Khóa Học")]
         public string? CourseName { get; set; }
-        public decimal? Price { get; set; }
-        public string? Description { get; set; }
 
-        // 2. Trình độ mới thêm (Cơ bản, Trung cấp, Nâng cao)
+        [DisplayName("Học Phí")]
+        public decimal? Price { get; set; }
+
+        [DisplayName("Trình Độ")]
         public string? Level { get; set; }
 
-        public int? InstructorID { get; set; }
-        public int? CategoryID { get; set; }
+        [DisplayName("Thời Lượng")]
+        public string? Duration { get; set; }
+
+        [DisplayName("Trạng Thái")]
         public string? Status { get; set; }
 
-        // 3. Ngày tạo khóa học mới thêm
+        [DisplayName("Ngày Tạo")]
         public DateTime? CreatedAt { get; set; }
 
-        // Thuộc tính bổ trợ để hiển thị tên Giảng viên trên giao diện
-        // (Không cần có trong bảng Courses của SQL)
+        [DisplayName("Giảng Viên")]
         [NotMapped]
         public string? InstructorName { get; set; }
+
+        // Những cột ID phụ hoặc mô tả dài thường sẽ ẩn đi để bảng sạch hơn
+        [Browsable(false)]
+        public string? Description { get; set; }
+
+        [Browsable(false)]
+        public int? InstructorID { get; set; }
+
+        [Browsable(false)]
+        public int? CategoryID { get; set; }
     }
 }

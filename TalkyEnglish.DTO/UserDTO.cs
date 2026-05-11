@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace TalkyEnglish.DTO
         public int UserID { get; set; }
         public string? FullName { get; set; }
         public string? Email { get; set; }
+        [Browsable(false)]
         public string? PasswordHash { get; set; }
         public string? Role { get; set; }
         public string? PhoneNumber { get; set; }
@@ -30,5 +32,9 @@ namespace TalkyEnglish.DTO
                                                 // ----------------------------
 
         public DateTime? CreatedAt { get; set; }
+        public string? StudentCode { get; set; }
+
+        public string? CourseName { get; set; }
+        public string? Level { get; set; }
     }
 }

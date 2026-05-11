@@ -31,7 +31,7 @@ namespace TalkyEnglish.BUS
 
             // 2. Tìm kiếm người dùng khớp với Email và Password
             // Sử dụng OrdinalIgnoreCase để Email không phân biệt chữ hoa chữ thường
-            return _userDAL.GetAllUsers().FirstOrDefault(u =>
+            return _userDAL.GetAllStudents().FirstOrDefault(u =>
                 string.Equals(u.Email, email, StringComparison.OrdinalIgnoreCase) &&
                 u.PasswordHash == password);
         }
@@ -73,7 +73,7 @@ namespace TalkyEnglish.BUS
 
             // Bước 5: Kiểm tra Email đã tồn tại trong hệ thống chưa
             // Dùng Any() để tối ưu hiệu năng thay vì lấy toàn bộ danh sách
-            bool isEmailTaken = _userDAL.GetAllUsers().Any(u =>
+            bool isEmailTaken = _userDAL.GetAllStudents().Any(u =>
                 string.Equals(u.Email, newUser.Email, StringComparison.OrdinalIgnoreCase));
 
             if (isEmailTaken)
@@ -96,7 +96,7 @@ namespace TalkyEnglish.BUS
         /// </summary>
         public List<UserDTO> GetTopInstructors()
         {
-            return _userDAL.GetAllUsers()
+            return _userDAL.GetAllStudents()
                            .Where(u => string.Equals(u.Role, "Instructor", StringComparison.OrdinalIgnoreCase))
                            .ToList();
         }
@@ -106,7 +106,7 @@ namespace TalkyEnglish.BUS
         public List<UserDTO> GetAllStudents()
         {
             // Lọc danh sách User, chỉ lấy những người có Role là "Student"
-            return _userDAL.GetAllUsers().Where(u => u.Role == "Student").ToList();
+            return _userDAL.GetAllStudents().Where(u => u.Role == "Student").ToList();
         }
 
 
@@ -114,7 +114,7 @@ namespace TalkyEnglish.BUS
         public bool IsEmailExist(string email)
         {
             // Lấy toàn bộ user và kiểm tra xem có ai trùng email không
-            return _userDAL.GetAllUsers().Any(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            return _userDAL.GetAllStudents().Any(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
         }
 
         public bool DeleteUser(int userId)
@@ -154,6 +154,18 @@ namespace TalkyEnglish.BUS
         public bool DeleteInstructor(int userId)
         {
             return _userDAL.DeleteInstructor(userId);
+        }
+
+        public bool AddStudent(UserDTO student)
+        {
+            if (string.IsNullOrWhiteSpace(student.FullName)) return false;
+            return _userDAL.InsertStudent(student);
+        }
+
+        public bool UpdateStudent(UserDTO student)
+        {
+            if (student.UserID <= 0) return false;
+            return _userDAL.UpdateUser(student); // Dùng chung hàm UpdateUser vì logic giống nhau
         }
     }
 }

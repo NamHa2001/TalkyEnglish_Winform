@@ -128,5 +128,10 @@ namespace TalkyEnglish.GUI
         {
             this.Close();
         }
+
+        private void guna2HtmlLabel7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

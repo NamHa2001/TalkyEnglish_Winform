@@ -77,6 +77,7 @@
             colLevel = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
             colCreatedAt = new DataGridViewTextBoxColumn();
+            Duration = new DataGridViewTextBoxColumn();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             btnDelete = new Guna.UI2.WinForms.Guna2Button();
             btnEdit = new Guna.UI2.WinForms.Guna2Button();
@@ -158,6 +159,7 @@
             btnExportExcel.Size = new Size(141, 35);
             btnExportExcel.TabIndex = 40;
             btnExportExcel.Text = "Xuất danh sách";
+            btnExportExcel.Click += btnExportExcel_Click;
             // 
             // guna2HtmlLabel12
             // 
@@ -184,7 +186,7 @@
             dgvCourses.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvCourses.ColumnHeadersHeight = 42;
             dgvCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvCourses.Columns.AddRange(new DataGridViewColumn[] { colCourseCode, colCourseName, colInstructorName, Price, colLevel, colStatus, colCreatedAt });
+            dgvCourses.Columns.AddRange(new DataGridViewColumn[] { colCourseCode, colCourseName, colInstructorName, Price, colLevel, colStatus, colCreatedAt, Duration });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -271,6 +273,13 @@
             colCreatedAt.MinimumWidth = 6;
             colCreatedAt.Name = "colCreatedAt";
             // 
+            // Duration
+            // 
+            Duration.DataPropertyName = "Duration";
+            Duration.HeaderText = "Thời lượng";
+            Duration.MinimumWidth = 6;
+            Duration.Name = "Duration";
+            // 
             // guna2Panel3
             // 
             guna2Panel3.Controls.Add(dgvCourses);
@@ -301,6 +310,7 @@
             btnDelete.Size = new Size(141, 35);
             btnDelete.TabIndex = 39;
             btnDelete.Text = "Xóa khóa học";
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
@@ -321,6 +331,7 @@
             btnEdit.Size = new Size(141, 35);
             btnEdit.TabIndex = 38;
             btnEdit.Text = "Sửa thông tin";
+            btnEdit.Click += btnEdit_Click;
             // 
             // guna2Panel1
             // 
@@ -362,6 +373,7 @@
             dtpFilterDate.Size = new Size(143, 36);
             dtpFilterDate.TabIndex = 56;
             dtpFilterDate.Value = new DateTime(2026, 5, 9, 23, 7, 4, 50);
+            dtpFilterDate.ValueChanged += dtpFilterDate_ValueChanged;
             // 
             // cboFilterStatus
             // 
@@ -375,12 +387,12 @@
             cboFilterStatus.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboFilterStatus.ForeColor = Color.FromArgb(68, 88, 112);
             cboFilterStatus.ItemHeight = 30;
-            cboFilterStatus.Items.AddRange(new object[] { "Tất cả", "Đang hoạt động", "Tạm dừng" });
             cboFilterStatus.Location = new Point(509, 72);
             cboFilterStatus.Name = "cboFilterStatus";
             cboFilterStatus.ShadowDecoration.CustomizableEdges = customizableEdges16;
             cboFilterStatus.Size = new Size(117, 36);
             cboFilterStatus.TabIndex = 33;
+            cboFilterStatus.SelectedIndexChanged += cboFilterStatus_SelectedIndexChanged;
             // 
             // cboFilterLevel
             // 
@@ -394,12 +406,12 @@
             cboFilterLevel.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboFilterLevel.ForeColor = Color.FromArgb(68, 88, 112);
             cboFilterLevel.ItemHeight = 30;
-            cboFilterLevel.Items.AddRange(new object[] { "Tất cả trình độ", "Cơ bản", "Trung cấp", "Nâng cao" });
             cboFilterLevel.Location = new Point(370, 72);
             cboFilterLevel.Name = "cboFilterLevel";
             cboFilterLevel.ShadowDecoration.CustomizableEdges = customizableEdges18;
             cboFilterLevel.Size = new Size(117, 36);
             cboFilterLevel.TabIndex = 32;
+            cboFilterLevel.SelectedIndexChanged += cboFilterLevel_SelectedIndexChanged;
             // 
             // cboFilterInstructor
             // 
@@ -413,12 +425,12 @@
             cboFilterInstructor.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboFilterInstructor.ForeColor = Color.FromArgb(68, 88, 112);
             cboFilterInstructor.ItemHeight = 30;
-            cboFilterInstructor.Items.AddRange(new object[] { "Tất cả", "Tiếng Anh Giao tiếp", "Luyện thi IELTS" });
             cboFilterInstructor.Location = new Point(235, 72);
             cboFilterInstructor.Name = "cboFilterInstructor";
             cboFilterInstructor.ShadowDecoration.CustomizableEdges = customizableEdges20;
             cboFilterInstructor.Size = new Size(117, 36);
             cboFilterInstructor.TabIndex = 27;
+            cboFilterInstructor.SelectedIndexChanged += cboFilterInstructor_SelectedIndexChanged;
             // 
             // btnReset
             // 
@@ -439,6 +451,7 @@
             btnReset.Size = new Size(106, 45);
             btnReset.TabIndex = 27;
             btnReset.Text = "Làm mới";
+            btnReset.Click += btnReset_Click;
             // 
             // guna2Button3
             // 
@@ -671,5 +684,6 @@
         private DataGridViewTextBoxColumn colLevel;
         private DataGridViewTextBoxColumn colStatus;
         private DataGridViewTextBoxColumn colCreatedAt;
+        private DataGridViewTextBoxColumn Duration;
     }
 }

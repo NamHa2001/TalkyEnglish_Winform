@@ -8,7 +8,7 @@ namespace TalkyEnglish.DAL
     {
         public DbSet<UserDTO> Users { get; set; }
         public DbSet<CourseDTO> Courses { get; set; }
-
+        public virtual DbSet<TeachingAssignmentDTO> TeachingAssignments { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -27,7 +27,16 @@ namespace TalkyEnglish.DAL
                 entity.HasKey(e => e.UserID);
                 entity.Property(e => e.Gender).HasMaxLength(20);
                 entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
+
+                // Cấu hình cột tính toán cho Mã học viên
+                entity.Property(e => e.StudentCode)
+                      .HasComputedColumnSql("('HV' + RIGHT('000' + CAST([UserID] AS [varchar](3)), 3))");
+
+                // Cấu hình 2 cột mới thêm để lưu thông tin khóa học
+                entity.Property(e => e.CourseName).HasMaxLength(255);
+                entity.Property(e => e.Level).HasMaxLength(100);
             });
+
 
             // 2. Cấu hình cho bảng Courses (Nâng cấp để quản lý lâu dài)
             modelBuilder.Entity<CourseDTO>(entity =>

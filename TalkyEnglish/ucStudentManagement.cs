@@ -8,276 +8,284 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TalkyEnglish.BUS;
+using TalkyEnglish.DAL;
 using TalkyEnglish.DTO;
-
+using Excel = Microsoft.Office.Interop.Excel;
 namespace TalkyEnglish.GUI
 {
     public partial class ucStudentManagement : UserControl
     {
-        UserBUS _userBUS = new UserBUS();
+        private UserDAL _userDAL = new UserDAL();
+        // 1. Hàm nạp dữ liệu lên bảng
+        private void LoadStudentData()
+        {
+            UserDAL _userDAL = new UserDAL();
+            List<UserDTO> students = _userDAL.GetAllStudents();
+            dgvStudents.AutoGenerateColumns = false;
+            dgvStudents.DataSource = students;
 
-        // Khai báo một BindingSource làm trung gian để giữ cột Design không bị mất
-        private BindingSource studentBindingSource = new BindingSource();
-
+            // --- THÊM ĐOẠN ẨN CỘT NÀY VÀO ---
+            string[] columnsToHide = { "Specialization", "Degree", "PasswordHash", "Role" };
+            foreach (string colName in columnsToHide)
+            {
+                if (dgvStudents.Columns.Contains(colName))
+                    dgvStudents.Columns[colName].Visible = false;
+            }
+            UpdateStudentCount();
+        }
         public ucStudentManagement()
         {
             InitializeComponent();
-            // CHỐT HẠ: Tắt chế độ tự sinh cột để Grid luôn giữ đúng các cột tiếng Việt bạn đã thiết kế
-            dgvStudents.AutoGenerateColumns = false;
+
         }
 
-        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        private void dgvStudents_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+
+            var centerFormat = new StringFormat()
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(rowIdx, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
         }
 
         private void ucStudentManagement_Load(object sender, EventArgs e)
         {
-            LoadData();
+            InitFilters();
+            LoadStudentData();
         }
 
-        private void BindingData()
+        private void InitFilters()
         {
-            // Kiểm tra CurrentRow để chắc chắn có dòng đang được chọn
-            if (dgvStudents.CurrentRow != null)
-            {
-                try
-                {
-                    // Lấy trực tiếp đối tượng dữ liệu gắn với dòng đó (Cách này an toàn hơn dùng Cells)
-                    var student = (UserDTO)dgvStudents.CurrentRow.DataBoundItem;
+            // 1. Nạp dữ liệu Trạng thái (Fix cứng theo nghiệp vụ)
+            cboStatus.Items.Clear();
+            cboStatus.Items.Add("Tất cả");
+            cboStatus.Items.Add("Đang học");
+            cboStatus.Items.Add("Bảo lưu");
+            cboStatus.Items.Add("Đã nghỉ");
+            cboStatus.SelectedIndex = 0;
 
-                    if (student != null)
-                    {
-                        txtID.Text = student.UserID.ToString();
-                        txtFullName.Text = student.FullName;
-                        txtEmail.Text = student.Email;
-                        txtPhone.Text = student.PhoneNumber;
-                        dtpBirthDay.Value = student.Birthday ?? DateTime.Now;
-                        cboGender.Text = student.Gender;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Lỗi Binding: " + ex.Message);
-                }
+            // 2. Nạp dữ liệu Trình độ (Fix cứng hoặc lấy từ DB tùy bạn, ở đây tôi ví dụ fix cứng)
+            cboLevel.Items.Clear();
+            cboLevel.Items.Add("Tất cả");
+            cboLevel.Items.Add("Cơ bản");
+            cboLevel.Items.Add("Trung cấp");
+            cboLevel.Items.Add("Nâng cao");
+            cboLevel.SelectedIndex = 0;
+
+            // 3. Nạp danh sách Khóa học từ Database
+            CourseDAL courseDAL = new CourseDAL();
+            var courses = courseDAL.GetAllCourses();
+            cboCourseStudent.DataSource = null;
+
+            // Tạo một danh sách mới có mục "Tất cả" ở đầu
+            var comboItems = new List<string> { "Tất cả" };
+            comboItems.AddRange(courses.Select(c => c.CourseName).ToList());
+
+            cboCourseStudent.DataSource = comboItems;
+            cboCourseStudent.SelectedIndex = 0;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            // 1. Xóa nội dung ô tìm kiếm
+            txtSearch.Clear();
+
+            // 2. Đưa các bộ lọc về trạng thái "Tất cả" (SelectedIndex = 0)
+            // Sử dụng tên mới cboCourseFilter để tránh lỗi
+            if (cboCourseStudent.Items.Count > 0) cboCourseStudent.SelectedIndex = 0;
+            if (cboLevel.Items.Count > 0) cboLevel.SelectedIndex = 0;
+            if (cboStatus.Items.Count > 0) cboStatus.SelectedIndex = 0;
+
+            // 3. Đặt lại khoảng thời gian (ví dụ: mặc định xem từ 1 tháng trước đến hiện tại)
+            dtpFromDate.Value = DateTime.Now.AddMonths(-1);
+
+            // 4. Gọi lại hàm load dữ liệu để làm mới bảng
+            LoadStudentData();
+        }
+        private void PerformSearch()
+        {
+            string keyword = txtSearch.Text.Trim();
+            string course = cboCourseStudent.Text;
+            string level = cboLevel.Text;
+            string status = cboStatus.Text;
+
+            // Gọi DAL lấy dữ liệu đã lọc
+            var filteredData = _userDAL.SearchStudentsAdvanced(keyword, course, level, status);
+            dgvStudents.DataSource = filteredData;
+
+            // --- PHẢI ẨN LẠI CỘT Ở ĐÂY NỮA ---
+            string[] columnsToHide = { "Specialization", "Degree", "PasswordHash", "Role" };
+            foreach (string colName in columnsToHide)
+            {
+                if (dgvStudents.Columns.Contains(colName))
+                    dgvStudents.Columns[colName].Visible = false;
             }
         }
 
-        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
+        private void cboCourseStudent_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PerformSearch();
         }
 
-        public void LoadData()
+        private void cboLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                // 1. Lấy danh sách học viên tươi từ SQL qua tầng BUS
-                List<UserDTO> listStudents = _userBUS.GetAllStudents();
-
-                // 2. Sử dụng BindingSource để nạp dữ liệu. 
-                // Cách này giúp Grid không bị "giật" hoặc tự reset cột
-                studentBindingSource.DataSource = listStudents;
-                dgvStudents.DataSource = studentBindingSource;
-
-                // 3. Ép Grid vẽ lại dữ liệu mới nhất
-                studentBindingSource.ResetBindings(false);
-                dgvStudents.Refresh();
-
-                // Ẩn cột mật khẩu (Nếu trong Design bạn lỡ để hiển thị)
-                if (dgvStudents.Columns["PasswordHash"] != null)
-                    dgvStudents.Columns["PasswordHash"].Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải danh sách học viên: " + ex.Message);
-            }
+            PerformSearch();
         }
 
-        private void dgvStudents_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void cboStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindingData();
+            PerformSearch();
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void dtpFromDate_ValueChanged(object sender, EventArgs e)
         {
-            txtID.Clear();
-            txtFullName.Clear();
-            txtEmail.Clear();
-            txtPhone.Clear();
-            dtpBirthDay.Value = DateTime.Now;
-            cboGender.SelectedIndex = -1;
-            txtFullName.Focus();
+            PerformSearch();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            PerformSearch();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
+            // Mở Form chi tiết ở chế độ Thêm mới
+            frmStudentDetail frm = new frmStudentDetail();
+
+            // Nếu người dùng bấm Lưu thành công (DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
-                string fullName = txtFullName.Text.Trim();
-                string email = txtEmail.Text.Trim();
-                string phone = txtPhone.Text.Trim();
-                string gender = cboGender.Text;
-                DateTime dob = dtpBirthDay.Value;
-                string password = "123";
-
-                if (string.IsNullOrEmpty(fullName) || string.IsNullOrEmpty(email))
-                {
-                    MessageBox.Show("Họ tên và Email là bắt buộc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (!email.Contains("@") || !email.Contains("."))
-                {
-                    MessageBox.Show("Email không đúng định dạng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (DateTime.Now.Year - dob.Year < 5)
-                {
-                    MessageBox.Show("Ngày sinh không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (_userBUS.IsEmailExist(email))
-                {
-                    MessageBox.Show("Email này đã được sử dụng bởi một tài khoản khác!", "Lỗi trùng dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                UserDTO newStudent = new UserDTO
-                {
-                    FullName = fullName,
-                    Email = email,
-                    PhoneNumber = phone,
-                    PasswordHash = password,
-                    Birthday = dob,
-                    Gender = gender,
-                    Role = "Student",
-                    CreatedAt = DateTime.Now
-                };
-
-                string result = _userBUS.Register(newStudent, password, true);
-
-                if (result == "SUCCESS")
-                {
-                    MessageBox.Show("Thêm học viên thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                    btnRefresh_Click(null, null);
-                }
-                else
-                {
-                    MessageBox.Show("Lỗi: " + result, "Thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi hệ thống khi thêm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                LoadStudentData(); // Load lại bảng cho nó cập nhật
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            try
+            // 1. Kiểm tra xem có đang chọn dòng nào không
+            if (dgvStudents.CurrentRow != null)
             {
-                if (dgvStudents.CurrentRow == null || string.IsNullOrEmpty(txtID.Text))
-                {
-                    MessageBox.Show("Vui lòng chọn học viên cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                // 2. Lấy đối tượng học viên từ dòng đang chọn
+                UserDTO selectedStudent = (UserDTO)dgvStudents.CurrentRow.DataBoundItem;
 
-                // Lấy đối tượng dữ liệu hiện tại từ dòng đang chọn để giữ mật khẩu và ngày tạo
-                var currentStudent = (UserDTO)dgvStudents.CurrentRow.DataBoundItem;
+                // 3. Mở Form và truyền học viên đó sang
+                frmStudentDetail frm = new frmStudentDetail(selectedStudent);
 
-                UserDTO updatedStudent = new UserDTO
+                if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    UserID = int.Parse(txtID.Text),
-                    FullName = txtFullName.Text.Trim(),
-                    Email = txtEmail.Text.Trim(),
-                    PhoneNumber = txtPhone.Text.Trim(),
-                    Birthday = dtpBirthDay.Value,
-                    Gender = cboGender.Text,
-                    Role = "Student",
-                    PasswordHash = currentStudent.PasswordHash, // Giữ mật khẩu cũ
-                    CreatedAt = currentStudent.CreatedAt       // Giữ ngày tạo cũ
-                };
-
-                if (_userBUS.UpdateUser(updatedStudent))
-                {
-                    MessageBox.Show("Cập nhật thông tin thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadData();
-                }
-                else
-                {
-                    MessageBox.Show("Cập nhật thất bại. Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoadStudentData(); // Cập nhật lại bảng sau khi sửa
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi khi sửa: " + ex.Message, "Lỗi hệ thống", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn một học viên để sửa!", "Thông báo");
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            // 1. Kiểm tra xem đã chọn học viên nào trên bảng chưa
+            if (dgvStudents.CurrentRow != null)
             {
-                if (string.IsNullOrEmpty(txtID.Text))
-                {
-                    MessageBox.Show("Vui lòng chọn học viên cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                // 2. Lấy đối tượng học viên đang chọn
+                UserDTO selectedStudent = (UserDTO)dgvStudents.CurrentRow.DataBoundItem;
 
-                int userId = int.Parse(txtID.Text);
-                string userName = txtFullName.Text;
-
-                DialogResult confirm = MessageBox.Show($"Bạn có chắc chắn muốn xóa học viên '{userName}' không?",
-                    "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // 3. Hiện hộp thoại xác nhận (để tránh xóa nhầm)
+                DialogResult confirm = MessageBox.Show(
+                    $"Bạn có chắc chắn muốn xóa học viên: {selectedStudent.FullName} không?",
+                    "Xác nhận xóa",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
 
                 if (confirm == DialogResult.Yes)
                 {
-                    if (_userBUS.DeleteUser(userId))
+                    try
                     {
-                        MessageBox.Show("Đã xóa học viên thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadData();
-                        btnRefresh_Click(null, null);
+                        // 4. Gọi DAL hoặc BUS để thực hiện xóa
+                        // Ở đây mình dùng luôn _userDAL như bạn đang dùng ở các hàm trên cho nhanh
+                        bool result = _userDAL.DeleteUser(selectedStudent.UserID);
+
+                        if (result)
+                        {
+                            MessageBox.Show("Xóa học viên thành công!");
+                            LoadStudentData(); // Load lại bảng để cập nhật danh sách mới
+                        }
+                        else
+                        {
+                            MessageBox.Show("Xóa thất bại. Vui lòng thử lại!");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Xóa thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Lỗi: " + ex.Message);
                     }
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Lỗi khi xóa: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng chọn một học viên trong danh sách để xóa!");
             }
         }
 
-        private void dgvStudents_SelectionChanged(object sender, EventArgs e)
+        private void btnExport_Click(object sender, EventArgs e)
         {
-            BindingData();
-        }
-
-        private void guna2Button3_Click(object sender, EventArgs e)
-        {
-            string keyword = txtSearch.Text.Trim();
-
-            // Gọi BUS để lấy danh sách đã lọc
-            List<UserDTO> result = _userBUS.SearchStudents(keyword);
-
-            // Nạp vào BindingSource để Grid hiển thị (giữ nguyên cột Design)
-            studentBindingSource.DataSource = result;
-            studentBindingSource.ResetBindings(false);
-
-            if (result.Count == 0)
+            if (dgvStudents.Rows.Count > 0)
             {
-                // Nếu không thấy ai thì thông báo nhẹ một cái
-                Console.WriteLine("Không tìm thấy học viên nào khớp với từ khóa.");
+                // 1. Khởi tạo ứng dụng Excel
+                Excel.Application excelApp = new Excel.Application();
+                excelApp.Application.Workbooks.Add(Type.Missing);
+
+                // 2. Tạo tiêu đề cột (Lấy các cột đang hiển thị trên DataGridView)
+                int excelColumnIndex = 1;
+                for (int i = 1; i < dgvStudents.Columns.Count + 1; i++)
+                {
+                    if (dgvStudents.Columns[i - 1].Visible)
+                    {
+                        excelApp.Cells[1, excelColumnIndex] = dgvStudents.Columns[i - 1].HeaderText;
+                        excelApp.Cells[1, excelColumnIndex].Font.Bold = true; // In đậm tiêu đề
+                        excelApp.Cells[1, excelColumnIndex].Interior.Color = Color.LightGray; // Tô nền
+                        excelColumnIndex++;
+                    }
+                }
+
+                // 3. Đổ dữ liệu từ bảng vào Excel
+                for (int i = 0; i < dgvStudents.Rows.Count; i++)
+                {
+                    excelColumnIndex = 1;
+                    for (int j = 0; j < dgvStudents.Columns.Count; j++)
+                    {
+                        if (dgvStudents.Columns[j].Visible)
+                        {
+                            // Lấy giá trị và gán vào cell
+                            var cellValue = dgvStudents.Rows[i].Cells[j].Value;
+                            excelApp.Cells[i + 2, excelColumnIndex] = cellValue != null ? cellValue.ToString() : "";
+                            excelColumnIndex++;
+                        }
+                    }
+                }
+
+                // 4. Căn chỉnh tự động các cột cho đẹp
+                excelApp.Columns.AutoFit();
+
+                // 5. Hiển thị Excel lên để người dùng tự lưu (hoặc dùng SaveFileDialog như các phần trước)
+                excelApp.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Không có dữ liệu để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private void UpdateStudentCount()
         {
-            guna2Button3_Click(null, null);
+            // Giả sử tên TextBox/Label của bạn là txtTotalStudents hoặc lblTotalStudents
+            // Ở đây mình dùng dgvStudents.Rows.Count để đếm
+            int count = dgvStudents.Rows.Count;
+            txtTotalStudents.Text = count.ToString();
         }
     }
 }
