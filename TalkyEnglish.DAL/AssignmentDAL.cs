@@ -84,6 +84,39 @@ namespace TalkyEnglish.DAL
             }
             catch (Exception) { return false; }
         }
+
+        // Lấy lịch học hôm nay cho một học viên cụ thể
+        public List<TeachingAssignmentDTO> GetTodayScheduleForStudent(int studentId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    DateTime today = DateTime.Today;
+
+                    var query = from en in db.Enrolments
+                                join ta in db.TeachingAssignments on en.CourseID equals ta.CourseID
+                                join u in db.Users on ta.InstructorID equals u.UserID
+                                join c in db.Courses on ta.CourseID equals c.CourseID
+                                where en.StudentID == studentId &&
+                                      ta.AssignedDate.HasValue &&
+                                      ta.AssignedDate.Value.Date == today
+                                select new TeachingAssignmentDTO
+                                {
+                                    AssignmentID = ta.AssignmentID,
+                                    CourseName = c.CourseName,
+                                    InstructorName = u.FullName,
+                                    AssignedDate = ta.AssignedDate,
+                                    Note = ta.Note
+                                };
+                    return query.ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL GetTodayScheduleForStudent: " + ex.Message);
+                }
+            }
+        }
     }
 
 }

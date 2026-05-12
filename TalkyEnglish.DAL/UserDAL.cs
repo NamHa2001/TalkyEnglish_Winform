@@ -289,5 +289,42 @@ namespace TalkyEnglish.DAL
                 return query.ToList();
             }
         }
+
+        // Thêm hàm này để lấy toàn bộ User phục vụ đăng nhập
+        public List<UserDTO> GetAllUsers()
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    return db.Users.AsNoTracking().ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL GetAllUsers: " + ex.Message);
+                }
+            }
+        }
+
+        // Thêm hàm này vào UserDAL.cs
+        public UserDTO GetUserForLogin(string email, string password)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    // Lấy duy nhất 1 User khớp Email và Password, lấy đủ tất cả các cột
+                    var user = db.Users
+                                 .AsNoTracking()
+                                 .FirstOrDefault(u => u.Email == email && u.PasswordHash == password);
+
+                    return user; // Nếu không thấy sẽ trả về null
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi DAL GetUserForLogin: " + ex.Message);
+                }
+            }
+        }
     }
 }

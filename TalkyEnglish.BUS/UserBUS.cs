@@ -23,17 +23,11 @@ namespace TalkyEnglish.BUS
         /// <returns>Đối tượng UserDTO nếu hợp lệ, ngược lại trả về null</returns>
         public UserDTO Login(string email, string password)
         {
-            // 1. Validation: Kiểm tra dữ liệu đầu vào cơ bản
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-            {
-                return null;
-            }
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password)) return null;
 
-            // 2. Tìm kiếm người dùng khớp với Email và Password
-            // Sử dụng OrdinalIgnoreCase để Email không phân biệt chữ hoa chữ thường
-            return _userDAL.GetAllStudents().FirstOrDefault(u =>
-                string.Equals(u.Email, email, StringComparison.OrdinalIgnoreCase) &&
-                u.PasswordHash == password);
+            // Sử dụng hàm truy vấn trực tiếp để đảm bảo lấy đủ các cột tính toán (StudentCode)
+            return _userDAL.GetUserForLogin(email.Trim(), password.Trim());
+        
         }
 
         /// <summary>

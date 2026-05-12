@@ -9,6 +9,10 @@ namespace TalkyEnglish.DAL
         public DbSet<UserDTO> Users { get; set; }
         public DbSet<CourseDTO> Courses { get; set; }
         public virtual DbSet<TeachingAssignmentDTO> TeachingAssignments { get; set; }
+        public DbSet<EnrolmentDTO> Enrolments { get; set; }
+        public DbSet<AnnouncementsDTO> Announcements { get; set; }
+        public DbSet<AttendanceDTO> Attendances { get; set; }
+        public DbSet<GradesDTO> Grades { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -28,11 +32,11 @@ namespace TalkyEnglish.DAL
                 entity.Property(e => e.Gender).HasMaxLength(20);
                 entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
 
-                // Cấu hình cột tính toán cho Mã học viên
+                // SỬA LẠI ĐOẠN NÀY: Thêm .ValueGeneratedOnAddOrUpdate()
                 entity.Property(e => e.StudentCode)
-                      .HasComputedColumnSql("('HV' + RIGHT('000' + CAST([UserID] AS [varchar](3)), 3))");
+                      .HasComputedColumnSql("('HV' + RIGHT('000' + CAST([UserID] AS [varchar](3)), 3))")
+                      .ValueGeneratedOnAddOrUpdate(); // Ép EF luôn phải đọc giá trị này sau khi truy vấn
 
-                // Cấu hình 2 cột mới thêm để lưu thông tin khóa học
                 entity.Property(e => e.CourseName).HasMaxLength(255);
                 entity.Property(e => e.Level).HasMaxLength(100);
             });
@@ -64,6 +68,73 @@ namespace TalkyEnglish.DAL
                       .WithMany()
                       .HasForeignKey(c => c.InstructorID)
                       .OnDelete(DeleteBehavior.Restrict); // Tránh xóa nhầm Giảng viên khi còn Khóa học
+            });
+
+            // 3. Cấu hình cho bảng Enrolments (Đăng ký khóa học)
+            modelBuilder.Entity<EnrolmentDTO>(entity =>
+            {
+                entity.ToTable("Enrolments");
+                entity.HasKey(e => e.EnrolmentID);
+
+                // Cấu hình Ngày đăng ký mặc định
+                entity.Property(e => e.EnrolDate)
+                      .HasDefaultValueSql("GETDATE()");
+
+                // Thiết lập mối quan hệ với bảng Users (Học viên)
+                entity.HasOne<UserDTO>()
+                      .WithMany()
+                      .HasForeignKey(e => e.StudentID)
+                      .OnDelete(DeleteBehavior.Cascade); // Xóa user thì xóa luôn đăng ký
+
+                // Thiết lập mối quan hệ với bảng Courses (Khóa học)
+                entity.HasOne<CourseDTO>()
+                      .WithMany()
+                      .HasForeignKey(e => e.CourseID)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // 4. Cấu hình cho bảng Announcements (Thông báo)
+            modelBuilder.Entity<AnnouncementsDTO>(entity =>
+            {
+                entity.ToTable("Announcements");
+                entity.HasKey(a => a.AnnounceID);
+                entity.Property(a => a.PublishDate).HasDefaultValueSql("GETDATE()");
+            });
+
+            // 5. Cấu hình cho bảng Attendance (Điểm danh)
+            modelBuilder.Entity<AttendanceDTO>(entity =>
+            {
+                entity.ToTable("Attendance");
+                entity.HasKey(at => at.AttendanceID);
+                entity.Property(at => at.AttendanceDate).HasDefaultValueSql("GETDATE()");
+                entity.Property(at => at.IsPresent).HasDefaultValue(true);
+
+                // Quan hệ: Một lượt đăng ký có nhiều ngày điểm danh
+                entity.HasOne<EnrolmentDTO>()
+                      .WithMany()
+                      .HasForeignKey(at => at.EnrolmentID)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+            // 6. Cấu hình cho bảng Grades (Điểm số)
+            modelBuilder.Entity<GradesDTO>(entity =>
+            {
+                entity.ToTable("Grades");
+                entity.HasKey(g => g.GradeID);
+
+                // Mặc định điểm là 0.0 (kiểu số thực) và chỉ định rõ kiểu dữ liệu trong SQL
+                entity.Property(g => g.MidTerm)
+                      .HasColumnType("float")
+                      .HasDefaultValue(0.0);
+
+                entity.Property(g => g.FinalTerm)
+                              .HasColumnType("float")
+                              .HasDefaultValue(0.0);
+
+                // Quan hệ: Một lượt đăng ký sẽ có một bảng điểm
+                entity.HasOne<EnrolmentDTO>()
+                      .WithMany()
+                      .HasForeignKey(g => g.EnrolmentID)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

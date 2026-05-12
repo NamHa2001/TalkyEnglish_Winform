@@ -37,11 +37,9 @@ namespace TalkyEnglish.GUI
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // 1. Lấy thông tin từ giao diện
             string email = txtEmail.Text.Trim();
             string password = txtPassword.Text.Trim();
 
-            // 2. Kiểm tra nhanh (Validation) trước khi gọi xuống Database
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ Email và Mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -50,28 +48,51 @@ namespace TalkyEnglish.GUI
 
             try
             {
-                // 3. Gọi tầng BUS để xác thực
+                // Gọi tầng BUS để xác thực
                 UserDTO user = _userBUS.Login(email, password);
 
-                if (user != null)
+                // TRƯỜNG HỢP 1: Sai tài khoản hoặc mật khẩu (User trả về null)
+                if (user == null)
                 {
-                    // Đăng nhập thành công
-                    MessageBox.Show($"Chào mừng {user.FullName} ({user.Role}) đã quay trở lại!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Email hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                    // Tạm thời để đây, sau này ta sẽ mở trang Dashboard chính tại đây
-                    // frmMain main = new frmMain(user);
-                    // main.Show();
-                    // this.Hide();
+                // TRƯỜNG HỢP 2: Đăng nhập thành công
+                SessionManager.CurrentUser = user;
+                MessageBox.Show($"Chào mừng {user.FullName} ({user.Role}) đã quay trở lại!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Điều hướng dựa trên quyền (Role)
+                string userRole = user.Role.Trim().ToUpper();
+
+                if (userRole == "ADMIN")
+                {
+                    try
+                    {
+                        frmDashboard_Admin adminForm = new frmDashboard_Admin();
+                        adminForm.Show();
+                        this.Hide();
+                    }
+                    catch (Exception exAdmin)
+                    {
+                        // Log lỗi chi tiết nếu Form Admin bị treo khi khởi tạo
+                        MessageBox.Show("Đã xảy ra lỗi khi khởi tạo giao diện Admin:\n" + exAdmin.Message, "Lỗi khởi tạo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    }
+                }
+                else if (userRole == "STUDENT")
+                {
+                    frmMain_Student studentForm = new frmMain_Student();
+                    studentForm.Show();
+                    this.Hide();
                 }
                 else
                 {
-                    // Thất bại
-                    MessageBox.Show("Email hoặc mật khẩu không chính xác. Vui lòng thử lại!", "Lỗi đăng nhập", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Quyền '{user.Role}' chưa được hỗ trợ giao diện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
             {
-                // Xử lý nếu có lỗi kết nối Database
+                // TRƯỜNG HỢP 3: Lỗi kết nối Database hoặc lỗi hệ thống khác
                 MessageBox.Show("Lỗi kết nối hệ thống: " + ex.Message, "Lỗi kỹ thuật", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

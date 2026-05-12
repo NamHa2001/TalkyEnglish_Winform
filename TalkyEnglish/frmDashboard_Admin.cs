@@ -20,12 +20,12 @@ namespace TalkyEnglish.GUI
         {
             InitializeComponent();
 
-            // Kết nối Dataset với biểu đồ
-            chartStatistics.Datasets.Add(gunaBarDataset1);
-            gunaChart2.Datasets.Add(gunaPieDataset1);
+            //// Kết nối Dataset với biểu đồ
+            //chartStatistics.Datasets.Add(gunaBarDataset1);
+            //gunaChart2.Datasets.Add(gunaPieDataset1);
 
-            // Gọi hàm hiển thị biểu đồ
-            HienThiDuLieuBieuDo();
+            //// Gọi hàm hiển thị biểu đồ
+            //HienThiDuLieuBieuDo();
         }
 
         // Hàm xử lý khi Form bắt đầu Load
