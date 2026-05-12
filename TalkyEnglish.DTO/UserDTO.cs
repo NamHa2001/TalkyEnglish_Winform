@@ -36,5 +36,7 @@ namespace TalkyEnglish.DTO
 
         public string? CourseName { get; set; }
         public string? Level { get; set; }
+        [NotMapped]
+        public string AssignedCourses { get; set; } = "";
     }
 }

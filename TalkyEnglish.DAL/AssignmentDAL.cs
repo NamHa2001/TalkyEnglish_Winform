@@ -37,6 +37,53 @@ namespace TalkyEnglish.DAL
                 }
             }
         }
+        public bool DeleteAssignment(int assignmentId)
+        {
+            try
+            {
+                using (var db = new TalkyDbContext())
+                {
+                    // 1. Tìm bản ghi cần xóa dựa trên ID
+                    var assignment = db.TeachingAssignments.Find(assignmentId);
+
+                    if (assignment != null)
+                    {
+                        // 2. Lệnh xóa khỏi tập hợp
+                        db.TeachingAssignments.Remove(assignment);
+
+                        // 3. Lưu thay đổi xuống Database
+                        db.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        // Thêm dấu ? vào sau DateTime
+        public bool UpdateAssignment(int assignmentId, string newNote, DateTime? newDate)
+        {
+            try
+            {
+                using (var db = new TalkyDbContext())
+                {
+                    var assignment = db.TeachingAssignments.Find(assignmentId);
+                    if (assignment != null)
+                    {
+                        assignment.Note = newNote;
+                        assignment.AssignedDate = newDate; // Bây giờ cả 2 đều là DateTime? nên sẽ hết lỗi
+                        db.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception) { return false; }
+        }
     }
 
 }

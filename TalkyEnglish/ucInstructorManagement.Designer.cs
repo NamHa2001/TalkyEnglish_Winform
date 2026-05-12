@@ -88,6 +88,9 @@
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             dgvInstructors = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            btnExport = new Guna.UI2.WinForms.Guna2Button();
+            guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
             colID = new DataGridViewTextBoxColumn();
             colFullName = new DataGridViewTextBoxColumn();
             colEmail = new DataGridViewTextBoxColumn();
@@ -98,9 +101,7 @@
             colCreatedAt = new DataGridViewTextBoxColumn();
             colBirthday = new DataGridViewTextBoxColumn();
             colGender = new DataGridViewTextBoxColumn();
-            guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            btnExport = new Guna.UI2.WinForms.Guna2Button();
-            guna2TextBox2 = new Guna.UI2.WinForms.Guna2TextBox();
+            AssignedCourses = new DataGridViewTextBoxColumn();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel3.SuspendLayout();
@@ -484,7 +485,7 @@
             dgvInstructors.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvInstructors.ColumnHeadersHeight = 42;
             dgvInstructors.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvInstructors.Columns.AddRange(new DataGridViewColumn[] { colID, colFullName, colEmail, colPhone, colSpecialization, colDegree, colStatus, colCreatedAt, colBirthday, colGender });
+            dgvInstructors.Columns.AddRange(new DataGridViewColumn[] { colID, colFullName, colEmail, colPhone, colSpecialization, colDegree, colStatus, colCreatedAt, colBirthday, colGender, AssignedCourses });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -521,6 +522,61 @@
             dgvInstructors.ThemeStyle.RowsStyle.Height = 29;
             dgvInstructors.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvInstructors.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // guna2Panel4
+            // 
+            guna2Panel4.Controls.Add(btnExport);
+            guna2Panel4.Controls.Add(guna2TextBox2);
+            guna2Panel4.Controls.Add(guna2HtmlLabel12);
+            guna2Panel4.CustomizableEdges = customizableEdges31;
+            guna2Panel4.Location = new Point(3, 446);
+            guna2Panel4.Name = "guna2Panel4";
+            guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            guna2Panel4.Size = new Size(1038, 38);
+            guna2Panel4.TabIndex = 0;
+            // 
+            // btnExport
+            // 
+            btnExport.BorderColor = Color.Gray;
+            btnExport.BorderRadius = 5;
+            btnExport.BorderThickness = 1;
+            btnExport.CustomizableEdges = customizableEdges27;
+            btnExport.DisabledState.BorderColor = Color.DarkGray;
+            btnExport.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnExport.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnExport.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnExport.FillColor = Color.White;
+            btnExport.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnExport.ForeColor = Color.Black;
+            btnExport.Location = new Point(890, 3);
+            btnExport.Name = "btnExport";
+            btnExport.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            btnExport.Size = new Size(141, 35);
+            btnExport.TabIndex = 40;
+            btnExport.Text = "Xuất danh sách";
+            btnExport.Click += btnExport_Click;
+            // 
+            // guna2TextBox2
+            // 
+            guna2TextBox2.BorderRadius = 15;
+            guna2TextBox2.CustomizableEdges = customizableEdges29;
+            guna2TextBox2.DefaultText = "";
+            guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2TextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2TextBox2.ForeColor = Color.FromArgb(64, 64, 64);
+            guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2TextBox2.Location = new Point(73, 2);
+            guna2TextBox2.Margin = new Padding(3, 4, 3, 4);
+            guna2TextBox2.Name = "guna2TextBox2";
+            guna2TextBox2.PlaceholderText = "";
+            guna2TextBox2.SelectedText = "";
+            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            guna2TextBox2.Size = new Size(201, 36);
+            guna2TextBox2.TabIndex = 36;
             // 
             // colID
             // 
@@ -596,60 +652,12 @@
             colGender.MinimumWidth = 6;
             colGender.Name = "colGender";
             // 
-            // guna2Panel4
+            // AssignedCourses
             // 
-            guna2Panel4.Controls.Add(btnExport);
-            guna2Panel4.Controls.Add(guna2TextBox2);
-            guna2Panel4.Controls.Add(guna2HtmlLabel12);
-            guna2Panel4.CustomizableEdges = customizableEdges31;
-            guna2Panel4.Location = new Point(3, 446);
-            guna2Panel4.Name = "guna2Panel4";
-            guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            guna2Panel4.Size = new Size(1038, 38);
-            guna2Panel4.TabIndex = 0;
-            // 
-            // btnExport
-            // 
-            btnExport.BorderColor = Color.Gray;
-            btnExport.BorderRadius = 5;
-            btnExport.BorderThickness = 1;
-            btnExport.CustomizableEdges = customizableEdges27;
-            btnExport.DisabledState.BorderColor = Color.DarkGray;
-            btnExport.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnExport.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnExport.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExport.FillColor = Color.White;
-            btnExport.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExport.ForeColor = Color.Black;
-            btnExport.Location = new Point(890, 3);
-            btnExport.Name = "btnExport";
-            btnExport.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            btnExport.Size = new Size(141, 35);
-            btnExport.TabIndex = 40;
-            btnExport.Text = "Xuất danh sách";
-            btnExport.Click += btnExport_Click;
-            // 
-            // guna2TextBox2
-            // 
-            guna2TextBox2.BorderRadius = 15;
-            guna2TextBox2.CustomizableEdges = customizableEdges29;
-            guna2TextBox2.DefaultText = "";
-            guna2TextBox2.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox2.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox2.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox2.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2TextBox2.ForeColor = Color.FromArgb(64, 64, 64);
-            guna2TextBox2.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox2.Location = new Point(73, 2);
-            guna2TextBox2.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox2.Name = "guna2TextBox2";
-            guna2TextBox2.PlaceholderText = "";
-            guna2TextBox2.SelectedText = "";
-            guna2TextBox2.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            guna2TextBox2.Size = new Size(201, 36);
-            guna2TextBox2.TabIndex = 36;
+            AssignedCourses.DataPropertyName = "AssignedCourses";
+            AssignedCourses.HeaderText = "KH đang phụ trách";
+            AssignedCourses.MinimumWidth = 6;
+            AssignedCourses.Name = "AssignedCourses";
             // 
             // ucInstructorManagement
             // 
@@ -696,6 +704,8 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private Guna.UI2.WinForms.Guna2TextBox guna2TextBox2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvInstructors;
+        private Guna.UI2.WinForms.Guna2Button btnExport;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpFilterDate;
         private DataGridViewTextBoxColumn colID;
         private DataGridViewTextBoxColumn colFullName;
         private DataGridViewTextBoxColumn colEmail;
@@ -706,7 +716,6 @@
         private DataGridViewTextBoxColumn colCreatedAt;
         private DataGridViewTextBoxColumn colBirthday;
         private DataGridViewTextBoxColumn colGender;
-        private Guna.UI2.WinForms.Guna2Button btnExport;
-        private Guna.UI2.WinForms.Guna2DateTimePicker dtpFilterDate;
+        private DataGridViewTextBoxColumn AssignedCourses;
     }
 }

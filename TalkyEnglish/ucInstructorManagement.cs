@@ -26,23 +26,55 @@ namespace TalkyEnglish.GUI
         {
             try
             {
-                // 1. Lấy dữ liệu và lưu vào danh sách gốc để phục vụ tìm kiếm
-                _originalList = _userBUS.GetAllInstructors();
+                // 1. KHÓA CHẶT tính năng tự sinh cột (Phải đặt TRƯỚC khi gán DataSource)
+                dgvInstructors.AutoGenerateColumns = false;
 
-                // 2. Gán vào BindingSource như cũ
+                // 2. Lấy dữ liệu Giảng viên và đồng bộ Khóa học phụ trách bằng LINQ
+                using (var db = new TalkyEnglish.DAL.TalkyDbContext())
+                {
+                    // Lấy danh sách gốc từ BUS
+                    var instructors = _userBUS.GetAllInstructors();
+
+                    // Lấy danh sách phân công (Join với bảng Courses để lấy tên khóa học)
+                    var assignments = (from a in db.TeachingAssignments
+                                       join c in db.Courses on a.CourseID equals c.CourseID
+                                       select new { a.InstructorID, c.CourseName }).ToList();
+
+                    // Khớp tên khóa học vào từng giảng viên (Gộp thành chuỗi: "Lớp A, Lớp B")
+                    foreach (var ins in instructors)
+                    {
+                        var courseNames = assignments.Where(a => a.InstructorID == ins.UserID)
+                                                     .Select(a => a.CourseName);
+
+                        // Thuộc tính AssignedCourses này bạn cần thêm vào UserDTO.cs nhé
+                        ins.AssignedCourses = string.Join(", ", courseNames);
+                    }
+
+                    _originalList = instructors;
+                }
+
+                // 3. Gán dữ liệu vào BindingSource
                 instructorBindingSource.DataSource = _originalList;
                 dgvInstructors.DataSource = instructorBindingSource;
 
-                // --- ĐOẠN CODE QUAN TRỌNG ĐỂ ẨN MẬT KHẨU (Giữ nguyên của bạn) ---
-                if (dgvInstructors.Columns["PasswordHash"] != null)
+                // 4. DIỆT TẬN GỐC: Xóa các cột thừa tự sinh (như StudentCode, PasswordHash, Role...)
+                // Chỉ giữ lại những cột bạn đã định nghĩa thủ công trong Design
+                for (int i = dgvInstructors.Columns.Count - 1; i >= 0; i--)
                 {
-                    dgvInstructors.Columns["PasswordHash"].Visible = false;
-                }
+                    // Nếu cột đó không có DataPropertyName (cột rác) hoặc nằm ngoài danh sách bạn vẽ
+                    // Bạn có thể kiểm tra theo Name hoặc Index của các cột bạn đã tạo
+                    if (string.IsNullOrEmpty(dgvInstructors.Columns[i].DataPropertyName))
+                    {
+                        // Nếu bạn không muốn xóa, có thể dùng .Visible = false;
+                        dgvInstructors.Columns[i].Visible = false;
+                    }
 
-                // Ẩn cột Role (Giữ nguyên của bạn)
-                if (dgvInstructors.Columns["Role"] != null)
-                {
-                    dgvInstructors.Columns["Role"].Visible = false;
+                    // Ẩn các cột nhạy cảm hoặc cột rác từ DTO
+                    string colName = dgvInstructors.Columns[i].Name;
+                    if (colName == "PasswordHash" || colName == "Role" || colName == "StudentCode")
+                    {
+                        dgvInstructors.Columns[i].Visible = false;
+                    }
                 }
 
                 instructorBindingSource.ResetBindings(false);
