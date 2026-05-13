@@ -85,9 +85,12 @@ namespace TalkyEnglish.GUI
                     studentForm.Show();
                     this.Hide();
                 }
-                else
+                else if (userRole == "INSTRUCTOR")
                 {
-                    MessageBox.Show($"Quyền '{user.Role}' chưa được hỗ trợ giao diện!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // frmMain_Teacher là tên cái Form bro vừa thiết kế Dashboard
+                    frmTeacherDashboard teacherForm = new frmTeacherDashboard();
+                    teacherForm.Show();
+                    this.Hide();
                 }
             }
             catch (Exception ex)

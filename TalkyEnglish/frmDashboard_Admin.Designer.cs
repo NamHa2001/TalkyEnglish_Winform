@@ -30,6 +30,8 @@
         {
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -112,14 +114,13 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges48 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges49 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges50 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
+            btnSchedual = new Guna.UI2.WinForms.Guna2Button();
             btnMenuAssignment = new Guna.UI2.WinForms.Guna2Button();
             btnMenuCourses = new Guna.UI2.WinForms.Guna2Button();
             btnMenuInstructors = new Guna.UI2.WinForms.Guna2Button();
             btnMenuReports = new Guna.UI2.WinForms.Guna2Button();
-            btnMenuSalary = new Guna.UI2.WinForms.Guna2Button();
+            btnNotification = new Guna.UI2.WinForms.Guna2Button();
             btnMenuStudents = new Guna.UI2.WinForms.Guna2Button();
             btnMenuDashboard = new Guna.UI2.WinForms.Guna2Button();
             pictureBox1 = new PictureBox();
@@ -155,7 +156,6 @@
             txtTotalInstructors = new Guna.UI2.WinForms.Guna2TextBox();
             label4 = new Label();
             guna2PictureBox4 = new Guna.UI2.WinForms.Guna2PictureBox();
-            btnSchedual = new Guna.UI2.WinForms.Guna2Button();
             guna2GradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             guna2Panel1.SuspendLayout();
@@ -181,7 +181,7 @@
             guna2GradientPanel1.Controls.Add(btnMenuCourses);
             guna2GradientPanel1.Controls.Add(btnMenuInstructors);
             guna2GradientPanel1.Controls.Add(btnMenuReports);
-            guna2GradientPanel1.Controls.Add(btnMenuSalary);
+            guna2GradientPanel1.Controls.Add(btnNotification);
             guna2GradientPanel1.Controls.Add(btnMenuStudents);
             guna2GradientPanel1.Controls.Add(btnMenuDashboard);
             guna2GradientPanel1.Controls.Add(pictureBox1);
@@ -192,6 +192,31 @@
             guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges18;
             guna2GradientPanel1.Size = new Size(232, 753);
             guna2GradientPanel1.TabIndex = 0;
+            // 
+            // btnSchedual
+            // 
+            btnSchedual.BorderRadius = 10;
+            btnSchedual.BorderThickness = 1;
+            btnSchedual.CustomizableEdges = customizableEdges1;
+            btnSchedual.DisabledState.BorderColor = Color.DarkGray;
+            btnSchedual.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnSchedual.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnSchedual.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnSchedual.FillColor = Color.White;
+            btnSchedual.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSchedual.ForeColor = Color.Black;
+            btnSchedual.Image = Properties.Resources.seo_report;
+            btnSchedual.ImageAlign = HorizontalAlignment.Left;
+            btnSchedual.ImageOffset = new Point(10, 0);
+            btnSchedual.ImageSize = new Size(30, 30);
+            btnSchedual.Location = new Point(7, 522);
+            btnSchedual.Name = "btnSchedual";
+            btnSchedual.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            btnSchedual.Size = new Size(212, 56);
+            btnSchedual.TabIndex = 9;
+            btnSchedual.Text = "Phân công giảng dạy";
+            btnSchedual.TextOffset = new Point(24, 0);
+            btnSchedual.Click += btnSchedual_Click;
             // 
             // btnMenuAssignment
             // 
@@ -292,29 +317,30 @@
             btnMenuReports.Text = "Báo cáo thống kê";
             btnMenuReports.TextOffset = new Point(24, 0);
             // 
-            // btnMenuSalary
+            // btnNotification
             // 
-            btnMenuSalary.BorderRadius = 10;
-            btnMenuSalary.BorderThickness = 1;
-            btnMenuSalary.CustomizableEdges = customizableEdges11;
-            btnMenuSalary.DisabledState.BorderColor = Color.DarkGray;
-            btnMenuSalary.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnMenuSalary.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnMenuSalary.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnMenuSalary.FillColor = Color.White;
-            btnMenuSalary.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnMenuSalary.ForeColor = Color.Black;
-            btnMenuSalary.Image = Properties.Resources.payroll;
-            btnMenuSalary.ImageAlign = HorizontalAlignment.Left;
-            btnMenuSalary.ImageOffset = new Point(10, 0);
-            btnMenuSalary.ImageSize = new Size(30, 30);
-            btnMenuSalary.Location = new Point(9, 336);
-            btnMenuSalary.Name = "btnMenuSalary";
-            btnMenuSalary.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnMenuSalary.Size = new Size(212, 56);
-            btnMenuSalary.TabIndex = 4;
-            btnMenuSalary.Text = "Quản lý lương";
-            btnMenuSalary.TextOffset = new Point(13, 0);
+            btnNotification.BorderRadius = 10;
+            btnNotification.BorderThickness = 1;
+            btnNotification.CustomizableEdges = customizableEdges11;
+            btnNotification.DisabledState.BorderColor = Color.DarkGray;
+            btnNotification.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnNotification.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnNotification.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnNotification.FillColor = Color.White;
+            btnNotification.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNotification.ForeColor = Color.Black;
+            btnNotification.Image = Properties.Resources.payroll;
+            btnNotification.ImageAlign = HorizontalAlignment.Left;
+            btnNotification.ImageOffset = new Point(10, 0);
+            btnNotification.ImageSize = new Size(30, 30);
+            btnNotification.Location = new Point(9, 336);
+            btnNotification.Name = "btnNotification";
+            btnNotification.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnNotification.Size = new Size(212, 56);
+            btnNotification.TabIndex = 4;
+            btnNotification.Text = "Thông báo";
+            btnNotification.TextOffset = new Point(13, 0);
+            btnNotification.Click += btnNotification_Click;
             // 
             // btnMenuStudents
             // 
@@ -871,31 +897,6 @@
             guna2PictureBox4.TabIndex = 3;
             guna2PictureBox4.TabStop = false;
             // 
-            // btnSchedual
-            // 
-            btnSchedual.BorderRadius = 10;
-            btnSchedual.BorderThickness = 1;
-            btnSchedual.CustomizableEdges = customizableEdges1;
-            btnSchedual.DisabledState.BorderColor = Color.DarkGray;
-            btnSchedual.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnSchedual.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnSchedual.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnSchedual.FillColor = Color.White;
-            btnSchedual.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSchedual.ForeColor = Color.Black;
-            btnSchedual.Image = Properties.Resources.seo_report;
-            btnSchedual.ImageAlign = HorizontalAlignment.Left;
-            btnSchedual.ImageOffset = new Point(10, 0);
-            btnSchedual.ImageSize = new Size(30, 30);
-            btnSchedual.Location = new Point(7, 522);
-            btnSchedual.Name = "btnSchedual";
-            btnSchedual.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnSchedual.Size = new Size(212, 56);
-            btnSchedual.TabIndex = 9;
-            btnSchedual.Text = "Phân công giảng dạy";
-            btnSchedual.TextOffset = new Point(24, 0);
-            btnSchedual.Click += btnSchedual_Click;
-            // 
             // frmDashboard_Admin
             // 
             AutoScaleMode = AutoScaleMode.None;
@@ -940,7 +941,7 @@
         private Guna.UI2.WinForms.Guna2Button btnMenuCourses;
         private Guna.UI2.WinForms.Guna2Button btnMenuInstructors;
         private Guna.UI2.WinForms.Guna2Button btnMenuReports;
-        private Guna.UI2.WinForms.Guna2Button btnMenuSalary;
+        private Guna.UI2.WinForms.Guna2Button btnNotification;
         private Guna.UI2.WinForms.Guna2Button btnMenuStudents;
         private Guna.UI2.WinForms.Guna2Button btnMenuDashboard;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;

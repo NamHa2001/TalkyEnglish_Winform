@@ -14,6 +14,7 @@ namespace TalkyEnglish.DAL
         public DbSet<AttendanceDTO> Attendances { get; set; }
         public DbSet<GradesDTO> Grades { get; set; }
         public DbSet<ScheduleDTO> Schedules { get; set; }
+        public DbSet<NotificationStatusDTO> NotificationStatuses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -106,12 +107,48 @@ namespace TalkyEnglish.DAL
                 entity.HasOne<CourseDTO>().WithMany().HasForeignKey(e => e.CourseID).OnDelete(DeleteBehavior.Restrict);
             });
 
-            // 4. Cấu hình cho bảng Announcements (Thông báo)
+            // 4. Cấu hình cho bảng Announcements (Thông báo - Đã đồng bộ mới)
             modelBuilder.Entity<AnnouncementsDTO>(entity =>
             {
                 entity.ToTable("Announcements");
                 entity.HasKey(a => a.AnnounceID);
+
+                // Cấu hình các cột mới
+                entity.Property(a => a.TargetType).IsRequired().HasMaxLength(50);
+                entity.Property(a => a.PriorityLevel).HasDefaultValue("Normal").HasMaxLength(20);
                 entity.Property(a => a.PublishDate).HasDefaultValueSql("GETDATE()");
+
+                // Thiết lập Khóa ngoại cho người gửi (Admin)
+                entity.HasOne<UserDTO>()
+                      .WithMany()
+                      .HasForeignKey(a => a.SenderID)
+                      .OnDelete(DeleteBehavior.Restrict);
+
+                // Thiết lập Khóa ngoại cho người nhận (Trường hợp gửi Individual)
+                entity.HasOne<UserDTO>()
+                      .WithMany()
+                      .HasForeignKey(a => a.ReceiverID)
+                      .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            // 4.1 Cấu hình cho bảng mới: NotificationStatus (Trạng thái đọc)
+            modelBuilder.Entity<NotificationStatusDTO>(entity =>
+            {
+                entity.ToTable("NotificationStatuses");
+                entity.HasKey(s => s.StatusID);
+                entity.Property(s => s.IsRead).HasDefaultValue(false);
+
+                // Khóa ngoại liên kết tới thông báo gốc
+                entity.HasOne<AnnouncementsDTO>()
+                      .WithMany()
+                      .HasForeignKey(s => s.AnnounceID)
+                      .OnDelete(DeleteBehavior.Cascade); // Xóa thông báo thì xóa luôn trạng thái đọc liên quan
+
+                // Khóa ngoại liên kết tới người nhận
+                entity.HasOne<UserDTO>()
+                      .WithMany()
+                      .HasForeignKey(s => s.UserID)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
 
             // 5. Cấu hình cho bảng Attendance (Điểm danh)

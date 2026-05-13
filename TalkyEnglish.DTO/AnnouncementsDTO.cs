@@ -10,6 +10,7 @@ namespace TalkyEnglish.DTO
 {
     public class AnnouncementsDTO
     {
+      
         [DisplayName("ID Thông Báo")]
         public int AnnounceID { get; set; }
 
@@ -24,5 +25,17 @@ namespace TalkyEnglish.DTO
 
         [DisplayName("Danh Mục")]
         public string? Category { get; set; } // Ví dụ: Lịch nghỉ, Khai giảng, Ưu đãi
+
+        [DisplayName("Đối Tượng Nhận")]
+        public string? TargetType { get; set; } // Lưu: All, Teacher, Student, Individual
+
+        [DisplayName("ID Người Nhận")]
+        public int? ReceiverID { get; set; } // Nullable vì có khi gửi cho cả nhóm
+
+        [DisplayName("Độ Ưu Tiên")]
+        public string? PriorityLevel { get; set; } // Normal hoặc Urgent
+
+        [DisplayName("ID Người Gửi")]
+        public int SenderID { get; set; }
     }
 }

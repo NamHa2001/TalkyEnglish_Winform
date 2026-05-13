@@ -488,6 +488,7 @@
             guna2Button6.Size = new Size(206, 49);
             guna2Button6.TabIndex = 61;
             guna2Button6.Text = "Thông báo";
+            guna2Button6.Click += guna2Button6_Click;
             // 
             // btnProfile
             // 

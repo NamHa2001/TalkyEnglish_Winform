@@ -208,5 +208,14 @@ namespace TalkyEnglish.GUI
             // Chú thích: Hàm này sẽ tự động Clear trang cũ và Fill trang Đăng ký vào Panel
             addUserControl(uc);
         }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
+            ucStudentNotification uc = new ucStudentNotification();
+
+            // 2. Sử dụng hàm điều hướng có sẵn của bạn để hiển thị lên vùng trung tâm
+            // Chú thích: Hàm này sẽ tự động Clear trang cũ và Fill trang Đăng ký vào Panel
+            addUserControl(uc);
+        }
     }
 }

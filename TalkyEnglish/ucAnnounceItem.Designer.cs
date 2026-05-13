@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2CirclePictureBox1 = new Guna.UI2.WinForms.Guna2CirclePictureBox();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblContent = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -39,9 +39,9 @@
             // guna2CirclePictureBox1
             // 
             guna2CirclePictureBox1.ImageRotate = 0F;
-            guna2CirclePictureBox1.Location = new Point(9, 5);
+            guna2CirclePictureBox1.Location = new Point(6, 5);
             guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
-            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges1;
+            guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges2;
             guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             guna2CirclePictureBox1.Size = new Size(69, 62);
             guna2CirclePictureBox1.TabIndex = 0;
@@ -51,7 +51,7 @@
             // 
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(84, 5);
+            lblTitle.Location = new Point(81, 5);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(54, 22);
             lblTitle.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             lblContent.BackColor = Color.Transparent;
             lblContent.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblContent.Location = new Point(84, 33);
+            lblContent.Location = new Point(81, 33);
             lblContent.Name = "lblContent";
             lblContent.Size = new Size(65, 22);
             lblContent.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             lblDate.BackColor = Color.Transparent;
             lblDate.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblDate.Location = new Point(319, 5);
+            lblDate.Location = new Point(269, 5);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(78, 22);
             lblDate.TabIndex = 3;
@@ -86,7 +86,7 @@
             Controls.Add(lblTitle);
             Controls.Add(guna2CirclePictureBox1);
             Name = "ucAnnounceItem";
-            Size = new Size(418, 70);
+            Size = new Size(426, 70);
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

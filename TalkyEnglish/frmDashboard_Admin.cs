@@ -17,6 +17,7 @@ namespace TalkyEnglish.GUI
         ucCourseManagement _ucCourse;
         ucTeachingAssignment _ucTeaching;
         ucScheduleManagement _ucSchedule;
+        ucAdminNotificationManager _ucAdminNotification;
         public frmDashboard_Admin()
         {
             InitializeComponent();
@@ -189,6 +190,21 @@ namespace TalkyEnglish.GUI
             // Hiển thị nó lên vùng chính
             ShowUserControl(_ucSchedule);
             btnMenuCourses.BackColor = Color.FromArgb(197, 160, 89); // Màu Heritage Gold
+        }
+
+        private void btnNotification_Click(object sender, EventArgs e)
+        {
+            if (_ucAdminNotification == null)
+            {
+                _ucAdminNotification = new ucAdminNotificationManager();
+            }
+
+            // Gọi hàm LoadData để chắc chắn dữ liệu luôn mới khi bấm vào
+            _ucAdminNotification.LoadData();
+
+            // Hiển thị nó lên vùng chính
+            ShowUserControl(_ucAdminNotification);
+            btnMenuCourses.BackColor = Color.FromArgb(197, 160, 89);
         }
     }
 
