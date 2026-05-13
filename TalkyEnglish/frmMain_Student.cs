@@ -199,5 +199,14 @@ namespace TalkyEnglish.GUI
             // Sử dụng hàm điều hướng chung để hiển thị lên vùng pnlMainContent1
             addUserControl(uc);
         }
+
+        private void btnRegisterCourse_Click(object sender, EventArgs e)
+        {
+            ucRegisterCourse uc = new ucRegisterCourse();
+
+            // 2. Sử dụng hàm điều hướng có sẵn của bạn để hiển thị lên vùng trung tâm
+            // Chú thích: Hàm này sẽ tự động Clear trang cũ và Fill trang Đăng ký vào Panel
+            addUserControl(uc);
+        }
     }
 }

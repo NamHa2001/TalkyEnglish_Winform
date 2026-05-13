@@ -11,7 +11,7 @@ namespace TalkyEnglish.DTO
     public class EnrolmentDTO
     {
         [DisplayName("ID Đăng Ký")]
-        public int EnrolmentID { get; set; }
+        public int EnrollmentID { get; set; }
 
         [Browsable(false)]
         public int StudentID { get; set; }
@@ -19,13 +19,14 @@ namespace TalkyEnglish.DTO
         [Browsable(false)]
         public int CourseID { get; set; }
 
+        // SỬA TÊN: Khớp với cột EnrollmentDate trong SQL
         [DisplayName("Ngày Đăng Ký")]
-        public DateTime? EnrolDate { get; set; }
+        public DateTime? EnrollmentDate { get; set; }
 
         [DisplayName("Trạng Thái Thanh Toán")]
-        public string? PaymentStatus { get; set; } // Ví dụ: Đã đóng, Còn nợ
+        public string? PaymentStatus { get; set; }
 
-        // --- Các trường bổ trợ để hiển thị lên bảng (Grid) ---
+        // --- Các trường bổ trợ (Dùng Fluent API .Ignore trong DbContext để không báo lỗi) ---
         [DisplayName("Tên Học Viên")]
         public string? StudentName { get; set; }
 
@@ -35,13 +36,11 @@ namespace TalkyEnglish.DTO
         [DisplayName("Học Phí")]
         public decimal? Price { get; set; }
 
-        // --- BỔ SUNG CÁC TRƯỜNG DÀNH CHO DASHBOARD ---
-
         [DisplayName("Tiến Độ")]
-        public int ProgressValue { get; set; } // Chứa giá trị % để đổ vào ProgressBar
+        public int ProgressValue { get; set; }
 
         [DisplayName("Giảng Viên")]
-        public string? InstructorName { get; set; } // Hiển thị tên GV ở phần Tiến độ học tập
+        public string? InstructorName { get; set; }
     }
 }
     

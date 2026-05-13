@@ -87,7 +87,7 @@
             label4 = new Label();
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             btnlichoc = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button9 = new Guna.UI2.WinForms.Guna2Button();
+            btnRegisterCourse = new Guna.UI2.WinForms.Guna2Button();
             btnGrades = new Guna.UI2.WinForms.Guna2Button();
             guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
@@ -376,7 +376,7 @@
             // guna2GradientPanel1
             // 
             guna2GradientPanel1.Controls.Add(btnlichoc);
-            guna2GradientPanel1.Controls.Add(guna2Button9);
+            guna2GradientPanel1.Controls.Add(btnRegisterCourse);
             guna2GradientPanel1.Controls.Add(btnGrades);
             guna2GradientPanel1.Controls.Add(guna2Button7);
             guna2GradientPanel1.Controls.Add(guna2Button6);
@@ -411,24 +411,25 @@
             btnlichoc.Text = "Lịch học";
             btnlichoc.Click += btnlichoc_Click;
             // 
-            // guna2Button9
+            // btnRegisterCourse
             // 
-            guna2Button9.BorderRadius = 10;
-            guna2Button9.BorderThickness = 1;
-            guna2Button9.CustomizableEdges = customizableEdges18;
-            guna2Button9.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button9.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button9.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button9.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button9.FillColor = Color.White;
-            guna2Button9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button9.ForeColor = Color.Black;
-            guna2Button9.Location = new Point(13, 198);
-            guna2Button9.Name = "guna2Button9";
-            guna2Button9.ShadowDecoration.CustomizableEdges = customizableEdges19;
-            guna2Button9.Size = new Size(206, 49);
-            guna2Button9.TabIndex = 64;
-            guna2Button9.Text = "Đăng ký khóa học";
+            btnRegisterCourse.BorderRadius = 10;
+            btnRegisterCourse.BorderThickness = 1;
+            btnRegisterCourse.CustomizableEdges = customizableEdges18;
+            btnRegisterCourse.DisabledState.BorderColor = Color.DarkGray;
+            btnRegisterCourse.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnRegisterCourse.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnRegisterCourse.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnRegisterCourse.FillColor = Color.White;
+            btnRegisterCourse.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegisterCourse.ForeColor = Color.Black;
+            btnRegisterCourse.Location = new Point(13, 198);
+            btnRegisterCourse.Name = "btnRegisterCourse";
+            btnRegisterCourse.ShadowDecoration.CustomizableEdges = customizableEdges19;
+            btnRegisterCourse.Size = new Size(206, 49);
+            btnRegisterCourse.TabIndex = 64;
+            btnRegisterCourse.Text = "Đăng ký khóa học";
+            btnRegisterCourse.Click += btnRegisterCourse_Click;
             // 
             // btnGrades
             // 
@@ -657,7 +658,7 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
         private Guna.UI2.WinForms.Guna2Button btnlichoc;
-        private Guna.UI2.WinForms.Guna2Button guna2Button9;
+        private Guna.UI2.WinForms.Guna2Button btnRegisterCourse;
         private Guna.UI2.WinForms.Guna2Button btnGrades;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
         private Guna.UI2.WinForms.Guna2Button guna2Button6;

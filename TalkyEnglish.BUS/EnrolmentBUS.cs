@@ -29,5 +29,21 @@ namespace TalkyEnglish.BUS
                 throw new Exception("Lỗi BUS GetStudentProgress: " + ex.Message);
             }
         }
+        public bool RegisterCourse(int studentId, int courseId)
+        {
+            if (studentId <= 0 || courseId <= 0) return false;
+
+            try
+            {
+                // Chỉ gọi hàm đã viết sẵn trong EnrolmentDAL
+                return _enrolmentDAL.AddEnrollment(studentId, courseId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi BUS RegisterCourse: " + ex.Message);
+            }
+        }
     }
+
+
 }

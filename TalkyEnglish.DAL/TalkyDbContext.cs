@@ -24,21 +24,31 @@ namespace TalkyEnglish.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // 1. Cấu hình cho bảng Users
+            // 1. Cấu hình cho bảng Users (Khớp 100% với image_640d38.png)
             modelBuilder.Entity<UserDTO>(entity =>
             {
                 entity.ToTable("Users");
                 entity.HasKey(e => e.UserID);
-                entity.Property(e => e.Gender).HasMaxLength(20);
-                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
 
-                // SỬA LẠI ĐOẠN NÀY: Thêm .ValueGeneratedOnAddOrUpdate()
+                // Khớp độ dài với SQL để tránh lỗi cắt chuỗi
+                entity.Property(e => e.FullName).HasMaxLength(100).IsRequired();
+                entity.Property(e => e.Email).HasMaxLength(100);
+                entity.Property(e => e.Gender).HasMaxLength(20);
+                entity.Property(e => e.Role).HasMaxLength(20);
+
+                // Cấu hình cho cột tính toán StudentCode
                 entity.Property(e => e.StudentCode)
                       .HasComputedColumnSql("('HV' + RIGHT('000' + CAST([UserID] AS [varchar](3)), 3))")
-                      .ValueGeneratedOnAddOrUpdate(); // Ép EF luôn phải đọc giá trị này sau khi truy vấn
+                      .ValueGeneratedOnAddOrUpdate();
 
-                entity.Property(e => e.CourseName).HasMaxLength(255);
-                entity.Property(e => e.Level).HasMaxLength(100);
+                // Ngày tạo mặc định
+                entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
+
+                // Các cột khác nếu có trong DTO nhưng không có trong bảng Users thật thì phải Ignore
+                // Ví dụ nếu UserDTO của bạn có 'CourseName' và 'Level' mà bảng Users thật không lưu 
+                // (vì nó thuộc bảng Courses), thì bạn phải thêm:
+                // entity.Ignore(e => e.CourseName);
+                // entity.Ignore(e => e.Level);
             });
 
 
@@ -73,24 +83,25 @@ namespace TalkyEnglish.DAL
             // 3. Cấu hình cho bảng Enrolments (Đăng ký khóa học)
             modelBuilder.Entity<EnrolmentDTO>(entity =>
             {
-                entity.ToTable("Enrolments");
-                entity.HasKey(e => e.EnrolmentID);
+                entity.ToTable("Enrollments"); // 2 chữ l
+                entity.HasKey(e => e.EnrollmentID);
 
-                // Cấu hình Ngày đăng ký mặc định
-                entity.Property(e => e.EnrolDate)
+                // Ánh xạ thuộc tính EnrollmentDate trong C# vào cột EnrollmentDate trong SQL
+                entity.Property(e => e.EnrollmentDate)
+                      .HasColumnName("EnrollmentDate")
                       .HasDefaultValueSql("GETDATE()");
 
-                // Thiết lập mối quan hệ với bảng Users (Học viên)
-                entity.HasOne<UserDTO>()
-                      .WithMany()
-                      .HasForeignKey(e => e.StudentID)
-                      .OnDelete(DeleteBehavior.Cascade); // Xóa user thì xóa luôn đăng ký
+                entity.Property(e => e.PaymentStatus).HasMaxLength(50);
 
-                // Thiết lập mối quan hệ với bảng Courses (Khóa học)
-                entity.HasOne<CourseDTO>()
-                      .WithMany()
-                      .HasForeignKey(e => e.CourseID)
-                      .OnDelete(DeleteBehavior.Restrict);
+                // Cực kỳ quan trọng: Bỏ qua các trường ảo để không bị lỗi "Invalid column name"
+                entity.Ignore(e => e.StudentName);
+                entity.Ignore(e => e.CourseName);
+                entity.Ignore(e => e.Price);
+                entity.Ignore(e => e.InstructorName);
+                entity.Ignore(e => e.ProgressValue);
+
+                entity.HasOne<UserDTO>().WithMany().HasForeignKey(e => e.StudentID).OnDelete(DeleteBehavior.Cascade);
+                entity.HasOne<CourseDTO>().WithMany().HasForeignKey(e => e.CourseID).OnDelete(DeleteBehavior.Restrict);
             });
 
             // 4. Cấu hình cho bảng Announcements (Thông báo)

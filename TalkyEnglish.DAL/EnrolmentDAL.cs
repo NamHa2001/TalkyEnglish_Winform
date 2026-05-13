@@ -17,18 +17,17 @@ namespace TalkyEnglish.DAL
                 {
                     var query = from en in db.Enrolments
                                 join c in db.Courses on en.CourseID equals c.CourseID
-                                // Join thêm bảng Users để lấy tên Giảng viên quản lý khóa học
                                 join u in db.Users on c.InstructorID equals u.UserID
                                 where en.StudentID == studentId
                                 select new EnrolmentDTO
                                 {
-                                    EnrolmentID = en.EnrolmentID,
+                                    EnrollmentID = en.EnrollmentID,
                                     CourseID = en.CourseID,
                                     CourseName = c.CourseName,
                                     StudentID = en.StudentID,
-                                    InstructorName = u.FullName, // Lấy tên GV đổ vào DTO
-                                    // Giả định lộ trình 20 buổi để tính %
-                                    ProgressValue = db.Attendances.Count(at => at.EnrolmentID == en.EnrolmentID && at.IsPresent) * 100 / 20
+                                    EnrollmentDate = en.EnrollmentDate, // Đã đổi tên ở đây
+                                    InstructorName = u.FullName,
+                                    ProgressValue = db.Attendances.Count(at => at.EnrolmentID == en.EnrollmentID && at.IsPresent) * 100 / 20
                                 };
                     return query.ToList();
                 }
@@ -36,6 +35,28 @@ namespace TalkyEnglish.DAL
                 {
                     throw new Exception("Lỗi DAL GetStudentProgress: " + ex.Message);
                 }
+            }
+        }
+        // Thêm hàm này vào trong class EnrolmentDAL
+        public bool AddEnrollment(int studentId, int courseId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                // 1. Kiểm tra xem học viên này đã đăng ký khóa này chưa
+                bool isExisted = db.Enrolments.Any(e => e.StudentID == studentId && e.CourseID == courseId);
+                if (isExisted) return false;
+
+                // 2. Tạo đối tượng mới để lưu
+                var newEntry = new EnrolmentDTO
+                {
+                    StudentID = studentId,
+                    CourseID = courseId,
+                    EnrollmentDate = DateTime.Now, // Lưu ý: Tên thuộc tính mới EnrollmentDate
+                    //PaymentStatus = "Chưa đóng"
+                };
+
+                db.Enrolments.Add(newEntry);
+                return db.SaveChanges() > 0;
             }
         }
     }
