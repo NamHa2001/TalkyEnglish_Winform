@@ -13,6 +13,8 @@ namespace TalkyEnglish.DAL
         public DbSet<AnnouncementsDTO> Announcements { get; set; }
         public DbSet<AttendanceDTO> Attendances { get; set; }
         public DbSet<GradesDTO> Grades { get; set; }
+        public DbSet<ScheduleDTO> Schedules { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -146,6 +148,18 @@ namespace TalkyEnglish.DAL
                       .WithMany()
                       .HasForeignKey(g => g.EnrolmentID)
                       .OnDelete(DeleteBehavior.Cascade);
+            });
+            //7
+            modelBuilder.Entity<ScheduleDTO>(entity =>
+            {
+                entity.ToTable("Schedules"); // Khớp với tên bảng trong SQL
+                entity.HasKey(e => e.ScheduleID); // Xác định khóa chính
+
+                // Cấu hình các thuộc tính hiển thị (CourseName, InstructorName...) là NotMapped 
+                // để EF không cố tìm chúng trong bảng Schedules khi lưu dữ liệu
+                entity.Ignore(e => e.CourseCode);
+                entity.Ignore(e => e.CourseName);
+                entity.Ignore(e => e.InstructorName);
             });
         }
     }

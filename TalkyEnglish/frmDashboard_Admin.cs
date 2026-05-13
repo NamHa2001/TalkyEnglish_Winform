@@ -16,6 +16,7 @@ namespace TalkyEnglish.GUI
         ucInstructorManagement _ucInstructor;
         ucCourseManagement _ucCourse;
         ucTeachingAssignment _ucTeaching;
+        ucScheduleManagement _ucSchedule;
         public frmDashboard_Admin()
         {
             InitializeComponent();
@@ -162,7 +163,7 @@ namespace TalkyEnglish.GUI
 
         private void btnMenuAssignment_Click(object sender, EventArgs e)
         {
-            if ( _ucTeaching == null)
+            if (_ucTeaching == null)
             {
                 _ucTeaching = new ucTeachingAssignment();
             }
@@ -174,6 +175,21 @@ namespace TalkyEnglish.GUI
             ShowUserControl(_ucTeaching);
             btnMenuCourses.BackColor = Color.FromArgb(197, 160, 89); // Màu Heritage Gold
         }
+
+        private void btnSchedual_Click(object sender, EventArgs e)
+        {
+            if (_ucSchedule == null)
+            {
+                _ucSchedule = new ucScheduleManagement();
+            }
+
+            // Gọi hàm LoadData để chắc chắn dữ liệu luôn mới khi bấm vào
+            _ucSchedule.LoadData();
+
+            // Hiển thị nó lên vùng chính
+            ShowUserControl(_ucSchedule);
+            btnMenuCourses.BackColor = Color.FromArgb(197, 160, 89); // Màu Heritage Gold
+        }
     }
-    
+
 }

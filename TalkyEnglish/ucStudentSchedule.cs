@@ -31,11 +31,7 @@ namespace TalkyEnglish.GUI
             // SỬA TẠI ĐÂY: Gán trực tiếp vào biến toàn cục _originalList thay vì tạo biến cục bộ 'list'
             _originalList = new List<ScheduleDTO>
     {
-        new ScheduleDTO { Date = new DateTime(2025, 5, 21), DayOfWeek = "Thứ Tư", StartTime = "18:30", EndTime = "20:00", CourseName = "English Communication A2", TeacherName = "Nguyễn Thị Thu Hà", RoomName = "Phòng 301", Note = "-" },
-        new ScheduleDTO { Date = new DateTime(2025, 5, 23), DayOfWeek = "Thứ Sáu", StartTime = "18:30", EndTime = "20:00", CourseName = "English Communication A2", TeacherName = "Nguyễn Thị Thu Hà", RoomName = "Phòng 301", Note = "-" },
-        new ScheduleDTO { Date = new DateTime(2025, 5, 25), DayOfWeek = "Chủ Nhật", StartTime = "09:00", EndTime = "11:00", CourseName = "IELTS Foundation", TeacherName = "Trần Minh Hoàng", RoomName = "Phòng 302", Note = "-" },
-        // Thêm một vài dòng dữ liệu năm 2026 (năm hiện tại) để test bộ lọc "Hôm nay/Tuần này" dễ hơn
-        new ScheduleDTO { Date = DateTime.Today, DayOfWeek = "Hôm nay", StartTime = "08:00", EndTime = "10:00", CourseName = "Test Today Course", TeacherName = "Giáo viên Demo", RoomName = "Phòng 101", Note = "Dữ liệu test" }
+       
     };
 
             // Đổ dữ liệu từ kho gốc vào DataGridView
@@ -96,21 +92,21 @@ namespace TalkyEnglish.GUI
         }
         private void FilterSchedule()
         {
-            // Chú thích báo cáo: Ép kiểu dữ liệu về .Date để loại bỏ sai số giờ phút giây khi so sánh
-            DateTime fromDate = dtpFromDate.Value.Date;
-            DateTime toDate = dtpToDate.Value.Date;
+            //// Chú thích báo cáo: Ép kiểu dữ liệu về .Date để loại bỏ sai số giờ phút giây khi so sánh
+            //DateTime fromDate = dtpFromDate.Value.Date;
+            //DateTime toDate = dtpToDate.Value.Date;
 
-            // Sử dụng .Date trên biến chạy 's' để đảm bảo so sánh chính xác tuyệt đối
-            var filteredData = _originalList
-                .Where(s => s.Date.Date >= fromDate && s.Date.Date <= toDate)
-                .ToList();
+            //// Sử dụng .Date trên biến chạy 's' để đảm bảo so sánh chính xác tuyệt đối
+            //var filteredData = _originalList
+            //    .Where(s => s.Date.Date >= fromDate && s.Date.Date <= toDate)
+            //    .ToList();
 
-            // Cập nhật giao diện
-            dgvSchedule.DataSource = null;
-            dgvSchedule.DataSource = filteredData;
+            //// Cập nhật giao diện
+            //dgvSchedule.DataSource = null;
+            //dgvSchedule.DataSource = filteredData;
 
-            // Cập nhật nhãn tổng số (đảm bảo tên nhãn đúng với Designer của bạn)
-            lblTotalSessions.Text = $"Tổng số: {filteredData.Count} buổi học";
+            //// Cập nhật nhãn tổng số (đảm bảo tên nhãn đúng với Designer của bạn)
+            //lblTotalSessions.Text = $"Tổng số: {filteredData.Count} buổi học";
         }
 
         private void btnThisWeek_Click(object sender, EventArgs e)

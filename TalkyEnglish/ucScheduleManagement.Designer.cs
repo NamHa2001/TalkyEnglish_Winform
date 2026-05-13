@@ -44,34 +44,36 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges31 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges32 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges37 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             dtpFilterFrom = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnFilterToday = new Guna.UI2.WinForms.Guna2Button();
@@ -85,30 +87,29 @@
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             label1 = new Label();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
-            dgvCourses = new Guna.UI2.WinForms.Guna2DataGridView();
-            label2 = new Label();
-            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             txtSearchCourse = new Guna.UI2.WinForms.Guna2TextBox();
-            label3 = new Label();
-            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            btnAddSchedule = new Guna.UI2.WinForms.Guna2Button();
-            btnClearForm = new Guna.UI2.WinForms.Guna2Button();
-            guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            btnDeleteSchedule = new Guna.UI2.WinForms.Guna2Button();
-            cbDayOfWeek = new Guna.UI2.WinForms.Guna2ComboBox();
-            cbRoom = new Guna.UI2.WinForms.Guna2ComboBox();
-            dtpStartTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            dtpEndTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            label4 = new Label();
-            dgvSchedules = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            label2 = new Label();
+            dgvCourses = new Guna.UI2.WinForms.Guna2DataGridView();
             colCourseID = new DataGridViewTextBoxColumn();
             colCourseCode = new DataGridViewTextBoxColumn();
             colCourseName = new DataGridViewTextBoxColumn();
+            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            dtpEndTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            dtpStartTime = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            cbRoom = new Guna.UI2.WinForms.Guna2ComboBox();
+            cbDayOfWeek = new Guna.UI2.WinForms.Guna2ComboBox();
+            btnUpdate = new Guna.UI2.WinForms.Guna2Button();
+            btnDelete = new Guna.UI2.WinForms.Guna2Button();
+            btnClearForm = new Guna.UI2.WinForms.Guna2Button();
+            btnAddSchedule = new Guna.UI2.WinForms.Guna2Button();
+            guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            label3 = new Label();
+            guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
+            dgvSchedules = new Guna.UI2.WinForms.Guna2DataGridView();
             colScheduleID = new DataGridViewTextBoxColumn();
             colSchedCourseCode = new DataGridViewTextBoxColumn();
             colSchedCourseName = new DataGridViewTextBoxColumn();
@@ -117,11 +118,12 @@
             colEndTime = new DataGridViewTextBoxColumn();
             colRoomName = new DataGridViewTextBoxColumn();
             colInstructorName = new DataGridViewTextBoxColumn();
+            label4 = new Label();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCourses).BeginInit();
             guna2Panel2.SuspendLayout();
             guna2Panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCourses).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).BeginInit();
             SuspendLayout();
             // 
@@ -328,38 +330,47 @@
             guna2Panel3.Size = new Size(531, 252);
             guna2Panel3.TabIndex = 77;
             // 
-            // guna2Panel2
+            // txtSearchCourse
             // 
-            guna2Panel2.Controls.Add(dtpEndTime);
-            guna2Panel2.Controls.Add(dtpStartTime);
-            guna2Panel2.Controls.Add(cbRoom);
-            guna2Panel2.Controls.Add(cbDayOfWeek);
-            guna2Panel2.Controls.Add(btnDeleteSchedule);
-            guna2Panel2.Controls.Add(guna2Button3);
-            guna2Panel2.Controls.Add(btnClearForm);
-            guna2Panel2.Controls.Add(btnAddSchedule);
-            guna2Panel2.Controls.Add(guna2HtmlLabel7);
-            guna2Panel2.Controls.Add(guna2HtmlLabel6);
-            guna2Panel2.Controls.Add(guna2HtmlLabel5);
-            guna2Panel2.Controls.Add(guna2HtmlLabel4);
-            guna2Panel2.Controls.Add(label3);
-            guna2Panel2.CustomizableEdges = customizableEdges35;
-            guna2Panel2.Location = new Point(540, 153);
-            guna2Panel2.Name = "guna2Panel2";
-            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges36;
-            guna2Panel2.Size = new Size(507, 252);
-            guna2Panel2.TabIndex = 78;
+            txtSearchCourse.BorderRadius = 7;
+            txtSearchCourse.CustomizableEdges = customizableEdges15;
+            txtSearchCourse.DefaultText = "";
+            txtSearchCourse.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
+            txtSearchCourse.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
+            txtSearchCourse.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
+            txtSearchCourse.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
+            txtSearchCourse.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearchCourse.Font = new Font("Segoe UI", 9F);
+            txtSearchCourse.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
+            txtSearchCourse.Location = new Point(327, 10);
+            txtSearchCourse.Margin = new Padding(3, 4, 3, 4);
+            txtSearchCourse.Name = "txtSearchCourse";
+            txtSearchCourse.PlaceholderText = "Nhập mã,tên khóa học...";
+            txtSearchCourse.SelectedText = "";
+            txtSearchCourse.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            txtSearchCourse.Size = new Size(192, 42);
+            txtSearchCourse.TabIndex = 81;
             // 
-            // guna2Panel4
+            // guna2HtmlLabel3
             // 
-            guna2Panel4.Controls.Add(dgvSchedules);
-            guna2Panel4.Controls.Add(label4);
-            guna2Panel4.CustomizableEdges = customizableEdges37;
-            guna2Panel4.Location = new Point(3, 411);
-            guna2Panel4.Name = "guna2Panel4";
-            guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges38;
-            guna2Panel4.Size = new Size(1044, 252);
-            guna2Panel4.TabIndex = 79;
+            guna2HtmlLabel3.BackColor = Color.Transparent;
+            guna2HtmlLabel3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel3.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel3.Location = new Point(249, 16);
+            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
+            guna2HtmlLabel3.Size = new Size(72, 25);
+            guna2HtmlLabel3.TabIndex = 72;
+            guna2HtmlLabel3.Text = "Tìm kiếm";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(8, 10);
+            label2.Name = "label2";
+            label2.Size = new Size(173, 25);
+            label2.TabIndex = 80;
+            label2.Text = "Danh sách khóa học";
             // 
             // dgvCourses
             // 
@@ -412,122 +423,175 @@
             dgvCourses.ThemeStyle.RowsStyle.Height = 29;
             dgvCourses.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvCourses.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvCourses.CellClick += dgvCourses_CellClick;
             // 
-            // label2
+            // colCourseID
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 10);
-            label2.Name = "label2";
-            label2.Size = new Size(173, 25);
-            label2.TabIndex = 80;
-            label2.Text = "Danh sách khóa học";
+            colCourseID.DataPropertyName = "CourseID";
+            colCourseID.HeaderText = "ID";
+            colCourseID.MinimumWidth = 6;
+            colCourseID.Name = "colCourseID";
+            colCourseID.Visible = false;
             // 
-            // guna2HtmlLabel3
+            // colCourseCode
             // 
-            guna2HtmlLabel3.BackColor = Color.Transparent;
-            guna2HtmlLabel3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel3.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel3.Location = new Point(249, 16);
-            guna2HtmlLabel3.Name = "guna2HtmlLabel3";
-            guna2HtmlLabel3.Size = new Size(72, 25);
-            guna2HtmlLabel3.TabIndex = 72;
-            guna2HtmlLabel3.Text = "Tìm kiếm";
+            colCourseCode.DataPropertyName = "CourseCode";
+            colCourseCode.HeaderText = "Mã KH";
+            colCourseCode.MinimumWidth = 6;
+            colCourseCode.Name = "colCourseCode";
             // 
-            // txtSearchCourse
+            // colCourseName
             // 
-            txtSearchCourse.BorderRadius = 7;
-            txtSearchCourse.CustomizableEdges = customizableEdges15;
-            txtSearchCourse.DefaultText = "";
-            txtSearchCourse.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            txtSearchCourse.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            txtSearchCourse.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            txtSearchCourse.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            txtSearchCourse.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSearchCourse.Font = new Font("Segoe UI", 9F);
-            txtSearchCourse.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtSearchCourse.Location = new Point(327, 10);
-            txtSearchCourse.Margin = new Padding(3, 4, 3, 4);
-            txtSearchCourse.Name = "txtSearchCourse";
-            txtSearchCourse.PlaceholderText = "Nhập mã,tên khóa học...";
-            txtSearchCourse.SelectedText = "";
-            txtSearchCourse.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            txtSearchCourse.Size = new Size(192, 42);
-            txtSearchCourse.TabIndex = 81;
+            colCourseName.DataPropertyName = "CourseName";
+            colCourseName.HeaderText = "Tên Khóa Học";
+            colCourseName.MinimumWidth = 6;
+            colCourseName.Name = "colCourseName";
             // 
-            // label3
+            // guna2Panel2
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(9, 13);
-            label3.Name = "label3";
-            label3.Size = new Size(354, 25);
-            label3.TabIndex = 82;
-            label3.Text = "Nhập thông tin lịch cho khóa học đã chọn";
+            guna2Panel2.Controls.Add(dtpEndTime);
+            guna2Panel2.Controls.Add(dtpStartTime);
+            guna2Panel2.Controls.Add(cbRoom);
+            guna2Panel2.Controls.Add(cbDayOfWeek);
+            guna2Panel2.Controls.Add(btnUpdate);
+            guna2Panel2.Controls.Add(btnDelete);
+            guna2Panel2.Controls.Add(btnClearForm);
+            guna2Panel2.Controls.Add(btnAddSchedule);
+            guna2Panel2.Controls.Add(guna2HtmlLabel7);
+            guna2Panel2.Controls.Add(guna2HtmlLabel6);
+            guna2Panel2.Controls.Add(guna2HtmlLabel5);
+            guna2Panel2.Controls.Add(guna2HtmlLabel4);
+            guna2Panel2.Controls.Add(label3);
+            guna2Panel2.CustomizableEdges = customizableEdges35;
+            guna2Panel2.Location = new Point(540, 153);
+            guna2Panel2.Name = "guna2Panel2";
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            guna2Panel2.Size = new Size(507, 252);
+            guna2Panel2.TabIndex = 78;
             // 
-            // guna2HtmlLabel4
+            // dtpEndTime
             // 
-            guna2HtmlLabel4.BackColor = Color.Transparent;
-            guna2HtmlLabel4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel4.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel4.Location = new Point(9, 51);
-            guna2HtmlLabel4.Name = "guna2HtmlLabel4";
-            guna2HtmlLabel4.Size = new Size(36, 25);
-            guna2HtmlLabel4.TabIndex = 82;
-            guna2HtmlLabel4.Text = "Thứ:";
+            dtpEndTime.BorderRadius = 7;
+            dtpEndTime.BorderThickness = 1;
+            dtpEndTime.Checked = true;
+            dtpEndTime.CustomFormat = "HH:mm";
+            dtpEndTime.CustomizableEdges = customizableEdges19;
+            dtpEndTime.FillColor = Color.White;
+            dtpEndTime.Font = new Font("Segoe UI", 9F);
+            dtpEndTime.Format = DateTimePickerFormat.Custom;
+            dtpEndTime.Location = new Point(173, 129);
+            dtpEndTime.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            dtpEndTime.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            dtpEndTime.Name = "dtpEndTime";
+            dtpEndTime.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            dtpEndTime.ShowUpDown = true;
+            dtpEndTime.Size = new Size(158, 36);
+            dtpEndTime.TabIndex = 91;
+            dtpEndTime.Value = new DateTime(2026, 5, 9, 23, 7, 4, 50);
             // 
-            // guna2HtmlLabel5
+            // dtpStartTime
             // 
-            guna2HtmlLabel5.BackColor = Color.Transparent;
-            guna2HtmlLabel5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel5.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel5.Location = new Point(9, 168);
-            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            guna2HtmlLabel5.Size = new Size(90, 25);
-            guna2HtmlLabel5.TabIndex = 83;
-            guna2HtmlLabel5.Text = "Phòng học:";
+            dtpStartTime.BorderRadius = 7;
+            dtpStartTime.BorderThickness = 1;
+            dtpStartTime.Checked = true;
+            dtpStartTime.CustomFormat = "HH:mm";
+            dtpStartTime.CustomizableEdges = customizableEdges21;
+            dtpStartTime.FillColor = Color.White;
+            dtpStartTime.Font = new Font("Segoe UI", 9F);
+            dtpStartTime.Format = DateTimePickerFormat.Custom;
+            dtpStartTime.Location = new Point(173, 87);
+            dtpStartTime.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            dtpStartTime.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            dtpStartTime.Name = "dtpStartTime";
+            dtpStartTime.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            dtpStartTime.ShowUpDown = true;
+            dtpStartTime.Size = new Size(158, 36);
+            dtpStartTime.TabIndex = 72;
+            dtpStartTime.Value = new DateTime(2026, 5, 9, 23, 7, 4, 50);
             // 
-            // guna2HtmlLabel6
+            // cbRoom
             // 
-            guna2HtmlLabel6.BackColor = Color.Transparent;
-            guna2HtmlLabel6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel6.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel6.Location = new Point(9, 129);
-            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(100, 25);
-            guna2HtmlLabel6.TabIndex = 84;
-            guna2HtmlLabel6.Text = "Giờ kết thúc:";
+            cbRoom.BackColor = Color.Transparent;
+            cbRoom.CustomizableEdges = customizableEdges23;
+            cbRoom.DrawMode = DrawMode.OwnerDrawFixed;
+            cbRoom.DropDownHeight = 50;
+            cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbRoom.DropDownWidth = 100;
+            cbRoom.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbRoom.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbRoom.Font = new Font("Segoe UI", 10F);
+            cbRoom.ForeColor = Color.FromArgb(68, 88, 112);
+            cbRoom.IntegralHeight = false;
+            cbRoom.ItemHeight = 30;
+            cbRoom.Items.AddRange(new object[] { "Phòng 101", "Phòng 102", "Phòng 203" });
+            cbRoom.Location = new Point(173, 168);
+            cbRoom.Name = "cbRoom";
+            cbRoom.ShadowDecoration.CustomizableEdges = customizableEdges24;
+            cbRoom.Size = new Size(158, 36);
+            cbRoom.TabIndex = 90;
             // 
-            // guna2HtmlLabel7
+            // cbDayOfWeek
             // 
-            guna2HtmlLabel7.BackColor = Color.Transparent;
-            guna2HtmlLabel7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel7.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel7.Location = new Point(9, 90);
-            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
-            guna2HtmlLabel7.Size = new Size(97, 25);
-            guna2HtmlLabel7.TabIndex = 85;
-            guna2HtmlLabel7.Text = "Giờ bắt đầu:";
+            cbDayOfWeek.BackColor = Color.Transparent;
+            cbDayOfWeek.CustomizableEdges = customizableEdges25;
+            cbDayOfWeek.DrawMode = DrawMode.OwnerDrawFixed;
+            cbDayOfWeek.DropDownHeight = 50;
+            cbDayOfWeek.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDayOfWeek.DropDownWidth = 100;
+            cbDayOfWeek.FocusedColor = Color.FromArgb(94, 148, 255);
+            cbDayOfWeek.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cbDayOfWeek.Font = new Font("Segoe UI", 10F);
+            cbDayOfWeek.ForeColor = Color.FromArgb(68, 88, 112);
+            cbDayOfWeek.IntegralHeight = false;
+            cbDayOfWeek.ItemHeight = 30;
+            cbDayOfWeek.Items.AddRange(new object[] { "Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ Nhật" });
+            cbDayOfWeek.Location = new Point(173, 46);
+            cbDayOfWeek.Name = "cbDayOfWeek";
+            cbDayOfWeek.ShadowDecoration.CustomizableEdges = customizableEdges26;
+            cbDayOfWeek.Size = new Size(158, 36);
+            cbDayOfWeek.TabIndex = 89;
             // 
-            // btnAddSchedule
+            // btnUpdate
             // 
-            btnAddSchedule.BorderColor = Color.Gray;
-            btnAddSchedule.BorderRadius = 7;
-            btnAddSchedule.BorderThickness = 1;
-            btnAddSchedule.CustomizableEdges = customizableEdges33;
-            btnAddSchedule.DisabledState.BorderColor = Color.DarkGray;
-            btnAddSchedule.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnAddSchedule.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnAddSchedule.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddSchedule.FillColor = Color.White;
-            btnAddSchedule.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAddSchedule.ForeColor = Color.Black;
-            btnAddSchedule.Location = new Point(30, 216);
-            btnAddSchedule.Name = "btnAddSchedule";
-            btnAddSchedule.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            btnAddSchedule.Size = new Size(101, 31);
-            btnAddSchedule.TabIndex = 72;
-            btnAddSchedule.Text = "Thêm lịch";
+            btnUpdate.BorderColor = Color.Gray;
+            btnUpdate.BorderRadius = 7;
+            btnUpdate.BorderThickness = 1;
+            btnUpdate.CustomizableEdges = customizableEdges27;
+            btnUpdate.DisabledState.BorderColor = Color.DarkGray;
+            btnUpdate.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnUpdate.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnUpdate.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnUpdate.FillColor = Color.White;
+            btnUpdate.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdate.ForeColor = Color.Black;
+            btnUpdate.Location = new Point(148, 216);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            btnUpdate.Size = new Size(101, 31);
+            btnUpdate.TabIndex = 88;
+            btnUpdate.Text = "Cập nhật";
+            btnUpdate.Click += btnUpdate_Click;
+            // 
+            // btnDelete
+            // 
+            btnDelete.BorderColor = Color.Gray;
+            btnDelete.BorderRadius = 7;
+            btnDelete.BorderThickness = 1;
+            btnDelete.CustomizableEdges = customizableEdges29;
+            btnDelete.DisabledState.BorderColor = Color.DarkGray;
+            btnDelete.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnDelete.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnDelete.FillColor = Color.White;
+            btnDelete.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDelete.ForeColor = Color.Black;
+            btnDelete.Location = new Point(262, 216);
+            btnDelete.Name = "btnDelete";
+            btnDelete.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            btnDelete.Size = new Size(101, 31);
+            btnDelete.TabIndex = 87;
+            btnDelete.Text = "Xóa";
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnClearForm
             // 
@@ -548,136 +612,93 @@
             btnClearForm.Size = new Size(101, 31);
             btnClearForm.TabIndex = 86;
             btnClearForm.Text = "Làm mới";
+            btnClearForm.Click += btnClearForm_Click;
             // 
-            // guna2Button3
+            // btnAddSchedule
             // 
-            guna2Button3.BorderColor = Color.Gray;
-            guna2Button3.BorderRadius = 7;
-            guna2Button3.BorderThickness = 1;
-            guna2Button3.CustomizableEdges = customizableEdges29;
-            guna2Button3.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button3.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button3.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button3.FillColor = Color.White;
-            guna2Button3.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button3.ForeColor = Color.Black;
-            guna2Button3.Location = new Point(262, 216);
-            guna2Button3.Name = "guna2Button3";
-            guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            guna2Button3.Size = new Size(101, 31);
-            guna2Button3.TabIndex = 87;
-            guna2Button3.Text = "Xóa";
+            btnAddSchedule.BorderColor = Color.Gray;
+            btnAddSchedule.BorderRadius = 7;
+            btnAddSchedule.BorderThickness = 1;
+            btnAddSchedule.CustomizableEdges = customizableEdges33;
+            btnAddSchedule.DisabledState.BorderColor = Color.DarkGray;
+            btnAddSchedule.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnAddSchedule.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnAddSchedule.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnAddSchedule.FillColor = Color.White;
+            btnAddSchedule.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAddSchedule.ForeColor = Color.Black;
+            btnAddSchedule.Location = new Point(30, 216);
+            btnAddSchedule.Name = "btnAddSchedule";
+            btnAddSchedule.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            btnAddSchedule.Size = new Size(101, 31);
+            btnAddSchedule.TabIndex = 72;
+            btnAddSchedule.Text = "Thêm lịch";
+            btnAddSchedule.Click += btnAddSchedule_Click;
             // 
-            // btnDeleteSchedule
+            // guna2HtmlLabel7
             // 
-            btnDeleteSchedule.BorderColor = Color.Gray;
-            btnDeleteSchedule.BorderRadius = 7;
-            btnDeleteSchedule.BorderThickness = 1;
-            btnDeleteSchedule.CustomizableEdges = customizableEdges27;
-            btnDeleteSchedule.DisabledState.BorderColor = Color.DarkGray;
-            btnDeleteSchedule.DisabledState.CustomBorderColor = Color.DarkGray;
-            btnDeleteSchedule.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            btnDeleteSchedule.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnDeleteSchedule.FillColor = Color.White;
-            btnDeleteSchedule.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDeleteSchedule.ForeColor = Color.Black;
-            btnDeleteSchedule.Location = new Point(148, 216);
-            btnDeleteSchedule.Name = "btnDeleteSchedule";
-            btnDeleteSchedule.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            btnDeleteSchedule.Size = new Size(101, 31);
-            btnDeleteSchedule.TabIndex = 88;
-            btnDeleteSchedule.Text = "Cập nhật";
+            guna2HtmlLabel7.BackColor = Color.Transparent;
+            guna2HtmlLabel7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel7.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel7.Location = new Point(9, 90);
+            guna2HtmlLabel7.Name = "guna2HtmlLabel7";
+            guna2HtmlLabel7.Size = new Size(97, 25);
+            guna2HtmlLabel7.TabIndex = 85;
+            guna2HtmlLabel7.Text = "Giờ bắt đầu:";
             // 
-            // cbDayOfWeek
+            // guna2HtmlLabel6
             // 
-            cbDayOfWeek.BackColor = Color.Transparent;
-            cbDayOfWeek.CustomizableEdges = customizableEdges25;
-            cbDayOfWeek.DrawMode = DrawMode.OwnerDrawFixed;
-            cbDayOfWeek.DropDownHeight = 50;
-            cbDayOfWeek.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbDayOfWeek.DropDownWidth = 100;
-            cbDayOfWeek.FocusedColor = Color.FromArgb(94, 148, 255);
-            cbDayOfWeek.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cbDayOfWeek.Font = new Font("Segoe UI", 10F);
-            cbDayOfWeek.ForeColor = Color.FromArgb(68, 88, 112);
-            cbDayOfWeek.IntegralHeight = false;
-            cbDayOfWeek.ItemHeight = 30;
-            cbDayOfWeek.Location = new Point(173, 46);
-            cbDayOfWeek.Name = "cbDayOfWeek";
-            cbDayOfWeek.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            cbDayOfWeek.Size = new Size(158, 36);
-            cbDayOfWeek.TabIndex = 89;
+            guna2HtmlLabel6.BackColor = Color.Transparent;
+            guna2HtmlLabel6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel6.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel6.Location = new Point(9, 129);
+            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            guna2HtmlLabel6.Size = new Size(100, 25);
+            guna2HtmlLabel6.TabIndex = 84;
+            guna2HtmlLabel6.Text = "Giờ kết thúc:";
             // 
-            // cbRoom
+            // guna2HtmlLabel5
             // 
-            cbRoom.BackColor = Color.Transparent;
-            cbRoom.CustomizableEdges = customizableEdges23;
-            cbRoom.DrawMode = DrawMode.OwnerDrawFixed;
-            cbRoom.DropDownHeight = 50;
-            cbRoom.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbRoom.DropDownWidth = 100;
-            cbRoom.FocusedColor = Color.FromArgb(94, 148, 255);
-            cbRoom.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cbRoom.Font = new Font("Segoe UI", 10F);
-            cbRoom.ForeColor = Color.FromArgb(68, 88, 112);
-            cbRoom.IntegralHeight = false;
-            cbRoom.ItemHeight = 30;
-            cbRoom.Location = new Point(173, 168);
-            cbRoom.Name = "cbRoom";
-            cbRoom.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            cbRoom.Size = new Size(158, 36);
-            cbRoom.TabIndex = 90;
+            guna2HtmlLabel5.BackColor = Color.Transparent;
+            guna2HtmlLabel5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel5.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel5.Location = new Point(9, 168);
+            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            guna2HtmlLabel5.Size = new Size(90, 25);
+            guna2HtmlLabel5.TabIndex = 83;
+            guna2HtmlLabel5.Text = "Phòng học:";
             // 
-            // dtpStartTime
+            // guna2HtmlLabel4
             // 
-            dtpStartTime.BorderRadius = 7;
-            dtpStartTime.BorderThickness = 1;
-            dtpStartTime.Checked = true;
-            dtpStartTime.CustomFormat = "";
-            dtpStartTime.CustomizableEdges = customizableEdges21;
-            dtpStartTime.FillColor = Color.White;
-            dtpStartTime.Font = new Font("Segoe UI", 9F);
-            dtpStartTime.Format = DateTimePickerFormat.Time;
-            dtpStartTime.Location = new Point(173, 87);
-            dtpStartTime.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
-            dtpStartTime.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
-            dtpStartTime.Name = "dtpStartTime";
-            dtpStartTime.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            dtpStartTime.ShowUpDown = true;
-            dtpStartTime.Size = new Size(158, 36);
-            dtpStartTime.TabIndex = 72;
-            dtpStartTime.Value = new DateTime(2026, 5, 9, 23, 7, 4, 50);
+            guna2HtmlLabel4.BackColor = Color.Transparent;
+            guna2HtmlLabel4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel4.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel4.Location = new Point(9, 51);
+            guna2HtmlLabel4.Name = "guna2HtmlLabel4";
+            guna2HtmlLabel4.Size = new Size(36, 25);
+            guna2HtmlLabel4.TabIndex = 82;
+            guna2HtmlLabel4.Text = "Thứ:";
             // 
-            // dtpEndTime
+            // label3
             // 
-            dtpEndTime.BorderRadius = 7;
-            dtpEndTime.BorderThickness = 1;
-            dtpEndTime.Checked = true;
-            dtpEndTime.CustomFormat = "";
-            dtpEndTime.CustomizableEdges = customizableEdges19;
-            dtpEndTime.FillColor = Color.White;
-            dtpEndTime.Font = new Font("Segoe UI", 9F);
-            dtpEndTime.Format = DateTimePickerFormat.Time;
-            dtpEndTime.Location = new Point(173, 129);
-            dtpEndTime.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
-            dtpEndTime.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
-            dtpEndTime.Name = "dtpEndTime";
-            dtpEndTime.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            dtpEndTime.ShowUpDown = true;
-            dtpEndTime.Size = new Size(158, 36);
-            dtpEndTime.TabIndex = 91;
-            dtpEndTime.Value = new DateTime(2026, 5, 9, 23, 7, 4, 50);
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(9, 13);
+            label3.Name = "label3";
+            label3.Size = new Size(354, 25);
+            label3.TabIndex = 82;
+            label3.Text = "Nhập thông tin lịch cho khóa học đã chọn";
             // 
-            // label4
+            // guna2Panel4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(8, 11);
-            label4.Name = "label4";
-            label4.Size = new Size(188, 25);
-            label4.TabIndex = 82;
-            label4.Text = "Danh sách lịch đã xếp";
+            guna2Panel4.Controls.Add(dgvSchedules);
+            guna2Panel4.Controls.Add(label4);
+            guna2Panel4.CustomizableEdges = customizableEdges37;
+            guna2Panel4.Location = new Point(3, 411);
+            guna2Panel4.Name = "guna2Panel4";
+            guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            guna2Panel4.Size = new Size(1044, 252);
+            guna2Panel4.TabIndex = 79;
             // 
             // dgvSchedules
             // 
@@ -694,14 +715,14 @@
             dgvSchedules.ColumnHeadersHeight = 35;
             dgvSchedules.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvSchedules.Columns.AddRange(new DataGridViewColumn[] { colScheduleID, colSchedCourseCode, colSchedCourseName, colDayOfWeek, colStartTime, colEndTime, colRoomName, colInstructorName });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = Color.White;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle6.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dgvSchedules.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dgvSchedules.DefaultCellStyle = dataGridViewCellStyle8;
             dgvSchedules.GridColor = Color.FromArgb(231, 229, 255);
             dgvSchedules.Location = new Point(6, 39);
             dgvSchedules.Name = "dgvSchedules";
@@ -730,28 +751,7 @@
             dgvSchedules.ThemeStyle.RowsStyle.Height = 29;
             dgvSchedules.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvSchedules.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            // 
-            // colCourseID
-            // 
-            colCourseID.DataPropertyName = "CourseID";
-            colCourseID.HeaderText = "ID";
-            colCourseID.MinimumWidth = 6;
-            colCourseID.Name = "colCourseID";
-            colCourseID.Visible = false;
-            // 
-            // colCourseCode
-            // 
-            colCourseCode.DataPropertyName = "CourseCode";
-            colCourseCode.HeaderText = "Mã KH";
-            colCourseCode.MinimumWidth = 6;
-            colCourseCode.Name = "colCourseCode";
-            // 
-            // colCourseName
-            // 
-            colCourseName.DataPropertyName = "CourseName";
-            colCourseName.HeaderText = "Tên Khóa Học";
-            colCourseName.MinimumWidth = 6;
-            colCourseName.Name = "colCourseName";
+            dgvSchedules.CellClick += dgvSchedules_CellClick;
             // 
             // colScheduleID
             // 
@@ -759,6 +759,7 @@
             colScheduleID.HeaderText = "ID Lịch";
             colScheduleID.MinimumWidth = 6;
             colScheduleID.Name = "colScheduleID";
+            colScheduleID.Visible = false;
             // 
             // colSchedCourseCode
             // 
@@ -784,6 +785,8 @@
             // colStartTime
             // 
             colStartTime.DataPropertyName = "StartTime";
+            dataGridViewCellStyle6.Format = "hh\\:mm";
+            colStartTime.DefaultCellStyle = dataGridViewCellStyle6;
             colStartTime.HeaderText = "Bắt Đầu";
             colStartTime.MinimumWidth = 6;
             colStartTime.Name = "colStartTime";
@@ -791,6 +794,8 @@
             // colEndTime
             // 
             colEndTime.DataPropertyName = "EndTime";
+            dataGridViewCellStyle7.Format = "hh\\:mm";
+            colEndTime.DefaultCellStyle = dataGridViewCellStyle7;
             colEndTime.HeaderText = "Kết Thúc";
             colEndTime.MinimumWidth = 6;
             colEndTime.Name = "colEndTime";
@@ -809,6 +814,16 @@
             colInstructorName.MinimumWidth = 6;
             colInstructorName.Name = "colInstructorName";
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(8, 11);
+            label4.Name = "label4";
+            label4.Size = new Size(188, 25);
+            label4.TabIndex = 82;
+            label4.Text = "Danh sách lịch đã xếp";
+            // 
             // ucScheduleManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -821,15 +836,16 @@
             Controls.Add(label1);
             Name = "ucScheduleManagement";
             Size = new Size(1050, 665);
+            Load += ucScheduleManagement_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             guna2Panel3.ResumeLayout(false);
             guna2Panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCourses).EndInit();
             guna2Panel2.ResumeLayout(false);
             guna2Panel2.PerformLayout();
             guna2Panel4.ResumeLayout(false);
             guna2Panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvCourses).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -863,8 +879,8 @@
         private Label label3;
         private Guna.UI2.WinForms.Guna2ComboBox cbRoom;
         private Guna.UI2.WinForms.Guna2ComboBox cbDayOfWeek;
-        private Guna.UI2.WinForms.Guna2Button btnDeleteSchedule;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button btnUpdate;
+        private Guna.UI2.WinForms.Guna2Button btnDelete;
         private Guna.UI2.WinForms.Guna2Button btnClearForm;
         private Guna.UI2.WinForms.Guna2Button btnAddSchedule;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpEndTime;
