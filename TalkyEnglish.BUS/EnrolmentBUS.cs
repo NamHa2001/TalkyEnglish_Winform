@@ -12,14 +12,15 @@ namespace TalkyEnglish.BUS
     public class EnrolmentBUS
     {
         private readonly EnrolmentDAL _enrolmentDAL = new EnrolmentDAL();
+        private readonly CourseDAL _courseDAL = new CourseDAL();
 
         /// <summary>
         /// Lấy danh sách tiến độ các khóa học của một học viên
+        /// 
         /// </summary>
         public List<EnrolmentDTO> GetStudentProgress(int studentId)
         {
             if (studentId <= 0) return new List<EnrolmentDTO>();
-
             try
             {
                 return _enrolmentDAL.GetStudentProgress(studentId);
@@ -35,8 +36,17 @@ namespace TalkyEnglish.BUS
 
             try
             {
-                // Chỉ gọi hàm đã viết sẵn trong EnrolmentDAL
-                return _enrolmentDAL.AddEnrollment(studentId, courseId);
+                // 2. Thực hiện đăng ký (thêm dòng vào bảng Enrolments)
+                bool isEnrolled = _enrolmentDAL.AddEnrollment(studentId, courseId);
+
+                // 3. Nếu đăng ký thành công, tiến hành tăng sĩ số hiện tại của khóa học
+                if (isEnrolled)
+                {
+                    // Hàm này bro đảm bảo trong CourseDAL đã có code Update CurrentStudents nhé
+                    _courseDAL.UpdateStudentCount(courseId);
+                }
+
+                return isEnrolled;
             }
             catch (Exception ex)
             {

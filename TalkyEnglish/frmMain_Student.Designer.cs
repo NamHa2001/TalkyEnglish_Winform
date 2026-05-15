@@ -94,8 +94,6 @@
             btnProfile = new Guna.UI2.WinForms.Guna2Button();
             guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             pictureBox1 = new PictureBox();
-            gunaPieDataset1 = new Guna.Charts.WinForms.GunaPieDataset();
-            gunaBarDataset1 = new Guna.Charts.WinForms.GunaBarDataset();
             pnlMainContent1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             flpAnnouncements = new FlowLayoutPanel();
@@ -117,7 +115,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(44, 8);
+            label1.ForeColor = Color.FromArgb(15, 23, 42);
+            label1.Location = new Point(11, 8);
             label1.Name = "label1";
             label1.Size = new Size(202, 31);
             label1.TabIndex = 2;
@@ -140,6 +139,8 @@
             // flpCourses
             // 
             flpCourses.AutoScroll = true;
+            flpCourses.BackColor = Color.White;
+            flpCourses.BorderStyle = BorderStyle.FixedSingle;
             flpCourses.Location = new Point(4, 53);
             flpCourses.Name = "flpCourses";
             flpCourses.Size = new Size(1043, 318);
@@ -147,6 +148,9 @@
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(label3);
             guna2Panel3.Controls.Add(guna2Button3);
             guna2Panel3.CustomizableEdges = customizableEdges3;
@@ -160,6 +164,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.Black;
             label3.Location = new Point(7, 5);
             label3.Name = "label3";
             label3.Size = new Size(181, 31);
@@ -187,6 +192,7 @@
             // 
             // guna2Panel6
             // 
+            guna2Panel6.BackColor = Color.White;
             guna2Panel6.BorderColor = Color.Silver;
             guna2Panel6.BorderRadius = 5;
             guna2Panel6.BorderThickness = 1;
@@ -216,6 +222,7 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvSchedule.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvSchedule.BorderStyle = BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -284,6 +291,9 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(picSmallAvatar);
             guna2Panel1.Controls.Add(lblEmail);
             guna2Panel1.Controls.Add(lblStudentCode);
@@ -300,12 +310,13 @@
             // 
             // picSmallAvatar
             // 
+            picSmallAvatar.Image = Properties.Resources.avt_;
             picSmallAvatar.ImageRotate = 0F;
-            picSmallAvatar.Location = new Point(716, 5);
+            picSmallAvatar.Location = new Point(717, 6);
             picSmallAvatar.Name = "picSmallAvatar";
             picSmallAvatar.ShadowDecoration.CustomizableEdges = customizableEdges11;
             picSmallAvatar.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            picSmallAvatar.Size = new Size(70, 70);
+            picSmallAvatar.Size = new Size(79, 70);
             picSmallAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
             picSmallAvatar.TabIndex = 64;
             picSmallAvatar.TabStop = false;
@@ -313,20 +324,20 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmail.Location = new Point(802, 53);
+            lblEmail.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEmail.Location = new Point(804, 46);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(42, 17);
+            lblEmail.Size = new Size(55, 23);
             lblEmail.TabIndex = 63;
             lblEmail.Text = "Email:";
             // 
             // lblStudentCode
             // 
             lblStudentCode.AutoSize = true;
-            lblStudentCode.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStudentCode.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStudentCode.Location = new Point(802, 13);
             lblStudentCode.Name = "lblStudentCode";
-            lblStudentCode.Size = new Size(51, 17);
+            lblStudentCode.Size = new Size(66, 23);
             lblStudentCode.TabIndex = 59;
             lblStudentCode.Text = "Mã HV:";
             // 
@@ -393,8 +404,11 @@
             // 
             // btnlichoc
             // 
+            btnlichoc.BorderColor = Color.Silver;
             btnlichoc.BorderRadius = 10;
             btnlichoc.BorderThickness = 1;
+            btnlichoc.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnlichoc.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             btnlichoc.CustomizableEdges = customizableEdges16;
             btnlichoc.DisabledState.BorderColor = Color.DarkGray;
             btnlichoc.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -403,18 +417,25 @@
             btnlichoc.FillColor = Color.White;
             btnlichoc.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnlichoc.ForeColor = Color.Black;
+            btnlichoc.Image = Properties.Resources.calendar2;
+            btnlichoc.ImageAlign = HorizontalAlignment.Left;
+            btnlichoc.ImageSize = new Size(22, 22);
             btnlichoc.Location = new Point(13, 143);
             btnlichoc.Name = "btnlichoc";
             btnlichoc.ShadowDecoration.CustomizableEdges = customizableEdges17;
             btnlichoc.Size = new Size(206, 49);
             btnlichoc.TabIndex = 65;
             btnlichoc.Text = "Lịch học";
+            btnlichoc.TextAlign = HorizontalAlignment.Left;
             btnlichoc.Click += btnlichoc_Click;
             // 
             // btnRegisterCourse
             // 
+            btnRegisterCourse.BorderColor = Color.Silver;
             btnRegisterCourse.BorderRadius = 10;
             btnRegisterCourse.BorderThickness = 1;
+            btnRegisterCourse.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnRegisterCourse.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             btnRegisterCourse.CustomizableEdges = customizableEdges18;
             btnRegisterCourse.DisabledState.BorderColor = Color.DarkGray;
             btnRegisterCourse.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -423,18 +444,25 @@
             btnRegisterCourse.FillColor = Color.White;
             btnRegisterCourse.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRegisterCourse.ForeColor = Color.Black;
+            btnRegisterCourse.Image = Properties.Resources.open_book3;
+            btnRegisterCourse.ImageAlign = HorizontalAlignment.Left;
+            btnRegisterCourse.ImageSize = new Size(22, 22);
             btnRegisterCourse.Location = new Point(13, 198);
             btnRegisterCourse.Name = "btnRegisterCourse";
             btnRegisterCourse.ShadowDecoration.CustomizableEdges = customizableEdges19;
             btnRegisterCourse.Size = new Size(206, 49);
             btnRegisterCourse.TabIndex = 64;
             btnRegisterCourse.Text = "Đăng ký khóa học";
+            btnRegisterCourse.TextAlign = HorizontalAlignment.Left;
             btnRegisterCourse.Click += btnRegisterCourse_Click;
             // 
             // btnGrades
             // 
+            btnGrades.BorderColor = Color.Silver;
             btnGrades.BorderRadius = 10;
             btnGrades.BorderThickness = 1;
+            btnGrades.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnGrades.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             btnGrades.CustomizableEdges = customizableEdges20;
             btnGrades.DisabledState.BorderColor = Color.DarkGray;
             btnGrades.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -443,18 +471,25 @@
             btnGrades.FillColor = Color.White;
             btnGrades.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGrades.ForeColor = Color.Black;
+            btnGrades.Image = Properties.Resources.high_quality;
+            btnGrades.ImageAlign = HorizontalAlignment.Left;
+            btnGrades.ImageSize = new Size(22, 22);
             btnGrades.Location = new Point(13, 253);
             btnGrades.Name = "btnGrades";
             btnGrades.ShadowDecoration.CustomizableEdges = customizableEdges21;
             btnGrades.Size = new Size(206, 49);
             btnGrades.TabIndex = 63;
             btnGrades.Text = "Điểm số";
+            btnGrades.TextAlign = HorizontalAlignment.Left;
             btnGrades.Click += btnGrades_Click;
             // 
             // guna2Button7
             // 
+            guna2Button7.BorderColor = Color.Silver;
             guna2Button7.BorderRadius = 10;
             guna2Button7.BorderThickness = 1;
+            guna2Button7.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            guna2Button7.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             guna2Button7.CustomizableEdges = customizableEdges22;
             guna2Button7.DisabledState.BorderColor = Color.DarkGray;
             guna2Button7.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -463,17 +498,25 @@
             guna2Button7.FillColor = Color.White;
             guna2Button7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button7.ForeColor = Color.Black;
+            guna2Button7.Image = Properties.Resources.logout1;
+            guna2Button7.ImageAlign = HorizontalAlignment.Left;
+            guna2Button7.ImageSize = new Size(22, 22);
             guna2Button7.Location = new Point(12, 418);
             guna2Button7.Name = "guna2Button7";
             guna2Button7.ShadowDecoration.CustomizableEdges = customizableEdges23;
             guna2Button7.Size = new Size(206, 49);
             guna2Button7.TabIndex = 62;
             guna2Button7.Text = "Đăng xuất";
+            guna2Button7.TextAlign = HorizontalAlignment.Left;
+            guna2Button7.Click += guna2Button7_Click;
             // 
             // guna2Button6
             // 
+            guna2Button6.BorderColor = Color.Silver;
             guna2Button6.BorderRadius = 10;
             guna2Button6.BorderThickness = 1;
+            guna2Button6.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            guna2Button6.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             guna2Button6.CustomizableEdges = customizableEdges24;
             guna2Button6.DisabledState.BorderColor = Color.DarkGray;
             guna2Button6.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -482,18 +525,25 @@
             guna2Button6.FillColor = Color.White;
             guna2Button6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button6.ForeColor = Color.Black;
+            guna2Button6.Image = Properties.Resources.bell1;
+            guna2Button6.ImageAlign = HorizontalAlignment.Left;
+            guna2Button6.ImageSize = new Size(22, 22);
             guna2Button6.Location = new Point(13, 308);
             guna2Button6.Name = "guna2Button6";
             guna2Button6.ShadowDecoration.CustomizableEdges = customizableEdges25;
             guna2Button6.Size = new Size(206, 49);
             guna2Button6.TabIndex = 61;
             guna2Button6.Text = "Thông báo";
+            guna2Button6.TextAlign = HorizontalAlignment.Left;
             guna2Button6.Click += guna2Button6_Click;
             // 
             // btnProfile
             // 
+            btnProfile.BorderColor = Color.Silver;
             btnProfile.BorderRadius = 10;
             btnProfile.BorderThickness = 1;
+            btnProfile.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnProfile.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             btnProfile.CustomizableEdges = customizableEdges26;
             btnProfile.DisabledState.BorderColor = Color.DarkGray;
             btnProfile.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -502,18 +552,25 @@
             btnProfile.FillColor = Color.White;
             btnProfile.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnProfile.ForeColor = Color.Black;
+            btnProfile.Image = Properties.Resources.user1;
+            btnProfile.ImageAlign = HorizontalAlignment.Left;
+            btnProfile.ImageSize = new Size(22, 22);
             btnProfile.Location = new Point(13, 363);
             btnProfile.Name = "btnProfile";
             btnProfile.ShadowDecoration.CustomizableEdges = customizableEdges27;
             btnProfile.Size = new Size(206, 49);
             btnProfile.TabIndex = 60;
             btnProfile.Text = "Tài khoản";
+            btnProfile.TextAlign = HorizontalAlignment.Left;
             btnProfile.Click += btnProfile_Click;
             // 
             // guna2Button4
             // 
+            guna2Button4.BorderColor = Color.Silver;
             guna2Button4.BorderRadius = 10;
             guna2Button4.BorderThickness = 1;
+            guna2Button4.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            guna2Button4.CheckedState.FillColor = Color.FromArgb(255, 193, 7);
             guna2Button4.CustomizableEdges = customizableEdges28;
             guna2Button4.DisabledState.BorderColor = Color.DarkGray;
             guna2Button4.DisabledState.CustomBorderColor = Color.DarkGray;
@@ -522,33 +579,30 @@
             guna2Button4.FillColor = Color.White;
             guna2Button4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button4.ForeColor = Color.Black;
+            guna2Button4.Image = Properties.Resources.home1;
+            guna2Button4.ImageAlign = HorizontalAlignment.Left;
+            guna2Button4.ImageSize = new Size(22, 22);
             guna2Button4.Location = new Point(12, 88);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges29;
             guna2Button4.Size = new Size(206, 49);
             guna2Button4.TabIndex = 59;
             guna2Button4.Text = "Trang chủ";
+            guna2Button4.TextAlign = HorizontalAlignment.Left;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.side_bar_TrangChu;
             pictureBox1.Location = new Point(0, -3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(229, 753);
+            pictureBox1.Size = new Size(230, 753);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // gunaPieDataset1
-            // 
-            gunaPieDataset1.Label = "Pie1";
-            // 
-            // gunaBarDataset1
-            // 
-            gunaBarDataset1.Label = "Bar1";
-            // 
             // pnlMainContent1
             // 
+            pnlMainContent1.BackColor = Color.White;
             pnlMainContent1.Controls.Add(guna2Panel2);
             pnlMainContent1.Controls.Add(pnlMainContent);
             pnlMainContent1.Controls.Add(guna2Panel6);
@@ -561,6 +615,7 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BackColor = Color.White;
             guna2Panel2.BorderColor = Color.Silver;
             guna2Panel2.BorderRadius = 5;
             guna2Panel2.BorderThickness = 1;
@@ -578,6 +633,7 @@
             // 
             flpAnnouncements.AutoScroll = true;
             flpAnnouncements.FlowDirection = FlowDirection.TopDown;
+            flpAnnouncements.ForeColor = Color.FromArgb(15, 23, 42);
             flpAnnouncements.Location = new Point(6, 59);
             flpAnnouncements.Name = "flpAnnouncements";
             flpAnnouncements.Size = new Size(418, 223);
@@ -648,8 +704,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private PictureBox pictureBox1;
-        private Guna.Charts.WinForms.GunaPieDataset gunaPieDataset1;
-        private Guna.Charts.WinForms.GunaBarDataset gunaBarDataset1;
         private Guna.UI2.WinForms.Guna2Panel pnlMainContent1;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Label label2;

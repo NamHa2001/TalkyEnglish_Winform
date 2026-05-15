@@ -17,6 +17,7 @@ namespace TalkyEnglish.GUI
         // Thêm khai báo này ở đầu class ucRegisterCourse
         private EnrolmentBUS _enrolmentBUS = new EnrolmentBUS();
         CourseBUS _courseBUS = new CourseBUS();
+
         public ucRegisterCourse()
         {
             InitializeComponent();
@@ -24,27 +25,46 @@ namespace TalkyEnglish.GUI
 
         private void ucRegisterCourse_Load(object sender, EventArgs e)
         {
-            dgvCourses.DataSource = _courseBUS.GetAllCourses();
+            try
+            {
+                // Chỉ hiện các cột bro đã thiết kế thủ công trong Designer
+                dgvCourses.AutoGenerateColumns = false;
 
-            if (dgvCourses.Columns["CourseID"] != null) dgvCourses.Columns["CourseID"].Visible = false;
-            if (dgvCourses.Columns["InstructorID"] != null) dgvCourses.Columns["InstructorID"].Visible = false;
-            if (dgvCourses.Columns["CategoryID"] != null) dgvCourses.Columns["CategoryID"].Visible = false;
-            if (dgvCourses.Columns["Description"] != null) dgvCourses.Columns["Description"].Visible = false;
+                // Nạp danh sách khóa học từ Database
+                dgvCourses.DataSource = _courseBUS.GetAllCourses();
+
+                // Căn chỉnh các cột cho lấp đầy bảng
+                dgvCourses.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // Định dạng hiển thị tiền tệ cho cột Học phí
+                if (dgvCourses.Columns["Price"] != null)
+                {
+                    dgvCourses.Columns["Price"].DefaultCellStyle.Format = "N0";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tải danh sách khóa học: " + ex.Message, "Thông báo");
+            }
         }
 
         private void dgvCourses_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvCourses.SelectedRows.Count > 0)
             {
+                // Ép kiểu dữ liệu dòng đang chọn về CourseDTO
                 var course = (CourseDTO)dgvCourses.SelectedRows[0].DataBoundItem;
 
-                // Gán đúng tên thuộc tính từ file CourseDTO bạn gửi
+                // Đổ dữ liệu ra các Label và TextBox bên cạnh
                 lblCourseCode.Text = course.CourseCode;
                 lblCourseName.Text = course.CourseName;
                 lblLevel.Text = course.Level;
                 lblDuration.Text = course.Duration;
                 lblPrice.Text = string.Format("{0:N0} VNĐ", course.Price);
                 txtDescription.Text = course.Description;
+
+                // Tự động Khóa nút Đăng ký nếu khóa học đã hết chỗ (AvailableSlots = 0)
+                btnRegister.Enabled = (course.AvailableSlots > 0);
             }
         }
 
@@ -56,36 +76,46 @@ namespace TalkyEnglish.GUI
                 {
                     var course = (CourseDTO)dgvCourses.SelectedRows[0].DataBoundItem;
 
+                    // Kiểm tra đăng nhập (Session)
                     if (SessionManager.CurrentUser == null)
                     {
-                        MessageBox.Show("Lỗi: Phiên đăng nhập hết hạn!");
+                        MessageBox.Show("Vui lòng đăng nhập để thực hiện chức năng này!", "Thông báo");
+                        return;
+                    }
+
+                    // Kiểm tra lại số lượng chỗ trống thực tế
+                    if (course.AvailableSlots <= 0)
+                    {
+                        MessageBox.Show("Khóa học đã đủ học viên, vui lòng chọn khóa khác!", "Thông báo");
                         return;
                     }
 
                     int studentId = SessionManager.CurrentUser.UserID;
 
-                    // SỬA TẠI ĐÂY: Gọi từ _enrolmentBUS thay vì _courseBUS
+                    // Gọi tầng BUS để lưu đăng ký vào Database
                     if (_enrolmentBUS.RegisterCourse(studentId, course.CourseID))
                     {
-                        MessageBox.Show("Đăng ký thành công!", "Thông báo");
+                        MessageBox.Show("Đăng ký thành công khóa học: " + course.CourseName, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Cập nhật lại bảng để trừ bớt số lượng "Chỗ trống" ngay lập tức
+                        dgvCourses.DataSource = _courseBUS.GetAllCourses();
                     }
                     else
                     {
-                        MessageBox.Show("Bạn đã đăng ký khóa học này rồi hoặc có lỗi xảy ra.", "Lưu ý");
+                        MessageBox.Show("Đăng ký thất bại! Có thể bạn đã đăng ký khóa học này trước đó.", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn một khóa học trong danh sách!", "Thông báo");
                 }
             }
             catch (Exception ex)
             {
-                // Đào sâu vào tận cùng của lỗi
+                // Bắt lỗi chi tiết từ SQL
                 Exception realException = ex;
-                while (realException.InnerException != null)
-                {
-                    realException = realException.InnerException;
-                }
-
-                // Bây giờ nó sẽ hiện đúng cái lỗi SQL: ví dụ "Tên cột sai" hoặc "Vi phạm khóa"
-                MessageBox.Show("LỖI THỰC TẾ: " + realException.Message);
+                while (realException.InnerException != null) realException = realException.InnerException;
+                MessageBox.Show("Lỗi hệ thống: " + realException.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

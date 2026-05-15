@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing; // Thư viện để điều khiển máy in
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TalkyEnglish.BUS;
 using TalkyEnglish.DTO;
-
-using System.Drawing.Printing; // Thư viện để điều khiển máy in
 namespace TalkyEnglish.GUI
 {
+    
     public partial class ucStudentSchedule : UserControl
     {
-
+        private readonly ScheduleBUS _scheduleBus = new ScheduleBUS();
         // Đối tượng quản lý bản in
         private PrintDocument printDoc = new PrintDocument();
         private PrintPreviewDialog printPreview = new PrintPreviewDialog();
@@ -28,24 +29,47 @@ namespace TalkyEnglish.GUI
 
         private void LoadScheduleData()
         {
-            // SỬA TẠI ĐÂY: Gán trực tiếp vào biến toàn cục _originalList thay vì tạo biến cục bộ 'list'
-            _originalList = new List<ScheduleDTO>
-    {
-       
-    };
+            try
+            {
+                // 1. Kiểm tra xem có ai đang đăng nhập không
+                if (SessionManager.CurrentUser != null)
+                {
+                    int studentId = SessionManager.CurrentUser.UserID;
 
-            // Đổ dữ liệu từ kho gốc vào DataGridView
-            dgvSchedule.DataSource = _originalList;
+                    // 2. Lấy dữ liệu thật từ BUS và đổ vào List gốc
+                    // Vì hàm GetStudentSchedule trả về List<object>, ta gán vào DataSource
+                    var data = _scheduleBus.GetStudentSchedule(studentId);
 
-            // Các thiết lập tiêu đề cột (Giữ nguyên của bạn)
-            if (dgvSchedule.Columns["Date"] != null) dgvSchedule.Columns["Date"].HeaderText = "Ngày học";
-            if (dgvSchedule.Columns["DayOfWeek"] != null) dgvSchedule.Columns["DayOfWeek"].HeaderText = "Thứ";
-            if (dgvSchedule.Columns["CourseName"] != null) dgvSchedule.Columns["CourseName"].HeaderText = "Tên khóa học / Lớp";
+                    dgvMySchedule.DataSource = data;
+                    // 1. Định dạng cột Giờ Bắt Đầu
+                    if (dgvMySchedule.Columns["BatDau"] != null)
+                    {
+                        dgvMySchedule.Columns["BatDau"].HeaderText = "Giờ Bắt Đầu";
+                        // Định dạng hh:mm để mất đống số 0 phía sau
+                        dgvMySchedule.Columns["BatDau"].DefaultCellStyle.Format = @"hh\:mm";
+                    }
 
-            dgvSchedule.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250);
+                    // 2. Định dạng cột Giờ Kết Thúc
+                    if (dgvMySchedule.Columns["KetThuc"] != null)
+                    {
+                        dgvMySchedule.Columns["KetThuc"].HeaderText = "Giờ Kết Thúc";
+                        dgvMySchedule.Columns["KetThuc"].DefaultCellStyle.Format = @"hh\:mm";
+                    }
+                    // 3. Cập nhật nhãn tổng số buổi dựa trên số dòng trong Grid
+                    lblTotalSessions.Text = $"Tổng số: {dgvMySchedule.Rows.Count} buổi học";
 
-            // Cập nhật nhãn tổng số buổi ngay khi nạp lần đầu
-            lblTotalSessions.Text = $"Tổng số: {_originalList.Count} buổi học";
+                    // 4. Định dạng lại tiêu đề cột cho khớp với dữ liệu thật từ DAL
+                    if (dgvMySchedule.Columns["TenKhoaHoc"] != null) dgvMySchedule.Columns["TenKhoaHoc"].HeaderText = "Tên khóa học";
+                    if (dgvMySchedule.Columns["Thu"] != null) dgvMySchedule.Columns["Thu"].HeaderText = "Thứ";
+                    if (dgvMySchedule.Columns["BatDau"] != null) dgvMySchedule.Columns["BatDau"].HeaderText = "Bắt đầu";
+                    if (dgvMySchedule.Columns["KetThuc"] != null) dgvMySchedule.Columns["KetThuc"].HeaderText = "Kết thúc";
+                    if (dgvMySchedule.Columns["Phong"] != null) dgvMySchedule.Columns["Phong"].HeaderText = "Phòng";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi nạp lịch học: " + ex.Message);
+            }
         }
         private void printDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
@@ -71,56 +95,97 @@ namespace TalkyEnglish.GUI
             y += 30;
             g.DrawLine(Pens.Black, 50, y, 750, y);
 
-            // 3. Duyệt qua DataGridView để vẽ từng dòng dữ liệu ảo
-            foreach (DataGridViewRow row in dgvSchedule.Rows)
+            // 3. Duyệt qua DataGridView để vẽ từng dòng dữ liệu thật
+            foreach (DataGridViewRow row in dgvMySchedule.Rows)
             {
                 if (row.IsNewRow) continue;
 
-                string date = Convert.ToDateTime(row.Cells["Date"].Value).ToString("dd/MM/yyyy");
-                string course = row.Cells["CourseName"].Value.ToString();
-                string teacher = row.Cells["TeacherName"].Value.ToString();
-                string room = row.Cells["RoomName"].Value.ToString();
+                // SỬA TẠI ĐÂY: Dùng đúng tên cột mà DAL đã trả về
+                string thu = row.Cells["Thu"]?.Value?.ToString() ?? "";
+                string course = row.Cells["TenKhoaHoc"]?.Value?.ToString() ?? "";
+                string room = row.Cells["Phong"]?.Value?.ToString() ?? "";
+                string time = $"{row.Cells["BatDau"]?.Value} - {row.Cells["KetThuc"]?.Value}";
 
-                g.DrawString(date, fontBody, Brushes.Black, 50, y + 5);
+                g.DrawString(thu, fontBody, Brushes.Black, 50, y + 5);
                 g.DrawString(course, fontBody, Brushes.Black, 150, y + 5);
-                g.DrawString(teacher, fontBody, Brushes.Black, 450, y + 5);
+                g.DrawString(time, fontBody, Brushes.Black, 450, y + 5); // Thay teacher bằng giờ học cho học viên dễ nhìn
                 g.DrawString(room, fontBody, Brushes.Black, 650, y + 5);
 
                 y += 25;
-                g.DrawLine(Pens.LightGray, 50, y, 750, y); // Kẻ dòng mờ ngăn cách
+                g.DrawLine(Pens.LightGray, 50, y, 750, y);
+            }
+        }
+
+        private int GetVisibleRowCount()
+        {
+            int count = 0;
+            foreach (DataGridViewRow r in dgvMySchedule.Rows) if (r.Visible) count++;
+            return count;
+        }
+
+        private string GetVietnameseDay(DayOfWeek d)
+        {
+            switch (d)
+            {
+                case DayOfWeek.Monday: return "Thứ Hai"; // Sửa lại cho đúng chữ trong SQL của bro
+                case DayOfWeek.Tuesday: return "Thứ Ba";
+                case DayOfWeek.Wednesday: return "Thứ Tư";
+                case DayOfWeek.Thursday: return "Thứ Năm";
+                case DayOfWeek.Friday: return "Thứ Sáu";
+                case DayOfWeek.Saturday: return "Thứ Bảy";
+                case DayOfWeek.Sunday: return "Chủ Nhật";
+                default: return "";
             }
         }
         private void FilterSchedule()
         {
-            //// Chú thích báo cáo: Ép kiểu dữ liệu về .Date để loại bỏ sai số giờ phút giây khi so sánh
-            //DateTime fromDate = dtpFromDate.Value.Date;
-            //DateTime toDate = dtpToDate.Value.Date;
+            try
+            {
+                DateTime fromDate = dtpFromDate.Value.Date;
+                DateTime toDate = dtpToDate.Value.Date;
 
-            //// Sử dụng .Date trên biến chạy 's' để đảm bảo so sánh chính xác tuyệt đối
-            //var filteredData = _originalList
-            //    .Where(s => s.Date.Date >= fromDate && s.Date.Date <= toDate)
-            //    .ToList();
+                // 1. Xác định danh sách các "Thứ" xuất hiện trong khoảng ngày học viên chọn
+                List<string> thuInRange = new List<string>();
+                for (DateTime date = fromDate; date <= toDate; date = date.AddDays(1))
+                {
+                    string vnDay = GetVietnameseDay(date.DayOfWeek);
+                    if (!thuInRange.Contains(vnDay)) thuInRange.Add(vnDay);
+                }
 
-            //// Cập nhật giao diện
-            //dgvSchedule.DataSource = null;
-            //dgvSchedule.DataSource = filteredData;
+                // 2. Lọc trực tiếp trên DataGridView
+                // Chúng ta tạm ngưng kết nối để ẩn dòng không khớp
+                CurrencyManager cm = (CurrencyManager)BindingContext[dgvMySchedule.DataSource];
+                cm.SuspendBinding();
 
-            //// Cập nhật nhãn tổng số (đảm bảo tên nhãn đúng với Designer của bạn)
-            //lblTotalSessions.Text = $"Tổng số: {filteredData.Count} buổi học";
+                foreach (DataGridViewRow row in dgvMySchedule.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    // Lấy giá trị cột "Thứ" trong bảng của bro
+                    string cellValue = row.Cells["Thu"]?.Value?.ToString();
+
+                    // Nếu "Thứ" đó nằm trong khoảng ngày đã chọn thì hiện, ngược lại thì ẩn
+                    row.Visible = thuInRange.Contains(cellValue);
+                }
+
+                cm.ResumeBinding();
+                lblTotalSessions.Text = $"Tổng số: {GetVisibleRowCount()} buổi học";
+            }
+            catch { /* Tránh lỗi khi bảng trống */ }
         }
 
         private void btnThisWeek_Click(object sender, EventArgs e)
         {
-            // Chú thích báo cáo: Thuật toán xác định phạm vi tuần hiện tại để tối ưu trải nghiệm người dùng
             DateTime today = DateTime.Today;
+            // Tính toán ngày Thứ Hai của tuần này
             int diff = (7 + (today.DayOfWeek - DayOfWeek.Monday)) % 7;
-            DateTime startOfWeek = today.AddDays(-1 * diff);
-            DateTime endOfWeek = startOfWeek.AddDays(6);
+            DateTime startOfWeek = today.AddDays(-1 * diff).Date;
 
+            // Thứ Hai đến Chủ Nhật (cộng thêm 6 ngày)
             dtpFromDate.Value = startOfWeek;
-            dtpToDate.Value = endOfWeek;
+            dtpToDate.Value = startOfWeek.AddDays(6);
 
-            FilterSchedule(); // Gọi hàm lọc
+            FilterSchedule();
         }
 
         private void btnToday_Click(object sender, EventArgs e)
@@ -134,9 +199,10 @@ namespace TalkyEnglish.GUI
 
         private void btnThisMonth_Click(object sender, EventArgs e)
         {
-            // Chú thích báo cáo: Thuật toán tự động xác định ngày bắt đầu và kết thúc của tháng hiện hành
             DateTime today = DateTime.Today;
+            // Ngày đầu tháng
             dtpFromDate.Value = new DateTime(today.Year, today.Month, 1);
+            // Ngày cuối tháng
             dtpToDate.Value = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
 
             FilterSchedule();
@@ -144,24 +210,18 @@ namespace TalkyEnglish.GUI
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            // Chú thích báo cáo: Khôi phục trạng thái hiển thị ban đầu, nạp lại toàn bộ danh sách từ bộ nhớ đệm (_originalList)
-
-            // 1. Reset lại 2 ô chọn ngày về ngày hiện tại (cho đồng bộ giao diện)
+            // 1. Reset lại 2 ô chọn ngày về ngày hiện tại
             dtpFromDate.Value = DateTime.Today;
             dtpToDate.Value = DateTime.Today;
 
-            // 2. Hiển thị lại toàn bộ danh sách gốc
-            dgvSchedule.DataSource = null;
-            dgvSchedule.DataSource = _originalList;
-
-            // 3. Cập nhật lại nhãn tổng số buổi
-            lblTotalSessions.Text = $"Tổng số: {_originalList.Count} buổi học";
+            // 2. Nạp lại dữ liệu thật từ SQL
+            LoadScheduleData();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
             // 1. Kiểm tra nếu không có dữ liệu thì không in
-            if (dgvSchedule.Rows.Count == 0)
+            if (dgvMySchedule.Rows.Count == 0)
             {
                 MessageBox.Show("Không có lịch học để in!");
                 return;

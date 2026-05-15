@@ -23,6 +23,7 @@ namespace TalkyEnglish.GUI
             _currentCourse = null; // Xác nhận đây là thêm mới
             this.Text = "Thêm Khóa Học Mới";
             txtCourseCode.Text = _courseBUS.GenerateCourseCode();
+            ApplyModernStyle();
         }
         public frmCourseDetail(CourseDTO course)
         {
@@ -30,6 +31,7 @@ namespace TalkyEnglish.GUI
             _currentCourse = course; // Lưu lại dữ liệu cũ
             lblTitle.Text = "Chỉnh Sửa Thông Tin Khóa Học";
             this.Text = "Chỉnh Sửa Khóa Học";
+            ApplyModernStyle();
         }
 
         private void LoadComboBoxData()
@@ -78,10 +80,11 @@ namespace TalkyEnglish.GUI
                 txtDuration.Text = _currentCourse.Duration;
                 txtCourseCode.Text = _currentCourse.CourseCode;
                 txtCourseName.Text = _currentCourse.CourseName;
-                txtPrice.Text = _currentCourse.Price?.ToString();
+                txtPrice.Text = _currentCourse.Price?.ToString("N0");
                 txtDescription.Text = _currentCourse.Description;
                 cboLevel.SelectedItem = _currentCourse.Level;
                 cboStatus.SelectedItem = _currentCourse.Status;
+                txtPrice.ForeColor = ColorTranslator.FromHtml("#0F172A");
                 cboInstructor.SelectedValue = _currentCourse.InstructorID;
             }
         }
@@ -147,6 +150,72 @@ namespace TalkyEnglish.GUI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close(); // Nút Hủy bỏ
+        }
+
+        private void ApplyModernStyle()
+        {
+            // --- 1. MÀU NỀN TỔNG THỂ ---
+            // Thêm màu nền xám xanh rất nhạt (#F1F5F9) để form trông dịu mắt và hiện đại
+            this.BackColor = ColorTranslator.FromHtml("#F1F5F9");
+
+            // --- 2. ĐỊNH DẠNG PANEL CHÍNH ---
+            // Chỉnh Panel chứa các ô nhập liệu thành màu trắng tinh khôi (#FFFFFF)
+            if (guna2Panel1 != null)
+            {
+                guna2Panel1.FillColor = Color.White;
+                // Thêm bo góc cho Panel (Nếu Guna hỗ trợ thuộc tính Radius)
+                guna2Panel1.BorderRadius = 15;
+            }
+
+            // --- 3. TIÊU ĐỀ (HEADER) ---
+            // Chỉnh tiêu đề thành màu Navy đậm (#0F172A) và Font Segoe UI đậm
+            lblTitle.ForeColor = ColorTranslator.FromHtml("#0F172A");
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+
+            // --- 4. CÁC NHÃN (LABELS) ---
+            // Duyệt qua tất cả Label để chỉnh sang màu xám phụ (#64748B) cho tinh tế
+            foreach (Control c in this.Controls)
+            {
+                if (c is Label && c != lblTitle)
+                {
+                    c.ForeColor = ColorTranslator.FromHtml("#64748B");
+                    c.Font = new Font("Segoe UI", 9F, FontStyle.Regular);
+                }
+            }
+
+            // --- 5. NÚT LƯU THÔNG TIN ---
+            // Chỉnh màu nút Lưu thành Xanh dương chính (#2563EB), chữ trắng
+            btnSave.FillColor = ColorTranslator.FromHtml("#2563EB");
+            btnSave.ForeColor = Color.White;
+            btnSave.BorderRadius = 10;
+            // Hiệu ứng di chuột: Đậm hơn một chút khi hover
+            btnSave.HoverState.FillColor = Color.FromArgb(30, 80, 220);
+
+            // --- 6. NÚT HỦY BỎ ---
+            // Chỉnh màu nút Hủy thành nền trắng, viền xám (#64748B) để phân cấp với nút Lưu
+            btnCancel.FillColor = Color.White;
+            btnCancel.ForeColor = ColorTranslator.FromHtml("#64748B");
+            btnCancel.BorderColor = ColorTranslator.FromHtml("#64748B");
+            btnCancel.BorderThickness = 1;
+            btnCancel.BorderRadius = 10;
+            // Hiệu ứng di chuột: Chuyển sang màu nền nhạt
+            btnCancel.HoverState.FillColor = ColorTranslator.FromHtml("#F1F5F9");
+
+            // --- 7. ĐỊNH DẠNG TEXTBOX & COMBOBOX ---
+            // Duyệt qua các ô nhập liệu bên trong panel để đồng bộ màu viền và bo góc
+            if (guna2Panel1 != null)
+            {
+                foreach (Control c in this.guna2Panel1.Controls)
+                {
+                    if (c is Guna.UI2.WinForms.Guna2TextBox || c is Guna.UI2.WinForms.Guna2ComboBox)
+                    {
+                        var gControl = (dynamic)c;
+                        gControl.BorderRadius = 8;
+                        // Khi click vào ô nhập liệu, viền sẽ đổi sang màu Xanh dương chính (#2563EB)
+                        gControl.FocusedState.BorderColor = ColorTranslator.FromHtml("#2563EB");
+                    }
+                }
+            }
         }
     }
 }

@@ -48,5 +48,25 @@ namespace TalkyEnglish.DTO
 
         [Browsable(false)]
         public int? CategoryID { get; set; }
+
+        [DisplayName("Số lượng tối đa")]
+        public int MaxStudents { get; set; }
+
+        [DisplayName("Đã đăng ký")]
+        public int CurrentStudents { get; set; }
+
+        [DisplayName("Chỗ trống")]
+        [NotMapped]
+        public int AvailableSlots
+        {
+            get
+            {
+                // Nếu số lượng tối đa chưa được thiết lập (bằng 0), mặc định cho là 30
+                int max = MaxStudents <= 0 ? 30 : MaxStudents;
+                int current = CurrentStudents;
+                int slots = max - current;
+                return slots < 0 ? 0 : slots;
+            }
+        }
     }
 }

@@ -45,6 +45,7 @@
             // 
             // btnDetails
             // 
+            btnDetails.BorderColor = Color.FromArgb(251, 191, 36);
             btnDetails.BorderRadius = 5;
             btnDetails.BorderThickness = 1;
             btnDetails.CustomizableEdges = customizableEdges1;
@@ -54,7 +55,7 @@
             btnDetails.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnDetails.FillColor = Color.White;
             btnDetails.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDetails.ForeColor = Color.Black;
+            btnDetails.ForeColor = Color.FromArgb(251, 191, 36);
             btnDetails.Location = new Point(932, 49);
             btnDetails.Name = "btnDetails";
             btnDetails.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -71,9 +72,9 @@
             btnMarkAsRead.DisabledState.CustomBorderColor = Color.DarkGray;
             btnMarkAsRead.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnMarkAsRead.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnMarkAsRead.FillColor = Color.White;
+            btnMarkAsRead.FillColor = Color.FromArgb(34, 197, 94);
             btnMarkAsRead.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnMarkAsRead.ForeColor = Color.Black;
+            btnMarkAsRead.ForeColor = Color.White;
             btnMarkAsRead.Location = new Point(932, 9);
             btnMarkAsRead.Name = "btnMarkAsRead";
             btnMarkAsRead.ShadowDecoration.CustomizableEdges = customizableEdges4;
@@ -114,12 +115,14 @@
             // 
             // pnlPriority
             // 
+            pnlPriority.Image = Properties.Resources.megaphone;
             pnlPriority.ImageRotate = 0F;
-            pnlPriority.Location = new Point(18, 16);
+            pnlPriority.Location = new Point(22, 18);
             pnlPriority.Name = "pnlPriority";
             pnlPriority.ShadowDecoration.CustomizableEdges = customizableEdges5;
             pnlPriority.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
-            pnlPriority.Size = new Size(69, 62);
+            pnlPriority.Size = new Size(50, 50);
+            pnlPriority.SizeMode = PictureBoxSizeMode.StretchImage;
             pnlPriority.TabIndex = 10;
             pnlPriority.TabStop = false;
             // 
@@ -137,6 +140,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(lblContent);
             Controls.Add(btnDetails);
             Controls.Add(btnMarkAsRead);
@@ -145,7 +149,7 @@
             Controls.Add(lblTitle);
             Controls.Add(pnlPriority);
             Name = "ucStudentNotificationItem";
-            Size = new Size(1036, 97);
+            Size = new Size(1034, 95);
             ((System.ComponentModel.ISupportInitialize)pnlPriority).EndInit();
             ResumeLayout(false);
             PerformLayout();

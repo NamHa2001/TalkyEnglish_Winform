@@ -113,6 +113,9 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(btnChangePassword);
             guna2Panel1.Controls.Add(guna2HtmlLabel2);
             guna2Panel1.Controls.Add(label1);
@@ -142,6 +145,7 @@
             btnChangePassword.Size = new Size(153, 38);
             btnChangePassword.TabIndex = 74;
             btnChangePassword.Text = "Đổi mật khẩu";
+            btnChangePassword.Click += btnChangePassword_Click;
             // 
             // guna2HtmlLabel2
             // 
@@ -185,6 +189,9 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BackColor = Color.White;
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(guna2Panel5);
             guna2Panel2.Controls.Add(txtRegistrationDate);
             guna2Panel2.Controls.Add(guna2HtmlLabel6);
@@ -213,7 +220,7 @@
             guna2Panel5.Controls.Add(rbFemale);
             guna2Panel5.Controls.Add(rbMale);
             guna2Panel5.CustomizableEdges = customizableEdges7;
-            guna2Panel5.Location = new Point(191, 175);
+            guna2Panel5.Location = new Point(191, 173);
             guna2Panel5.Name = "guna2Panel5";
             guna2Panel5.ShadowDecoration.CustomizableEdges = customizableEdges8;
             guna2Panel5.Size = new Size(250, 35);
@@ -246,11 +253,12 @@
             txtRegistrationDate.BorderRadius = 10;
             txtRegistrationDate.BorderThickness = 1;
             txtRegistrationDate.Checked = true;
+            txtRegistrationDate.CheckedState.FillColor = Color.White;
             txtRegistrationDate.CustomizableEdges = customizableEdges9;
             txtRegistrationDate.FillColor = Color.White;
             txtRegistrationDate.Font = new Font("Segoe UI", 9F);
             txtRegistrationDate.Format = DateTimePickerFormat.Long;
-            txtRegistrationDate.Location = new Point(191, 340);
+            txtRegistrationDate.Location = new Point(191, 337);
             txtRegistrationDate.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             txtRegistrationDate.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             txtRegistrationDate.Name = "txtRegistrationDate";
@@ -264,7 +272,7 @@
             guna2HtmlLabel6.BackColor = Color.Transparent;
             guna2HtmlLabel6.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel6.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel6.Location = new Point(29, 347);
+            guna2HtmlLabel6.Location = new Point(29, 340);
             guna2HtmlLabel6.Name = "guna2HtmlLabel6";
             guna2HtmlLabel6.Size = new Size(108, 25);
             guna2HtmlLabel6.TabIndex = 80;
@@ -349,7 +357,7 @@
             guna2HtmlLabel4.BackColor = Color.Transparent;
             guna2HtmlLabel4.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel4.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel4.Location = new Point(28, 72);
+            guna2HtmlLabel4.Location = new Point(28, 68);
             guna2HtmlLabel4.Name = "guna2HtmlLabel4";
             guna2HtmlLabel4.Size = new Size(80, 25);
             guna2HtmlLabel4.TabIndex = 62;
@@ -368,7 +376,7 @@
             txtPhone.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtPhone.ForeColor = Color.FromArgb(64, 64, 64);
             txtPhone.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtPhone.Location = new Point(191, 283);
+            txtPhone.Location = new Point(191, 282);
             txtPhone.Margin = new Padding(3, 4, 3, 4);
             txtPhone.Name = "txtPhone";
             txtPhone.PlaceholderText = "";
@@ -382,11 +390,12 @@
             dtpBirthday.BorderRadius = 10;
             dtpBirthday.BorderThickness = 1;
             dtpBirthday.Checked = true;
+            dtpBirthday.CheckedState.FillColor = Color.White;
             dtpBirthday.CustomizableEdges = customizableEdges19;
             dtpBirthday.FillColor = Color.White;
             dtpBirthday.Font = new Font("Segoe UI", 9F);
             dtpBirthday.Format = DateTimePickerFormat.Long;
-            dtpBirthday.Location = new Point(190, 125);
+            dtpBirthday.Location = new Point(190, 118);
             dtpBirthday.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpBirthday.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpBirthday.Name = "dtpBirthday";
@@ -400,7 +409,7 @@
             guna2HtmlLabel7.BackColor = Color.Transparent;
             guna2HtmlLabel7.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel7.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel7.Location = new Point(28, 181);
+            guna2HtmlLabel7.Location = new Point(28, 178);
             guna2HtmlLabel7.Name = "guna2HtmlLabel7";
             guna2HtmlLabel7.Size = new Size(68, 25);
             guna2HtmlLabel7.TabIndex = 70;
@@ -411,7 +420,7 @@
             guna2HtmlLabel8.BackColor = Color.Transparent;
             guna2HtmlLabel8.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel8.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel8.Location = new Point(28, 132);
+            guna2HtmlLabel8.Location = new Point(28, 127);
             guna2HtmlLabel8.Name = "guna2HtmlLabel8";
             guna2HtmlLabel8.Size = new Size(79, 25);
             guna2HtmlLabel8.TabIndex = 69;
@@ -441,7 +450,7 @@
             txtFullName.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtFullName.ForeColor = Color.FromArgb(64, 64, 64);
             txtFullName.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtFullName.Location = new Point(191, 67);
+            txtFullName.Location = new Point(191, 63);
             txtFullName.Margin = new Padding(3, 4, 3, 4);
             txtFullName.Name = "txtFullName";
             txtFullName.PlaceholderText = "";
@@ -463,7 +472,7 @@
             txtEmail.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.FromArgb(64, 64, 64);
             txtEmail.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            txtEmail.Location = new Point(191, 226);
+            txtEmail.Location = new Point(191, 227);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "";
@@ -477,7 +486,7 @@
             guna2HtmlLabel5.BackColor = Color.Transparent;
             guna2HtmlLabel5.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel5.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel5.Location = new Point(28, 226);
+            guna2HtmlLabel5.Location = new Point(28, 231);
             guna2HtmlLabel5.Name = "guna2HtmlLabel5";
             guna2HtmlLabel5.Size = new Size(44, 25);
             guna2HtmlLabel5.TabIndex = 64;
@@ -485,6 +494,9 @@
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BackColor = Color.White;
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(lblDisplayEmail);
             guna2Panel3.Controls.Add(lblDisplayPhone);
             guna2Panel3.Controls.Add(lblAccountStatus);
@@ -686,6 +698,9 @@
             // 
             // guna2Panel4
             // 
+            guna2Panel4.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel4.BorderColor = Color.Silver;
+            guna2Panel4.BorderThickness = 1;
             guna2Panel4.Controls.Add(label4);
             guna2Panel4.Controls.Add(guna2HtmlLabel22);
             guna2Panel4.CustomizableEdges = customizableEdges30;
@@ -720,12 +735,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(guna2Panel4);
             Controls.Add(guna2Panel3);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
             Name = "ucProfile";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             Load += ucProfile_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();

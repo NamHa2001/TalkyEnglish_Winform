@@ -10,6 +10,15 @@ namespace TalkyEnglish.BUS
     public class ScheduleBUS
     {
         private readonly ScheduleDAL _scheduleDal = new ScheduleDAL();
+
+       
+
+        public List<object> GetStudentSchedule(int studentId)
+        {
+            // Kiểm tra logic nếu cần, sau đó gọi xuống DAL
+            if (studentId <= 0) return new List<object>();
+            return _scheduleDal.GetStudentSchedule(studentId);
+        }
         public string SaveSchedule(ScheduleDTO newSche)
         {
             // 1. Lấy toàn bộ lịch hiện có để so sánh
@@ -61,6 +70,14 @@ namespace TalkyEnglish.BUS
         public bool DeleteSchedule(int scheduleId)
         {
             return _scheduleDal.Delete(scheduleId);
+        }
+
+
+
+        public List<ScheduleDTO> GetSchedulesByTeacher(int teacherId)
+        {
+            // Gọi trực tiếp hàm lọc theo ID ở DAL cho nó nhanh và chính xác 100%
+            return _scheduleDal.GetByTeacher(teacherId);
         }
     }
 }

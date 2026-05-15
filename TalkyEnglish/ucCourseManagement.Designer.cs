@@ -119,7 +119,7 @@
             lblTotalCourses.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotalCourses.ForeColor = Color.FromArgb(64, 64, 64);
             lblTotalCourses.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            lblTotalCourses.Location = new Point(73, 2);
+            lblTotalCourses.Location = new Point(73, 13);
             lblTotalCourses.Margin = new Padding(3, 4, 3, 4);
             lblTotalCourses.Name = "lblTotalCourses";
             lblTotalCourses.PlaceholderText = "";
@@ -130,14 +130,17 @@
             // 
             // guna2Panel4
             // 
+            guna2Panel4.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel4.BorderColor = Color.Silver;
+            guna2Panel4.BorderThickness = 1;
             guna2Panel4.Controls.Add(btnExportExcel);
             guna2Panel4.Controls.Add(lblTotalCourses);
             guna2Panel4.Controls.Add(guna2HtmlLabel12);
             guna2Panel4.CustomizableEdges = customizableEdges5;
-            guna2Panel4.Location = new Point(3, 446);
+            guna2Panel4.Location = new Point(3, 420);
             guna2Panel4.Name = "guna2Panel4";
             guna2Panel4.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Panel4.Size = new Size(1038, 38);
+            guna2Panel4.Size = new Size(1038, 64);
             guna2Panel4.TabIndex = 0;
             // 
             // btnExportExcel
@@ -150,10 +153,10 @@
             btnExportExcel.DisabledState.CustomBorderColor = Color.DarkGray;
             btnExportExcel.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnExportExcel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnExportExcel.FillColor = Color.White;
+            btnExportExcel.FillColor = Color.FromArgb(59, 130, 246);
             btnExportExcel.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnExportExcel.ForeColor = Color.Black;
-            btnExportExcel.Location = new Point(890, 3);
+            btnExportExcel.ForeColor = Color.White;
+            btnExportExcel.Location = new Point(890, 14);
             btnExportExcel.Name = "btnExportExcel";
             btnExportExcel.ShadowDecoration.CustomizableEdges = customizableEdges4;
             btnExportExcel.Size = new Size(141, 35);
@@ -166,7 +169,7 @@
             guna2HtmlLabel12.BackColor = Color.Transparent;
             guna2HtmlLabel12.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel12.ForeColor = Color.DimGray;
-            guna2HtmlLabel12.Location = new Point(3, 7);
+            guna2HtmlLabel12.Location = new Point(3, 18);
             guna2HtmlLabel12.Name = "guna2HtmlLabel12";
             guna2HtmlLabel12.Size = new Size(64, 25);
             guna2HtmlLabel12.TabIndex = 27;
@@ -177,10 +180,10 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(248, 248, 248);
             dgvCourses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(242, 245, 250);
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(242, 245, 250);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvCourses.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -196,11 +199,11 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             dgvCourses.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCourses.GridColor = Color.FromArgb(231, 229, 255);
-            dgvCourses.Location = new Point(3, 0);
+            dgvCourses.Location = new Point(6, 6);
             dgvCourses.Name = "dgvCourses";
             dgvCourses.RowHeadersVisible = false;
             dgvCourses.RowHeadersWidth = 51;
-            dgvCourses.Size = new Size(1038, 447);
+            dgvCourses.Size = new Size(1028, 408);
             dgvCourses.TabIndex = 1;
             dgvCourses.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvCourses.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -282,6 +285,8 @@
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(dgvCourses);
             guna2Panel3.Controls.Add(guna2Panel4);
             guna2Panel3.CustomizableEdges = customizableEdges7;
@@ -335,6 +340,9 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(dtpFilterDate);
             guna2Panel1.Controls.Add(cboFilterStatus);
             guna2Panel1.Controls.Add(cboFilterLevel);
@@ -357,9 +365,10 @@
             // 
             // dtpFilterDate
             // 
-            dtpFilterDate.BorderRadius = 15;
+            dtpFilterDate.BorderRadius = 10;
             dtpFilterDate.BorderThickness = 1;
             dtpFilterDate.Checked = true;
+            dtpFilterDate.CheckedState.FillColor = Color.White;
             dtpFilterDate.CustomFormat = "dd/MM/yyyy";
             dtpFilterDate.CustomizableEdges = customizableEdges13;
             dtpFilterDate.FillColor = Color.White;
@@ -435,7 +444,7 @@
             // btnReset
             // 
             btnReset.BorderColor = Color.Gray;
-            btnReset.BorderRadius = 15;
+            btnReset.BorderRadius = 10;
             btnReset.BorderThickness = 1;
             btnReset.CustomizableEdges = customizableEdges21;
             btnReset.DisabledState.BorderColor = Color.DarkGray;
@@ -445,10 +454,10 @@
             btnReset.FillColor = Color.White;
             btnReset.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReset.ForeColor = Color.Black;
-            btnReset.Location = new Point(928, 67);
+            btnReset.Location = new Point(925, 72);
             btnReset.Name = "btnReset";
             btnReset.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            btnReset.Size = new Size(106, 45);
+            btnReset.Size = new Size(112, 36);
             btnReset.TabIndex = 27;
             btnReset.Text = "Làm mới";
             btnReset.Click += btnReset_Click;
@@ -456,7 +465,7 @@
             // guna2Button3
             // 
             guna2Button3.BorderColor = Color.Gray;
-            guna2Button3.BorderRadius = 15;
+            guna2Button3.BorderRadius = 10;
             guna2Button3.BorderThickness = 1;
             guna2Button3.CustomizableEdges = customizableEdges23;
             guna2Button3.DisabledState.BorderColor = Color.DarkGray;
@@ -466,10 +475,10 @@
             guna2Button3.FillColor = Color.White;
             guna2Button3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2Button3.ForeColor = Color.Black;
-            guna2Button3.Location = new Point(816, 67);
+            guna2Button3.Location = new Point(810, 72);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            guna2Button3.Size = new Size(106, 45);
+            guna2Button3.Size = new Size(112, 36);
             guna2Button3.TabIndex = 28;
             guna2Button3.Text = "Tìm kiếm";
             // 
@@ -564,6 +573,9 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BackColor = Color.White;
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(btnDelete);
             guna2Panel2.Controls.Add(btnEdit);
             guna2Panel2.Controls.Add(btnDetail);
@@ -621,7 +633,7 @@
             // 
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.ForeColor = Color.FromArgb(64, 64, 64);
+            guna2HtmlLabel2.ForeColor = Color.Black;
             guna2HtmlLabel2.Location = new Point(3, 9);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(164, 27);
@@ -632,11 +644,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(guna2Panel3);
             Controls.Add(guna2Panel1);
             Controls.Add(guna2Panel2);
             Name = "ucCourseManagement";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             Load += ucCourseManagement_Load_1;
             guna2Panel4.ResumeLayout(false);
             guna2Panel4.PerformLayout();

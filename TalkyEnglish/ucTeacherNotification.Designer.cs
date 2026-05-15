@@ -40,6 +40,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             flpNotifications = new FlowLayoutPanel();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
@@ -50,12 +52,16 @@
             btnFilterUrgent = new Guna.UI2.WinForms.Guna2Button();
             btnFilterAll = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel2.SuspendLayout();
             guna2Panel1.SuspendLayout();
+            guna2Panel3.SuspendLayout();
             SuspendLayout();
             // 
             // flpNotifications
             // 
+            flpNotifications.BackColor = Color.White;
+            flpNotifications.BorderStyle = BorderStyle.FixedSingle;
             flpNotifications.Location = new Point(5, 3);
             flpNotifications.Name = "flpNotifications";
             flpNotifications.Size = new Size(1036, 492);
@@ -74,16 +80,21 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(flpNotifications);
             guna2Panel2.CustomizableEdges = customizableEdges1;
-            guna2Panel2.Location = new Point(3, 157);
+            guna2Panel2.Location = new Point(3, 173);
             guna2Panel2.Name = "guna2Panel2";
             guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2Panel2.Size = new Size(1044, 498);
+            guna2Panel2.Size = new Size(1044, 482);
             guna2Panel2.TabIndex = 85;
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.White;
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(guna2HtmlLabel2);
             guna2Panel1.Controls.Add(txtSearch);
             guna2Panel1.Controls.Add(btnunread);
@@ -196,27 +207,43 @@
             guna2HtmlLabel3.BackColor = Color.Transparent;
             guna2HtmlLabel3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2HtmlLabel3.ForeColor = Color.FromArgb(64, 64, 64);
-            guna2HtmlLabel3.Location = new Point(8, 126);
+            guna2HtmlLabel3.Location = new Point(5, 14);
             guna2HtmlLabel3.Name = "guna2HtmlLabel3";
             guna2HtmlLabel3.Size = new Size(168, 25);
             guna2HtmlLabel3.TabIndex = 86;
             guna2HtmlLabel3.Text = "Danh sách thông báo";
             // 
+            // guna2Panel3
+            // 
+            guna2Panel3.BackColor = Color.White;
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
+            guna2Panel3.Controls.Add(guna2HtmlLabel3);
+            guna2Panel3.CustomizableEdges = customizableEdges13;
+            guna2Panel3.Location = new Point(3, 115);
+            guna2Panel3.Name = "guna2Panel3";
+            guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            guna2Panel3.Size = new Size(1044, 52);
+            guna2Panel3.TabIndex = 86;
+            // 
             // ucTeacherNotification
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(guna2Panel3);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
-            Controls.Add(guna2HtmlLabel3);
             Name = "ucTeacherNotification";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             Load += ucTeacherNotification_Load;
             guna2Panel2.ResumeLayout(false);
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
+            guna2Panel3.ResumeLayout(false);
+            guna2Panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -231,5 +258,6 @@
         private Guna.UI2.WinForms.Guna2Button btnFilterUrgent;
         private Guna.UI2.WinForms.Guna2Button btnFilterAll;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
     }
 }

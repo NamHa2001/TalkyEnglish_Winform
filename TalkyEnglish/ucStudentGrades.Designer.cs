@@ -66,6 +66,8 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             guna2ComboBox3 = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2ComboBox2 = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -79,6 +81,11 @@
             label1 = new Label();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             dgvGradeDetail = new Guna.UI2.WinForms.Guna2DataGridView();
+            colSTT = new DataGridViewTextBoxColumn();
+            colHangMuc = new DataGridViewTextBoxColumn();
+            colDiem = new DataGridViewTextBoxColumn();
+            colTyTrong = new DataGridViewTextBoxColumn();
+            colQuyDoi = new DataGridViewTextBoxColumn();
             label3 = new Label();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             txtAttendancePercentage = new Guna.UI2.WinForms.Guna2TextBox();
@@ -102,16 +109,12 @@
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             dgvCourseList = new Guna.UI2.WinForms.Guna2DataGridView();
-            label2 = new Label();
             colCourseName = new DataGridViewTextBoxColumn();
             colTeacherName = new DataGridViewTextBoxColumn();
             colSemester = new DataGridViewTextBoxColumn();
             colAvgScore = new DataGridViewTextBoxColumn();
-            colSTT = new DataGridViewTextBoxColumn();
-            colHangMuc = new DataGridViewTextBoxColumn();
-            colDiem = new DataGridViewTextBoxColumn();
-            colTyTrong = new DataGridViewTextBoxColumn();
-            colQuyDoi = new DataGridViewTextBoxColumn();
+            label2 = new Label();
+            guna2Panel7 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1.SuspendLayout();
             guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvGradeDetail).BeginInit();
@@ -120,10 +123,13 @@
             guna2Panel5.SuspendLayout();
             guna2Panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourseList).BeginInit();
+            guna2Panel7.SuspendLayout();
             SuspendLayout();
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(guna2ComboBox3);
             guna2Panel1.Controls.Add(guna2ComboBox2);
             guna2Panel1.Controls.Add(guna2HtmlLabel3);
@@ -189,6 +195,7 @@
             dtpToDate.BorderRadius = 15;
             dtpToDate.BorderThickness = 1;
             dtpToDate.Checked = true;
+            dtpToDate.CheckedState.FillColor = Color.White;
             dtpToDate.CustomFormat = "dd/MM/yyyy";
             dtpToDate.CustomizableEdges = customizableEdges5;
             dtpToDate.FillColor = Color.White;
@@ -219,6 +226,7 @@
             dtpFromDate.BorderRadius = 15;
             dtpFromDate.BorderThickness = 1;
             dtpFromDate.Checked = true;
+            dtpFromDate.CheckedState.FillColor = Color.White;
             dtpFromDate.CustomFormat = "dd/MM/yyyy";
             dtpFromDate.CustomizableEdges = customizableEdges7;
             dtpFromDate.FillColor = Color.White;
@@ -260,7 +268,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel2.ForeColor = Color.DimGray;
-            guna2HtmlLabel2.Location = new Point(29, 39);
+            guna2HtmlLabel2.Location = new Point(15, 35);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(526, 25);
             guna2HtmlLabel2.TabIndex = 71;
@@ -270,7 +278,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(23, 5);
+            label1.Location = new Point(9, 1);
             label1.Name = "label1";
             label1.Size = new Size(214, 31);
             label1.TabIndex = 70;
@@ -278,6 +286,9 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BackColor = Color.White;
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(dgvGradeDetail);
             guna2Panel2.Controls.Add(label3);
             guna2Panel2.CustomizableEdges = customizableEdges11;
@@ -291,6 +302,7 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvGradeDetail.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvGradeDetail.BorderStyle = BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -299,7 +311,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvGradeDetail.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvGradeDetail.ColumnHeadersHeight = 4;
+            dgvGradeDetail.ColumnHeadersHeight = 40;
             dgvGradeDetail.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dgvGradeDetail.Columns.AddRange(new DataGridViewColumn[] { colSTT, colHangMuc, colDiem, colTyTrong, colQuyDoi });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -329,7 +341,7 @@
             dgvGradeDetail.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             dgvGradeDetail.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvGradeDetail.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvGradeDetail.ThemeStyle.HeaderStyle.Height = 4;
+            dgvGradeDetail.ThemeStyle.HeaderStyle.Height = 40;
             dgvGradeDetail.ThemeStyle.ReadOnly = false;
             dgvGradeDetail.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvGradeDetail.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -338,6 +350,41 @@
             dgvGradeDetail.ThemeStyle.RowsStyle.Height = 29;
             dgvGradeDetail.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvGradeDetail.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // colSTT
+            // 
+            colSTT.DataPropertyName = "STT";
+            colSTT.HeaderText = "STT";
+            colSTT.MinimumWidth = 6;
+            colSTT.Name = "colSTT";
+            // 
+            // colHangMuc
+            // 
+            colHangMuc.DataPropertyName = "HangMuc";
+            colHangMuc.HeaderText = "Hạng mục";
+            colHangMuc.MinimumWidth = 6;
+            colHangMuc.Name = "colHangMuc";
+            // 
+            // colDiem
+            // 
+            colDiem.DataPropertyName = "Diem";
+            colDiem.HeaderText = "Điểm";
+            colDiem.MinimumWidth = 6;
+            colDiem.Name = "colDiem";
+            // 
+            // colTyTrong
+            // 
+            colTyTrong.DataPropertyName = "TyTrong";
+            colTyTrong.HeaderText = "Tỷ trọng (%)";
+            colTyTrong.MinimumWidth = 6;
+            colTyTrong.Name = "colTyTrong";
+            // 
+            // colQuyDoi
+            // 
+            colQuyDoi.DataPropertyName = "QuyDoi";
+            colQuyDoi.HeaderText = "Điểm quy đổi";
+            colQuyDoi.MinimumWidth = 6;
+            colQuyDoi.Name = "colQuyDoi";
             // 
             // label3
             // 
@@ -351,6 +398,9 @@
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BackColor = Color.White;
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(txtAttendancePercentage);
             guna2Panel3.Controls.Add(guna2HtmlLabel14);
             guna2Panel3.Controls.Add(txtTotalSessions);
@@ -542,6 +592,9 @@
             // 
             // guna2Panel4
             // 
+            guna2Panel4.BackColor = Color.White;
+            guna2Panel4.BorderColor = Color.Silver;
+            guna2Panel4.BorderThickness = 1;
             guna2Panel4.Controls.Add(lblTeacherName);
             guna2Panel4.Controls.Add(txtTeacherComment);
             guna2Panel4.Controls.Add(label5);
@@ -568,6 +621,7 @@
             // 
             txtTeacherComment.AutoSize = false;
             txtTeacherComment.BackColor = Color.Transparent;
+            txtTeacherComment.BorderStyle = BorderStyle.FixedSingle;
             txtTeacherComment.Location = new Point(12, 41);
             txtTeacherComment.Name = "txtTeacherComment";
             txtTeacherComment.Size = new Size(369, 108);
@@ -597,6 +651,9 @@
             // 
             // guna2Panel5
             // 
+            guna2Panel5.BackColor = Color.White;
+            guna2Panel5.BorderColor = Color.Silver;
+            guna2Panel5.BorderThickness = 1;
             guna2Panel5.Controls.Add(btnPrint);
             guna2Panel5.Controls.Add(guna2HtmlLabel4);
             guna2Panel5.CustomizableEdges = customizableEdges29;
@@ -639,6 +696,8 @@
             // 
             // guna2Panel6
             // 
+            guna2Panel6.BorderColor = Color.Silver;
+            guna2Panel6.BorderThickness = 1;
             guna2Panel6.Controls.Add(dgvCourseList);
             guna2Panel6.Controls.Add(label2);
             guna2Panel6.CustomizableEdges = customizableEdges31;
@@ -652,6 +711,7 @@
             // 
             dataGridViewCellStyle4.BackColor = Color.White;
             dgvCourseList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvCourseList.BorderStyle = BorderStyle.FixedSingle;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
@@ -701,16 +761,6 @@
             dgvCourseList.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvCourseList.SelectionChanged += dgvCourseList_SelectionChanged;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(3, 6);
-            label2.Name = "label2";
-            label2.Size = new Size(208, 23);
-            label2.TabIndex = 76;
-            label2.Text = "DANH SÁCH KHÓA HỌC";
-            // 
             // colCourseName
             // 
             colCourseName.DataPropertyName = "CourseName";
@@ -739,55 +789,44 @@
             colAvgScore.MinimumWidth = 6;
             colAvgScore.Name = "colAvgScore";
             // 
-            // colSTT
+            // label2
             // 
-            colSTT.DataPropertyName = "STT";
-            colSTT.HeaderText = "STT";
-            colSTT.MinimumWidth = 6;
-            colSTT.Name = "colSTT";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(3, 6);
+            label2.Name = "label2";
+            label2.Size = new Size(208, 23);
+            label2.TabIndex = 76;
+            label2.Text = "DANH SÁCH KHÓA HỌC";
             // 
-            // colHangMuc
+            // guna2Panel7
             // 
-            colHangMuc.DataPropertyName = "HangMuc";
-            colHangMuc.HeaderText = "Hạng mục";
-            colHangMuc.MinimumWidth = 6;
-            colHangMuc.Name = "colHangMuc";
-            // 
-            // colDiem
-            // 
-            colDiem.DataPropertyName = "Diem";
-            colDiem.HeaderText = "Điểm";
-            colDiem.MinimumWidth = 6;
-            colDiem.Name = "colDiem";
-            // 
-            // colTyTrong
-            // 
-            colTyTrong.DataPropertyName = "TyTrong";
-            colTyTrong.HeaderText = "Tỷ trọng (%)";
-            colTyTrong.MinimumWidth = 6;
-            colTyTrong.Name = "colTyTrong";
-            // 
-            // colQuyDoi
-            // 
-            colQuyDoi.DataPropertyName = "QuyDoi";
-            colQuyDoi.HeaderText = "Điểm quy đổi";
-            colQuyDoi.MinimumWidth = 6;
-            colQuyDoi.Name = "colQuyDoi";
+            guna2Panel7.BorderColor = Color.Silver;
+            guna2Panel7.BorderThickness = 1;
+            guna2Panel7.Controls.Add(label1);
+            guna2Panel7.Controls.Add(guna2HtmlLabel2);
+            guna2Panel7.CustomizableEdges = customizableEdges33;
+            guna2Panel7.Location = new Point(3, 3);
+            guna2Panel7.Name = "guna2Panel7";
+            guna2Panel7.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            guna2Panel7.Size = new Size(1043, 61);
+            guna2Panel7.TabIndex = 76;
             // 
             // ucStudentGrades
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(guna2Panel7);
             Controls.Add(guna2Panel6);
             Controls.Add(guna2Panel5);
             Controls.Add(guna2Panel4);
             Controls.Add(guna2Panel3);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
-            Controls.Add(guna2HtmlLabel2);
-            Controls.Add(label1);
             Name = "ucStudentGrades";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             guna2Panel2.ResumeLayout(false);
@@ -802,8 +841,9 @@
             guna2Panel6.ResumeLayout(false);
             guna2Panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourseList).EndInit();
+            guna2Panel7.ResumeLayout(false);
+            guna2Panel7.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -854,5 +894,6 @@
         private DataGridViewTextBoxColumn colDiem;
         private DataGridViewTextBoxColumn colTyTrong;
         private DataGridViewTextBoxColumn colQuyDoi;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel7;
     }
 }

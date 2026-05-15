@@ -20,7 +20,7 @@ namespace TalkyEnglish.GUI
         }
 
         // Hàm này để đổ dữ liệu lên danh sách bên phải giao diện Admin
-       
+
 
         private void btnSend_Click(object sender, EventArgs e)
         {
@@ -125,6 +125,11 @@ namespace TalkyEnglish.GUI
             cboTargetType.SelectedIndex = 0; // Tự chọn "All"
             cboCategory.SelectedIndex = 0;   // Tự chọn "Hệ thống"
             LoadData();
+        }
+
+        private void guna2Panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

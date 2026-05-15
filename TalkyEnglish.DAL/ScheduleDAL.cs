@@ -84,5 +84,54 @@ namespace TalkyEnglish.DAL
                 return query.ToList();
             }
         }
+
+   
+
+        public List<ScheduleDTO> GetByTeacher(int instructorId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                var query = from s in db.Schedules
+                            join c in db.Courses on s.CourseID equals c.CourseID
+                            join a in db.TeachingAssignments on c.CourseID equals a.CourseID
+                            join u in db.Users on a.InstructorID equals u.UserID
+                            where u.UserID == instructorId
+                            select new ScheduleDTO
+                            {
+                                ScheduleID = s.ScheduleID,
+                                CourseID = s.CourseID,
+                                CourseCode = c.CourseCode,
+                                CourseName = c.CourseName,
+                                DayOfWeek = s.DayOfWeek,
+                                StartTime = s.StartTime,
+                                EndTime = s.EndTime,
+                                RoomName = s.RoomName,
+                                InstructorName = u.FullName
+                            };
+                return query.ToList();
+            }
+        }
+
+
+        public List<object> GetStudentSchedule(int studentId)
+        {
+            // Sử dụng DbContext để kết nối Database
+            using (var db = new TalkyDbContext())
+            {
+                var query = from e in db.Enrolments
+                            join s in db.Schedules on e.CourseID equals s.CourseID
+                            join c in db.Courses on e.CourseID equals c.CourseID
+                            where e.StudentID == studentId
+                            select new
+                            {
+                                TenKhoaHoc = c.CourseName,
+                                Thu = s.DayOfWeek,
+                                BatDau = s.StartTime,
+                                KetThuc = s.EndTime,
+                                Phong = s.RoomName
+                            };
+                return query.ToList<object>();
+            }
+        }
     }
 }

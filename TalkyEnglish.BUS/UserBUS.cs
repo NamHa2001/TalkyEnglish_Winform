@@ -21,6 +21,33 @@ namespace TalkyEnglish.BUS
         /// <param name="email">Email đăng nhập</param>
         /// <param name="password">Mật khẩu (Text thuần)</param>
         /// <returns>Đối tượng UserDTO nếu hợp lệ, ngược lại trả về null</returns>
+        /// 
+        // Nhớ khai báo biến _userDAL ở đầu class BUS nếu chưa có:
+        // UserDAL _userDAL = new UserDAL();
+
+        public int GetTotalStudents()
+        {
+            try
+            {
+                return _userDAL.GetTotalStudents();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi BUS GetTotalStudents: " + ex.Message);
+            }
+        }
+
+        public int GetTotalInstructors()
+        {
+            try
+            {
+                return _userDAL.GetTotalInstructors();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi BUS GetTotalInstructors: " + ex.Message);
+            }
+        }
         public UserDTO Login(string email, string password)
         {
             if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password)) return null;
@@ -160,6 +187,17 @@ namespace TalkyEnglish.BUS
         {
             if (student.UserID <= 0) return false;
             return _userDAL.UpdateUser(student); // Dùng chung hàm UpdateUser vì logic giống nhau
+        }
+        // Hàm hỗ trợ cập nhật thông tin người dùng từ trang Profile
+        public bool UpdateUserInfo(UserDTO user)
+        {
+            // Kiểm tra nếu là Giảng viên/Instructor thì gọi hàm cập nhật chuyên biệt của DAL
+            if (user.Role == "Instructor" || user.Role == "Teacher")
+            {
+                return _userDAL.UpdateInstructor(user);
+            }
+            // Ngược lại dùng hàm cập nhật chung
+            return _userDAL.UpdateUser(user);
         }
     }
 }

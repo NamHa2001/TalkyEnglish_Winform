@@ -24,5 +24,25 @@ namespace TalkyEnglish.DAL
                 }
             }
         }
+        public void UpdateStudentCount(int courseId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    var course = db.Courses.Find(courseId);
+                    if (course != null)
+                    {
+                        // Vì là kiểu int nên không cần ?? 0 nữa, cứ thế cộng trực tiếp
+                        course.CurrentStudents = course.CurrentStudents + 1;
+                        db.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi cập nhật sĩ số khóa học: " + ex.Message);
+                }
+            }
         }
+    }
 }

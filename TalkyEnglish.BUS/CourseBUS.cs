@@ -10,6 +10,7 @@ namespace TalkyEnglish.BUS
     {
         private readonly TalkyDbContext _context;
         // Thêm hàm này vào class CourseBUS
+        private readonly CourseDAL _courseDAL = new CourseDAL();
         public List<UserDTO> GetInstructors()
         {
             // Giả sử những người có Role là 'Teacher' hoặc 'Instructor' là giảng viên
@@ -34,11 +35,14 @@ namespace TalkyEnglish.BUS
                             CourseName = c.CourseName,
                             Price = c.Price,
                             Description = c.Description,
-                            Duration = c.Duration, // THÊM DÒNG NÀY
+                            Duration = c.Duration,
                             Level = c.Level,
                             Status = c.Status,
                             InstructorID = c.InstructorID,
                             CreatedAt = c.CreatedAt,
+                            // THÊM 2 DÒNG NÀY ĐỂ LẤY DỮ LIỆU SĨ SỐ
+                            MaxStudents = c.MaxStudents,
+                            CurrentStudents = c.CurrentStudents,
                             InstructorName = u != null ? u.FullName : "Chưa phân công"
                         };
             return query.ToList();
@@ -81,10 +85,14 @@ namespace TalkyEnglish.BUS
                 existing.CourseName = course.CourseName;
                 existing.Price = course.Price;
                 existing.Description = course.Description;
-                existing.Duration = course.Duration; // THÊM DÒNG NÀY
+                existing.Duration = course.Duration;
                 existing.Level = course.Level;
                 existing.Status = course.Status;
                 existing.InstructorID = course.InstructorID;
+
+                // GIỮ LẠI SĨ SỐ KHI CẬP NHẬT
+                existing.MaxStudents = course.MaxStudents;
+                existing.CurrentStudents = course.CurrentStudents;
 
                 return _context.SaveChanges() > 0;
             }

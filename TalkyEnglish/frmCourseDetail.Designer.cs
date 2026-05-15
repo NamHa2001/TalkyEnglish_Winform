@@ -50,14 +50,14 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2HtmlLabel7 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -77,15 +77,17 @@
             txtPrice = new Guna.UI2.WinForms.Guna2TextBox();
             txtCourseName = new Guna.UI2.WinForms.Guna2TextBox();
             guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             btnSave = new Guna.UI2.WinForms.Guna2Button();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            pictureBox1 = new PictureBox();
             lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             guna2GroupBox1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // guna2HtmlLabel7
@@ -134,7 +136,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.BorderColor = Color.Gray;
+            btnCancel.BorderColor = Color.FromArgb(239, 68, 68);
             btnCancel.BorderRadius = 10;
             btnCancel.BorderThickness = 1;
             btnCancel.CustomizableEdges = customizableEdges1;
@@ -144,7 +146,7 @@
             btnCancel.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnCancel.FillColor = Color.White;
             btnCancel.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.ForeColor = Color.FromArgb(64, 64, 64);
+            btnCancel.ForeColor = Color.FromArgb(239, 68, 68);
             btnCancel.Location = new Point(1098, 27);
             btnCancel.Name = "btnCancel";
             btnCancel.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -174,6 +176,8 @@
             // 
             // guna2GroupBox1
             // 
+            guna2GroupBox1.BackColor = Color.White;
+            guna2GroupBox1.BorderColor = Color.Silver;
             guna2GroupBox1.Controls.Add(txtDescription);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel8);
             guna2GroupBox1.Controls.Add(txtCourseCode);
@@ -190,9 +194,10 @@
             guna2GroupBox1.Controls.Add(guna2HtmlLabel3);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel2);
             guna2GroupBox1.Controls.Add(guna2HtmlLabel4);
+            guna2GroupBox1.CustomBorderColor = Color.FromArgb(33, 150, 243);
             guna2GroupBox1.CustomizableEdges = customizableEdges19;
-            guna2GroupBox1.Font = new Font("Segoe UI", 9F);
-            guna2GroupBox1.ForeColor = Color.FromArgb(125, 137, 149);
+            guna2GroupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2GroupBox1.ForeColor = Color.White;
             guna2GroupBox1.Location = new Point(3, 3);
             guna2GroupBox1.Name = "guna2GroupBox1";
             guna2GroupBox1.ShadowDecoration.CustomizableEdges = customizableEdges20;
@@ -235,7 +240,8 @@
             // 
             // txtCourseCode
             // 
-            txtCourseCode.BorderRadius = 15;
+            txtCourseCode.BackColor = Color.Transparent;
+            txtCourseCode.BorderRadius = 10;
             txtCourseCode.CustomizableEdges = customizableEdges7;
             txtCourseCode.DefaultText = "";
             txtCourseCode.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -253,7 +259,7 @@
             txtCourseCode.ReadOnly = true;
             txtCourseCode.SelectedText = "";
             txtCourseCode.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtCourseCode.Size = new Size(278, 48);
+            txtCourseCode.Size = new Size(278, 36);
             txtCourseCode.TabIndex = 70;
             // 
             // guna2HtmlLabel6
@@ -329,7 +335,7 @@
             // 
             // txtDuration
             // 
-            txtDuration.BorderRadius = 15;
+            txtDuration.BorderRadius = 10;
             txtDuration.CustomizableEdges = customizableEdges13;
             txtDuration.DefaultText = "";
             txtDuration.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -346,12 +352,12 @@
             txtDuration.PlaceholderText = "ví dụ: 30 giờ";
             txtDuration.SelectedText = "";
             txtDuration.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtDuration.Size = new Size(278, 48);
+            txtDuration.Size = new Size(278, 36);
             txtDuration.TabIndex = 63;
             // 
             // txtPrice
             // 
-            txtPrice.BorderRadius = 15;
+            txtPrice.BorderRadius = 10;
             txtPrice.CustomizableEdges = customizableEdges15;
             txtPrice.DefaultText = "";
             txtPrice.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -368,12 +374,12 @@
             txtPrice.PlaceholderText = "Nhập học phí";
             txtPrice.SelectedText = "";
             txtPrice.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            txtPrice.Size = new Size(278, 48);
+            txtPrice.Size = new Size(278, 36);
             txtPrice.TabIndex = 62;
             // 
             // txtCourseName
             // 
-            txtCourseName.BorderRadius = 15;
+            txtCourseName.BorderRadius = 10;
             txtCourseName.CustomizableEdges = customizableEdges17;
             txtCourseName.DefaultText = "";
             txtCourseName.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
@@ -390,11 +396,14 @@
             txtCourseName.PlaceholderText = "Nhập tên khóa học";
             txtCourseName.SelectedText = "";
             txtCourseName.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            txtCourseName.Size = new Size(278, 48);
+            txtCourseName.Size = new Size(278, 36);
             txtCourseName.TabIndex = 61;
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(guna2Button1);
             guna2Panel3.Controls.Add(btnCancel);
             guna2Panel3.Controls.Add(btnSave);
@@ -404,6 +413,27 @@
             guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges26;
             guna2Panel3.Size = new Size(1258, 102);
             guna2Panel3.TabIndex = 14;
+            // 
+            // guna2Button1
+            // 
+            guna2Button1.Animated = true;
+            guna2Button1.BorderColor = Color.FromArgb(251, 191, 36);
+            guna2Button1.BorderRadius = 10;
+            guna2Button1.BorderThickness = 1;
+            guna2Button1.CustomizableEdges = customizableEdges21;
+            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
+            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            guna2Button1.FillColor = Color.White;
+            guna2Button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            guna2Button1.ForeColor = Color.FromArgb(251, 191, 36);
+            guna2Button1.Location = new Point(18, 27);
+            guna2Button1.Name = "guna2Button1";
+            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2Button1.Size = new Size(145, 45);
+            guna2Button1.TabIndex = 10;
+            guna2Button1.Text = "Làm mới";
             // 
             // btnSave
             // 
@@ -415,9 +445,9 @@
             btnSave.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSave.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnSave.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnSave.FillColor = Color.White;
+            btnSave.FillColor = Color.FromArgb(59, 130, 246);
             btnSave.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.ForeColor = Color.FromArgb(64, 64, 64);
+            btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(930, 27);
             btnSave.Name = "btnSave";
             btnSave.ShadowDecoration.CustomizableEdges = customizableEdges24;
@@ -438,6 +468,10 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.White;
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
+            guna2Panel1.Controls.Add(pictureBox1);
             guna2Panel1.Controls.Add(lblTitle);
             guna2Panel1.CustomizableEdges = customizableEdges29;
             guna2Panel1.Location = new Point(12, 12);
@@ -446,6 +480,17 @@
             guna2Panel1.Size = new Size(1258, 125);
             guna2Panel1.TabIndex = 12;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Transparent;
+            pictureBox1.Image = Properties.Resources.logoTK2;
+            pictureBox1.Location = new Point(3, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(328, 119);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
             // lblTitle
             // 
             lblTitle.BackColor = Color.Transparent;
@@ -453,30 +498,10 @@
             lblTitle.ForeColor = Color.FromArgb(64, 64, 64);
             lblTitle.Location = new Point(498, 38);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(264, 39);
+            lblTitle.Size = new Size(293, 39);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Thêm Khóa Học Mới";
+            lblTitle.Text = "THÊM KHÓA HỌC MỚI";
             lblTitle.TextAlignment = ContentAlignment.MiddleCenter;
-            // 
-            // guna2Button1
-            // 
-            guna2Button1.BorderColor = Color.Gray;
-            guna2Button1.BorderRadius = 10;
-            guna2Button1.BorderThickness = 1;
-            guna2Button1.CustomizableEdges = customizableEdges21;
-            guna2Button1.DisabledState.BorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.CustomBorderColor = Color.DarkGray;
-            guna2Button1.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
-            guna2Button1.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            guna2Button1.FillColor = Color.White;
-            guna2Button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            guna2Button1.ForeColor = Color.FromArgb(64, 64, 64);
-            guna2Button1.Location = new Point(18, 27);
-            guna2Button1.Name = "guna2Button1";
-            guna2Button1.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            guna2Button1.Size = new Size(145, 45);
-            guna2Button1.TabIndex = 10;
-            guna2Button1.Text = "Làm mới";
             // 
             // frmCourseDetail
             // 
@@ -487,6 +512,7 @@
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
             Name = "frmCourseDetail";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "frmCourseDetail";
             Load += frmCourseDetail_Load;
             guna2GroupBox1.ResumeLayout(false);
@@ -495,6 +521,7 @@
             guna2Panel2.ResumeLayout(false);
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -537,5 +564,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtDescription;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private PictureBox pictureBox1;
     }
 }

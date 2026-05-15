@@ -48,6 +48,7 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.FromArgb(235, 242, 255);
             guna2Panel1.BorderColor = Color.FromArgb(224, 224, 224);
             guna2Panel1.Controls.Add(progressBar);
             guna2Panel1.Controls.Add(panelIcon);
@@ -125,12 +126,14 @@
             // 
             // guna2CirclePictureBox1
             // 
+            guna2CirclePictureBox1.Image = Properties.Resources.toeic;
             guna2CirclePictureBox1.ImageRotate = 0F;
             guna2CirclePictureBox1.Location = new Point(35, 13);
             guna2CirclePictureBox1.Name = "guna2CirclePictureBox1";
             guna2CirclePictureBox1.ShadowDecoration.CustomizableEdges = customizableEdges5;
             guna2CirclePictureBox1.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle;
             guna2CirclePictureBox1.Size = new Size(64, 62);
+            guna2CirclePictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             guna2CirclePictureBox1.TabIndex = 6;
             guna2CirclePictureBox1.TabStop = false;
             // 
@@ -138,9 +141,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(guna2Panel1);
             Name = "ucCourseProgress";
-            Size = new Size(1043, 92);
+            Size = new Size(1041, 90);
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2CirclePictureBox1).EndInit();

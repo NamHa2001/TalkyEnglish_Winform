@@ -19,27 +19,27 @@ namespace TalkyEnglish.GUI
         {
             InitializeComponent();
             SetCurrentDate();
+            ApplyModernInterface();
         }
 
 
         private void LoadMyCourses()
         {
-            // Xóa sạch các dữ liệu cũ nếu có
             flpCourses.Controls.Clear();
 
-            // 1. Khóa học thứ nhất
+            // 1. Khóa học thứ nhất - Màu xanh dương #2563EB
             ucCourseProgress c1 = new ucCourseProgress();
-            c1.SetData("English Communication A2", "Nguyễn Thị Thu Hà", 70, Color.LightGreen);
+            c1.SetData("English Communication A2", "Nguyễn Thị Thu Hà", 70, ColorTranslator.FromHtml("#2563EB"));
             flpCourses.Controls.Add(c1);
 
-            // 2. Khóa học thứ hai
+            // 2. Khóa học thứ hai - Màu vàng chính #FBBF24
             ucCourseProgress c2 = new ucCourseProgress();
-            c2.SetData("IELTS Foundation", "Trần Minh Hoàng", 45, Color.LightGreen);
+            c2.SetData("IELTS Foundation", "Trần Minh Hoàng", 45, ColorTranslator.FromHtml("#FBBF24"));
             flpCourses.Controls.Add(c2);
 
-            // 3. Khóa học thứ ba
+            // 3. Khóa học thứ ba - Màu tím #8B5CF6
             ucCourseProgress c3 = new ucCourseProgress();
-            c3.SetData("Grammar for Beginners", "Lê Quang Huy", 20, Color.LightGreen);
+            c3.SetData("Grammar for Beginners", "Lê Quang Huy", 20, ColorTranslator.FromHtml("#8B5CF6"));
             flpCourses.Controls.Add(c3);
         }
         private void addUserControl(UserControl uc)
@@ -81,14 +81,14 @@ namespace TalkyEnglish.GUI
 
                 // Tối ưu hiển thị Mã học viên
                 lblStudentCode.Text = "Mã HV: " + (SessionManager.CurrentUser.StudentCode ?? "N/A");
-                lblStudentCode.ForeColor = Color.FromArgb(18, 110, 226); // Màu xanh dương đậm hiện đại
+                lblStudentCode.ForeColor = ColorTranslator.FromHtml("#2563EB");
                 lblStudentCode.Font = new Font("Segoe UI", 9F, FontStyle.Bold); // Chỉnh font chữ đậm cho chuyên nghiệp
                 lblStudentCode.BackColor = Color.Transparent; // Trả về nền trong suốt cho đẹp
                 lblStudentCode.BringToFront();
 
                 // Tối ưu hiển thị Email
                 lblEmail.Text = "Email: " + (SessionManager.CurrentUser.Email ?? "Chưa cập nhật");
-                lblEmail.ForeColor = Color.DimGray; // Màu xám nhẹ nhàng, tinh tế
+                lblEmail.ForeColor = ColorTranslator.FromHtml("#64748B"); // Màu xám nhẹ nhàng, tinh tế
                 lblEmail.Font = new Font("Segoe UI", 8.5F, FontStyle.Regular);
                 lblEmail.BackColor = Color.Transparent;
                 lblEmail.BringToFront();
@@ -216,6 +216,45 @@ namespace TalkyEnglish.GUI
             // 2. Sử dụng hàm điều hướng có sẵn của bạn để hiển thị lên vùng trung tâm
             // Chú thích: Hàm này sẽ tự động Clear trang cũ và Fill trang Đăng ký vào Panel
             addUserControl(uc);
+        }
+        private void ApplyModernInterface()
+        {
+            // --- 1. Thiết lập màu nền tổng thể cho Form (Màu #F1F5F9) ---
+            this.BackColor = ColorTranslator.FromHtml("#F1F5F9");
+
+            // --- 2. Màu chữ tiêu đề chào mừng (Màu Navy đậm #0F172A) ---
+            label1.ForeColor = ColorTranslator.FromHtml("#0F172A"); // Giả sử label1 là chữ "Xin chào"
+            txtFullName.ForeColor = ColorTranslator.FromHtml("#2563EB"); // Tên học viên màu xanh dương chính
+
+            // --- 3. Tối ưu DataGridView Lịch học (Giống image_79365b.jpg) ---
+            dgvSchedule.BackgroundColor = Color.White;
+            dgvSchedule.BorderStyle = BorderStyle.None;
+
+            // Màu Header của bảng (Xanh dương chính #2563EB)
+            dgvSchedule.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#2563EB");
+            dgvSchedule.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvSchedule.EnableHeadersVisualStyles = false;
+
+            // Màu các dòng dữ liệu
+            dgvSchedule.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#EBF2FF"); // Xanh nhạt khi chọn
+            dgvSchedule.DefaultCellStyle.SelectionForeColor = ColorTranslator.FromHtml("#2563EB");
+
+            // --- 4. Thiết lập màu cho Sidebar/Menu (Nếu bro dùng Panel làm Menu bên trái) ---
+            // Giả sử pnlSidebar là panel chứa các nút Trang chủ, Lịch học...
+
+        }
+
+        private void guna2Button7_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                SessionManager.Clear(); // Xóa sạch dấu vết
+
+                frmDangNhap loginForm = new frmDangNhap();
+                loginForm.Show();
+
+                this.Hide(); // Ẩn dashboard đi
+            }
         }
     }
 }

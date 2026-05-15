@@ -51,6 +51,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dtpFromDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             btnToday = new Guna.UI2.WinForms.Guna2Button();
             guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -63,18 +65,20 @@
             btnReset = new Guna.UI2.WinForms.Guna2Button();
             dtpToDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            dgvSchedule = new Guna.UI2.WinForms.Guna2DataGridView();
+            dgvMySchedule = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             btnPrint = new Guna.UI2.WinForms.Guna2Button();
             lblTotalSessions = new Guna.UI2.WinForms.Guna2TextBox();
+            guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSchedule).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvMySchedule).BeginInit();
             guna2Panel2.SuspendLayout();
+            guna2Panel3.SuspendLayout();
             SuspendLayout();
             // 
             // dtpFromDate
             // 
-            dtpFromDate.BorderRadius = 15;
+            dtpFromDate.BorderRadius = 10;
             dtpFromDate.BorderThickness = 1;
             dtpFromDate.Checked = true;
             dtpFromDate.CustomFormat = "dd/MM/yyyy";
@@ -138,7 +142,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(23, 15);
+            label1.Location = new Point(7, 6);
             label1.Name = "label1";
             label1.Size = new Size(232, 31);
             label1.TabIndex = 67;
@@ -149,7 +153,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel2.ForeColor = Color.DimGray;
-            guna2HtmlLabel2.Location = new Point(29, 49);
+            guna2HtmlLabel2.Location = new Point(12, 40);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(320, 25);
             guna2HtmlLabel2.TabIndex = 68;
@@ -157,6 +161,9 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.White;
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(btnThisWeek);
             guna2Panel1.Controls.Add(btnThisMonth);
             guna2Panel1.Controls.Add(btnReset);
@@ -238,7 +245,7 @@
             // 
             // dtpToDate
             // 
-            dtpToDate.BorderRadius = 15;
+            dtpToDate.BorderRadius = 10;
             dtpToDate.BorderThickness = 1;
             dtpToDate.Checked = true;
             dtpToDate.CustomFormat = "dd/MM/yyyy";
@@ -266,10 +273,11 @@
             guna2HtmlLabel1.TabIndex = 67;
             guna2HtmlLabel1.Text = "Đến ngày";
             // 
-            // dgvSchedule
+            // dgvMySchedule
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
-            dgvSchedule.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvMySchedule.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvMySchedule.BorderStyle = BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -277,9 +285,9 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvSchedule.ColumnHeadersHeight = 35;
-            dgvSchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvMySchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvMySchedule.ColumnHeadersHeight = 35;
+            dgvMySchedule.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -287,38 +295,40 @@
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            dgvSchedule.DefaultCellStyle = dataGridViewCellStyle3;
-            dgvSchedule.GridColor = Color.FromArgb(231, 229, 255);
-            dgvSchedule.Location = new Point(7, 159);
-            dgvSchedule.Name = "dgvSchedule";
-            dgvSchedule.RowHeadersVisible = false;
-            dgvSchedule.RowHeadersWidth = 51;
-            dgvSchedule.Size = new Size(1036, 434);
-            dgvSchedule.TabIndex = 70;
-            dgvSchedule.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
-            dgvSchedule.ThemeStyle.AlternatingRowsStyle.Font = null;
-            dgvSchedule.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
-            dgvSchedule.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
-            dgvSchedule.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            dgvSchedule.ThemeStyle.BackColor = Color.White;
-            dgvSchedule.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
-            dgvSchedule.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
-            dgvSchedule.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvSchedule.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
-            dgvSchedule.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            dgvSchedule.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvSchedule.ThemeStyle.HeaderStyle.Height = 35;
-            dgvSchedule.ThemeStyle.ReadOnly = false;
-            dgvSchedule.ThemeStyle.RowsStyle.BackColor = Color.White;
-            dgvSchedule.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgvSchedule.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
-            dgvSchedule.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
-            dgvSchedule.ThemeStyle.RowsStyle.Height = 29;
-            dgvSchedule.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dgvSchedule.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvMySchedule.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvMySchedule.GridColor = Color.FromArgb(231, 229, 255);
+            dgvMySchedule.Location = new Point(7, 159);
+            dgvMySchedule.Name = "dgvMySchedule";
+            dgvMySchedule.RowHeadersVisible = false;
+            dgvMySchedule.RowHeadersWidth = 51;
+            dgvMySchedule.Size = new Size(1036, 434);
+            dgvMySchedule.TabIndex = 70;
+            dgvMySchedule.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvMySchedule.ThemeStyle.AlternatingRowsStyle.Font = null;
+            dgvMySchedule.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
+            dgvMySchedule.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
+            dgvMySchedule.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
+            dgvMySchedule.ThemeStyle.BackColor = Color.White;
+            dgvMySchedule.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvMySchedule.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvMySchedule.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgvMySchedule.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
+            dgvMySchedule.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvMySchedule.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvMySchedule.ThemeStyle.HeaderStyle.Height = 35;
+            dgvMySchedule.ThemeStyle.ReadOnly = false;
+            dgvMySchedule.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvMySchedule.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvMySchedule.ThemeStyle.RowsStyle.Font = new Font("Segoe UI", 9F);
+            dgvMySchedule.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvMySchedule.ThemeStyle.RowsStyle.Height = 29;
+            dgvMySchedule.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvMySchedule.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(btnPrint);
             guna2Panel2.Controls.Add(lblTotalSessions);
             guna2Panel2.CustomizableEdges = customizableEdges19;
@@ -330,7 +340,7 @@
             // 
             // btnPrint
             // 
-            btnPrint.BorderColor = Color.Gray;
+            btnPrint.BorderColor = Color.FromArgb(251, 191, 36);
             btnPrint.BorderRadius = 10;
             btnPrint.BorderThickness = 1;
             btnPrint.CustomizableEdges = customizableEdges15;
@@ -340,7 +350,7 @@
             btnPrint.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnPrint.FillColor = Color.White;
             btnPrint.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPrint.ForeColor = Color.Black;
+            btnPrint.ForeColor = Color.FromArgb(251, 191, 36);
             btnPrint.Location = new Point(889, 8);
             btnPrint.Name = "btnPrint";
             btnPrint.ShadowDecoration.CustomizableEdges = customizableEdges16;
@@ -366,26 +376,42 @@
             lblTotalSessions.PlaceholderText = "";
             lblTotalSessions.SelectedText = "";
             lblTotalSessions.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            lblTotalSessions.Size = new Size(112, 36);
+            lblTotalSessions.Size = new Size(237, 36);
             lblTotalSessions.TabIndex = 0;
+            // 
+            // guna2Panel3
+            // 
+            guna2Panel3.BackColor = Color.White;
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
+            guna2Panel3.Controls.Add(label1);
+            guna2Panel3.Controls.Add(guna2HtmlLabel2);
+            guna2Panel3.CustomizableEdges = customizableEdges21;
+            guna2Panel3.Location = new Point(3, 3);
+            guna2Panel3.Name = "guna2Panel3";
+            guna2Panel3.ShadowDecoration.CustomizableEdges = customizableEdges22;
+            guna2Panel3.Size = new Size(1040, 71);
+            guna2Panel3.TabIndex = 72;
             // 
             // ucStudentSchedule
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(guna2Panel3);
             Controls.Add(guna2Panel2);
-            Controls.Add(dgvSchedule);
+            Controls.Add(dgvMySchedule);
             Controls.Add(guna2Panel1);
-            Controls.Add(guna2HtmlLabel2);
-            Controls.Add(label1);
             Name = "ucStudentSchedule";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvSchedule).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvMySchedule).EndInit();
             guna2Panel2.ResumeLayout(false);
+            guna2Panel3.ResumeLayout(false);
+            guna2Panel3.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -402,9 +428,10 @@
         private Guna.UI2.WinForms.Guna2Button btnThisWeek;
         private Guna.UI2.WinForms.Guna2Button btnThisMonth;
         private Guna.UI2.WinForms.Guna2Button btnReset;
-        private Guna.UI2.WinForms.Guna2DataGridView dgvSchedule;
+        private Guna.UI2.WinForms.Guna2DataGridView dgvMySchedule;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private Guna.UI2.WinForms.Guna2TextBox lblTotalSessions;
         private Guna.UI2.WinForms.Guna2Button btnPrint;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
     }
 }

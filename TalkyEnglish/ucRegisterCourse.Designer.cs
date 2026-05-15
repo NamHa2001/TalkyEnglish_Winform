@@ -45,6 +45,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             cboFilterInstructor = new Guna.UI2.WinForms.Guna2ComboBox();
             btnReset = new Guna.UI2.WinForms.Guna2Button();
@@ -55,8 +57,19 @@
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
             dgvCourses = new Guna.UI2.WinForms.Guna2DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
             guna2HtmlLabel3 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             guna2ShadowPanel2 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             txtDescription = new Guna.UI2.WinForms.Guna2TextBox();
             guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblPrice = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -66,19 +79,19 @@
             guna2HtmlLabel4 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblCourseCode = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnRegister = new Guna.UI2.WinForms.Guna2Button();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel5 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel6 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel8 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel9 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1.SuspendLayout();
             guna2ShadowPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourses).BeginInit();
             guna2ShadowPanel2.SuspendLayout();
+            guna2Panel2.SuspendLayout();
             SuspendLayout();
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(cboFilterInstructor);
             guna2Panel1.Controls.Add(btnReset);
             guna2Panel1.Controls.Add(guna2Button3);
@@ -209,6 +222,7 @@
             // guna2ShadowPanel1
             // 
             guna2ShadowPanel1.BackColor = Color.Transparent;
+            guna2ShadowPanel1.BorderStyle = BorderStyle.FixedSingle;
             guna2ShadowPanel1.Controls.Add(dgvCourses);
             guna2ShadowPanel1.Controls.Add(guna2HtmlLabel3);
             guna2ShadowPanel1.FillColor = Color.White;
@@ -222,7 +236,6 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvCourses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dgvCourses.BackgroundColor = Color.Gainsboro;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -231,8 +244,9 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvCourses.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvCourses.ColumnHeadersHeight = 35;
+            dgvCourses.ColumnHeadersHeight = 40;
             dgvCourses.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgvCourses.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -253,14 +267,14 @@
             dgvCourses.ThemeStyle.AlternatingRowsStyle.ForeColor = Color.Empty;
             dgvCourses.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = Color.Empty;
             dgvCourses.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = Color.Empty;
-            dgvCourses.ThemeStyle.BackColor = Color.Gainsboro;
+            dgvCourses.ThemeStyle.BackColor = Color.White;
             dgvCourses.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
             dgvCourses.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
             dgvCourses.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             dgvCourses.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             dgvCourses.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvCourses.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dgvCourses.ThemeStyle.HeaderStyle.Height = 35;
+            dgvCourses.ThemeStyle.HeaderStyle.Height = 40;
             dgvCourses.ThemeStyle.ReadOnly = false;
             dgvCourses.ThemeStyle.RowsStyle.BackColor = Color.White;
             dgvCourses.ThemeStyle.RowsStyle.BorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -270,6 +284,48 @@
             dgvCourses.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvCourses.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             dgvCourses.SelectionChanged += dgvCourses_SelectionChanged;
+            // 
+            // Column1
+            // 
+            Column1.DataPropertyName = "CourseCode";
+            Column1.HeaderText = "Mã khóa học";
+            Column1.MinimumWidth = 6;
+            Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            Column2.DataPropertyName = "CourseName";
+            Column2.HeaderText = "Tên khóa học";
+            Column2.MinimumWidth = 6;
+            Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            Column3.DataPropertyName = "Level";
+            Column3.HeaderText = "Trình độ";
+            Column3.MinimumWidth = 6;
+            Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            Column4.DataPropertyName = "Duration";
+            Column4.HeaderText = "Thời lượng";
+            Column4.MinimumWidth = 6;
+            Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            Column5.DataPropertyName = "Price";
+            Column5.HeaderText = "Học phí";
+            Column5.MinimumWidth = 6;
+            Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            Column6.DataPropertyName = "AvailableSlots";
+            Column6.HeaderText = "Chỗ trống";
+            Column6.MinimumWidth = 6;
+            Column6.Name = "Column6";
             // 
             // guna2HtmlLabel3
             // 
@@ -284,7 +340,8 @@
             // 
             // guna2ShadowPanel2
             // 
-            guna2ShadowPanel2.BackColor = Color.Transparent;
+            guna2ShadowPanel2.BackColor = Color.White;
+            guna2ShadowPanel2.BorderStyle = BorderStyle.FixedSingle;
             guna2ShadowPanel2.Controls.Add(guna2HtmlLabel2);
             guna2ShadowPanel2.Controls.Add(guna2HtmlLabel5);
             guna2ShadowPanel2.Controls.Add(guna2HtmlLabel6);
@@ -304,6 +361,61 @@
             guna2ShadowPanel2.ShadowColor = Color.Black;
             guna2ShadowPanel2.Size = new Size(496, 439);
             guna2ShadowPanel2.TabIndex = 45;
+            // 
+            // guna2HtmlLabel2
+            // 
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Font = new Font("Segoe UI", 9F);
+            guna2HtmlLabel2.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel2.Location = new Point(21, 207);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(58, 22);
+            guna2HtmlLabel2.TabIndex = 47;
+            guna2HtmlLabel2.Text = "Học phí:";
+            // 
+            // guna2HtmlLabel5
+            // 
+            guna2HtmlLabel5.BackColor = Color.Transparent;
+            guna2HtmlLabel5.Font = new Font("Segoe UI", 9F);
+            guna2HtmlLabel5.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel5.Location = new Point(21, 168);
+            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
+            guna2HtmlLabel5.Size = new Size(78, 22);
+            guna2HtmlLabel5.TabIndex = 46;
+            guna2HtmlLabel5.Text = "Thời lượng:";
+            // 
+            // guna2HtmlLabel6
+            // 
+            guna2HtmlLabel6.BackColor = Color.Transparent;
+            guna2HtmlLabel6.Font = new Font("Segoe UI", 9F);
+            guna2HtmlLabel6.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel6.Location = new Point(21, 129);
+            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
+            guna2HtmlLabel6.Size = new Size(61, 22);
+            guna2HtmlLabel6.TabIndex = 45;
+            guna2HtmlLabel6.Text = "Trình độ:";
+            // 
+            // guna2HtmlLabel8
+            // 
+            guna2HtmlLabel8.BackColor = Color.Transparent;
+            guna2HtmlLabel8.Font = new Font("Segoe UI", 9F);
+            guna2HtmlLabel8.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel8.Location = new Point(21, 90);
+            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
+            guna2HtmlLabel8.Size = new Size(94, 22);
+            guna2HtmlLabel8.TabIndex = 44;
+            guna2HtmlLabel8.Text = "Tên khóa học:";
+            // 
+            // guna2HtmlLabel9
+            // 
+            guna2HtmlLabel9.BackColor = Color.Transparent;
+            guna2HtmlLabel9.Font = new Font("Segoe UI", 9F);
+            guna2HtmlLabel9.ForeColor = Color.FromArgb(30, 30, 30);
+            guna2HtmlLabel9.Location = new Point(21, 51);
+            guna2HtmlLabel9.Name = "guna2HtmlLabel9";
+            guna2HtmlLabel9.Size = new Size(91, 22);
+            guna2HtmlLabel9.TabIndex = 43;
+            guna2HtmlLabel9.Text = "Mã khóa học:";
             // 
             // txtDescription
             // 
@@ -414,82 +526,41 @@
             btnRegister.DisabledState.CustomBorderColor = Color.DarkGray;
             btnRegister.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnRegister.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnRegister.FillColor = Color.White;
+            btnRegister.FillColor = Color.FromArgb(59, 130, 246);
             btnRegister.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRegister.ForeColor = Color.Black;
-            btnRegister.Location = new Point(679, 590);
+            btnRegister.ForeColor = Color.White;
+            btnRegister.Location = new Point(735, 15);
             btnRegister.Name = "btnRegister";
             btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnRegister.Size = new Size(106, 45);
+            btnRegister.Size = new Size(137, 45);
             btnRegister.TabIndex = 32;
-            btnRegister.Text = "Tìm kiếm";
+            btnRegister.Text = "Đăng ký";
             btnRegister.Click += btnRegister_Click;
             // 
-            // guna2HtmlLabel2
+            // guna2Panel2
             // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 9F);
-            guna2HtmlLabel2.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel2.Location = new Point(21, 207);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(58, 22);
-            guna2HtmlLabel2.TabIndex = 47;
-            guna2HtmlLabel2.Text = "Học phí:";
-            // 
-            // guna2HtmlLabel5
-            // 
-            guna2HtmlLabel5.BackColor = Color.Transparent;
-            guna2HtmlLabel5.Font = new Font("Segoe UI", 9F);
-            guna2HtmlLabel5.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel5.Location = new Point(21, 168);
-            guna2HtmlLabel5.Name = "guna2HtmlLabel5";
-            guna2HtmlLabel5.Size = new Size(78, 22);
-            guna2HtmlLabel5.TabIndex = 46;
-            guna2HtmlLabel5.Text = "Thời lượng:";
-            // 
-            // guna2HtmlLabel6
-            // 
-            guna2HtmlLabel6.BackColor = Color.Transparent;
-            guna2HtmlLabel6.Font = new Font("Segoe UI", 9F);
-            guna2HtmlLabel6.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel6.Location = new Point(21, 129);
-            guna2HtmlLabel6.Name = "guna2HtmlLabel6";
-            guna2HtmlLabel6.Size = new Size(61, 22);
-            guna2HtmlLabel6.TabIndex = 45;
-            guna2HtmlLabel6.Text = "Trình độ:";
-            // 
-            // guna2HtmlLabel8
-            // 
-            guna2HtmlLabel8.BackColor = Color.Transparent;
-            guna2HtmlLabel8.Font = new Font("Segoe UI", 9F);
-            guna2HtmlLabel8.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel8.Location = new Point(21, 90);
-            guna2HtmlLabel8.Name = "guna2HtmlLabel8";
-            guna2HtmlLabel8.Size = new Size(94, 22);
-            guna2HtmlLabel8.TabIndex = 44;
-            guna2HtmlLabel8.Text = "Tên khóa học:";
-            // 
-            // guna2HtmlLabel9
-            // 
-            guna2HtmlLabel9.BackColor = Color.Transparent;
-            guna2HtmlLabel9.Font = new Font("Segoe UI", 9F);
-            guna2HtmlLabel9.ForeColor = Color.FromArgb(30, 30, 30);
-            guna2HtmlLabel9.Location = new Point(21, 51);
-            guna2HtmlLabel9.Name = "guna2HtmlLabel9";
-            guna2HtmlLabel9.Size = new Size(91, 22);
-            guna2HtmlLabel9.TabIndex = 43;
-            guna2HtmlLabel9.Text = "Mã khóa học:";
+            guna2Panel2.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
+            guna2Panel2.Controls.Add(btnRegister);
+            guna2Panel2.CustomizableEdges = customizableEdges15;
+            guna2Panel2.Location = new Point(7, 577);
+            guna2Panel2.Name = "guna2Panel2";
+            guna2Panel2.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            guna2Panel2.Size = new Size(1038, 85);
+            guna2Panel2.TabIndex = 46;
             // 
             // ucRegisterCourse
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnRegister);
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(guna2Panel2);
             Controls.Add(guna2ShadowPanel2);
             Controls.Add(guna2ShadowPanel1);
             Controls.Add(guna2Panel1);
             Name = "ucRegisterCourse";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             Load += ucRegisterCourse_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
@@ -498,6 +569,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvCourses).EndInit();
             guna2ShadowPanel2.ResumeLayout(false);
             guna2ShadowPanel2.PerformLayout();
+            guna2Panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -529,5 +601,12 @@
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel6;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel8;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel9;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
     }
 }

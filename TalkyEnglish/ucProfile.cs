@@ -175,5 +175,119 @@ namespace TalkyEnglish.GUI
             LoadProfileData(); // Nạp lại dữ liệu để các nhãn bên phải cập nhật theo
                                // }
         }
+
+        private void btnChangePassword_Click(object sender, EventArgs e)
+        {
+            // --- BƯỚC 1: KHỞI TẠO FORM "ẢO" (DYNAMIC FORM) ---
+            Form prompt = new Form()
+            {
+                Width = 400,
+                Height = 350,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                Text = "Hệ thống - Đổi mật khẩu",
+                StartPosition = FormStartPosition.CenterScreen,
+                BackColor = Color.White
+            };
+
+            // --- BƯỚC 2: TẠO CÁC CONTROL (DÙNG GUNA2 NẾU BRO ĐÃ CÀI, Ở ĐÂY TÔI DÙNG WINDOWS FORM CHUẨN CHO CHẮC CHẮN) ---
+            Label lblTitle = new Label() { Left = 50, Top = 20, Text = "THAY ĐỔI MẬT KHẨU", Width = 300, Font = new Font("Segoe UI", 12, FontStyle.Bold), ForeColor = ColorTranslator.FromHtml("#0F172A") };
+
+            Label lblOld = new Label() { Left = 50, Top = 60, Text = "Mật khẩu hiện tại:", Width = 300, ForeColor = Color.DimGray };
+            TextBox txtOld = new TextBox() { Left = 50, Top = 85, Width = 280, PasswordChar = '*', Font = new Font("Segoe UI", 10) };
+
+            Label lblNew = new Label() { Left = 50, Top = 120, Text = "Mật khẩu mới:", Width = 300, ForeColor = Color.DimGray };
+            TextBox txtNew = new TextBox() { Left = 50, Top = 145, Width = 280, PasswordChar = '*', Font = new Font("Segoe UI", 10) };
+
+            Label lblConfirm = new Label() { Left = 50, Top = 180, Text = "Xác nhận mật khẩu mới:", Width = 300, ForeColor = Color.DimGray };
+            TextBox txtConfirm = new TextBox() { Left = 50, Top = 205, Width = 280, PasswordChar = '*', Font = new Font("Segoe UI", 10) };
+
+            // Nút Xác nhận (Màu xanh dương #2563EB)
+            Button btnSubmit = new Button()
+            {
+                Text = "Cập nhật",
+                Left = 50,
+                Top = 250,
+                Width = 130,
+                Height = 35,
+                BackColor = ColorTranslator.FromHtml("#2563EB"),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
+            };
+            btnSubmit.FlatAppearance.BorderSize = 0;
+
+            // Nút Hủy
+            Button btnClose = new Button()
+            {
+                Text = "Hủy bỏ",
+                Left = 200,
+                Top = 250,
+                Width = 130,
+                Height = 35,
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand
+            };
+
+            // --- BƯỚC 3: LOGIC XỬ LÝ KHI BẤM NÚT ---
+            btnSubmit.Click += (s, args) =>
+            {
+                // 1. Kiểm tra trống
+                if (string.IsNullOrWhiteSpace(txtOld.Text) || string.IsNullOrWhiteSpace(txtNew.Text) || string.IsNullOrWhiteSpace(txtConfirm.Text))
+                {
+                    MessageBox.Show("Vui lòng điền đầy đủ các trường mật khẩu!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 2. Kiểm tra khớp mật khẩu mới
+                if (txtNew.Text != txtConfirm.Text)
+                {
+                    MessageBox.Show("Mật khẩu xác nhận không khớp với mật khẩu mới!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // 3. Kiểm tra độ dài mật khẩu (tùy chọn)
+                if (txtNew.Text.Length < 6)
+                {
+                    MessageBox.Show("Mật khẩu mới phải có ít nhất 6 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                try
+                {
+                    // GIẢ LẬP KẾT NỐI DATABASE (Bro sẽ thay bằng UserBUS sau này)
+                    // bool isOldPassCorrect = userBus.CheckOldPassword(SessionManager.CurrentUser.UserID, txtOld.Text);
+                    bool isOldPassCorrect = (txtOld.Text == "123"); // Đây là ví dụ, mặc định pass cũ là 123
+
+                    if (isOldPassCorrect)
+                    {
+                        // Thực hiện update trong DB
+                        // userBus.UpdatePassword(SessionManager.CurrentUser.UserID, txtNew.Text);
+
+                        MessageBox.Show("Chúc mừng! Mật khẩu của bạn đã được thay đổi thành công.", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        prompt.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu hiện tại không chính xác. Vui lòng kiểm tra lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi xảy ra: " + ex.Message);
+                }
+            };
+
+            btnClose.Click += (s, args) => prompt.Close();
+
+            // Thêm các thành phần vào bảng
+            prompt.Controls.Add(lblTitle);
+            prompt.Controls.Add(lblOld); prompt.Controls.Add(txtOld);
+            prompt.Controls.Add(lblNew); prompt.Controls.Add(txtNew);
+            prompt.Controls.Add(lblConfirm); prompt.Controls.Add(txtConfirm);
+            prompt.Controls.Add(btnSubmit); prompt.Controls.Add(btnClose);
+
+            // Hiển thị dạng hộp thoại
+            prompt.ShowDialog();
+        }
     }
 }

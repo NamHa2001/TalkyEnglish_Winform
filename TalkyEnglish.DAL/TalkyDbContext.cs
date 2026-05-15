@@ -15,6 +15,9 @@ namespace TalkyEnglish.DAL
         public DbSet<GradesDTO> Grades { get; set; }
         public DbSet<ScheduleDTO> Schedules { get; set; }
         public DbSet<NotificationStatusDTO> NotificationStatuses { get; set; }
+        public virtual DbSet<Invoice> Invoices { get; set; }
+        // Thêm dòng này vào giữa các DbSet khác (như Courses, Users...)
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

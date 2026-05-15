@@ -31,14 +31,14 @@ namespace TalkyEnglish.GUI
 
             if (data.PriorityLevel == "Urgent")
             {
-     
+
                 lblTitle.ForeColor = Color.Red;
                 // Chỉ định rõ là System.Drawing.Font để hết bị tranh chấp
                 lblTitle.Font = new System.Drawing.Font(lblTitle.Font, FontStyle.Bold);
             }
             else
             {
-           
+
                 lblTitle.ForeColor = Color.Black;
                 // Tương tự cho dòng này luôn bro nha
                 lblTitle.Font = new System.Drawing.Font(lblTitle.Font, FontStyle.Regular);
@@ -54,6 +54,11 @@ namespace TalkyEnglish.GUI
         private void ucNotificationItem_MouseLeave(object sender, EventArgs e)
         {
             this.BackColor = Color.White; // Trở lại trắng khi rời đi
+        }
+
+        private void ucNotificationItem_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

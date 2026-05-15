@@ -54,6 +54,10 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges29 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges30 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             label4 = new Label();
             guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             rtbContent = new RichTextBox();
@@ -74,15 +78,19 @@
             rdbPriorityUrgent = new Guna.UI2.WinForms.Guna2RadioButton();
             rdbPriorityNormal = new Guna.UI2.WinForms.Guna2RadioButton();
             guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            label1 = new Label();
             btnSend = new Guna.UI2.WinForms.Guna2Button();
             btnReset = new Guna.UI2.WinForms.Guna2Button();
+            guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
+            guna2HtmlLabel2 = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            label1 = new Label();
+            guna2Panel6 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel4.SuspendLayout();
             guna2Panel2.SuspendLayout();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             grbPriority.SuspendLayout();
+            guna2Panel5.SuspendLayout();
+            guna2Panel6.SuspendLayout();
             SuspendLayout();
             // 
             // label4
@@ -97,6 +105,8 @@
             // 
             // guna2Panel4
             // 
+            guna2Panel4.BorderColor = Color.Silver;
+            guna2Panel4.BorderThickness = 1;
             guna2Panel4.Controls.Add(rtbContent);
             guna2Panel4.CustomizableEdges = customizableEdges1;
             guna2Panel4.Location = new Point(3, 345);
@@ -115,6 +125,9 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BackColor = Color.White;
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(flpNotifications);
             guna2Panel2.Controls.Add(guna2Button5);
             guna2Panel2.Controls.Add(guna2Button4);
@@ -130,7 +143,9 @@
             // flpNotifications
             // 
             flpNotifications.AutoScroll = true;
+            flpNotifications.BackColor = Color.White;
             flpNotifications.FlowDirection = FlowDirection.TopDown;
+            flpNotifications.ForeColor = Color.White;
             flpNotifications.Location = new Point(3, 49);
             flpNotifications.Name = "flpNotifications";
             flpNotifications.Size = new Size(617, 537);
@@ -151,7 +166,7 @@
             guna2Button5.Location = new Point(241, 1);
             guna2Button5.Name = "guna2Button5";
             guna2Button5.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2Button5.Size = new Size(121, 31);
+            guna2Button5.Size = new Size(121, 48);
             guna2Button5.TabIndex = 94;
             guna2Button5.Text = "Đã gửi cho HV";
             // 
@@ -170,7 +185,7 @@
             guna2Button4.Location = new Point(361, 1);
             guna2Button4.Name = "guna2Button4";
             guna2Button4.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2Button4.Size = new Size(101, 31);
+            guna2Button4.Size = new Size(101, 48);
             guna2Button4.TabIndex = 93;
             guna2Button4.Text = "Gửi cá nhân";
             // 
@@ -189,7 +204,7 @@
             guna2Button3.Location = new Point(103, 1);
             guna2Button3.Name = "guna2Button3";
             guna2Button3.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2Button3.Size = new Size(139, 31);
+            guna2Button3.Size = new Size(139, 48);
             guna2Button3.TabIndex = 92;
             guna2Button3.Text = "Đã gửi cho GV";
             // 
@@ -208,12 +223,15 @@
             btnAddSchedule.Location = new Point(3, 1);
             btnAddSchedule.Name = "btnAddSchedule";
             btnAddSchedule.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnAddSchedule.Size = new Size(101, 31);
+            btnAddSchedule.Size = new Size(101, 48);
             btnAddSchedule.TabIndex = 72;
             btnAddSchedule.Text = "Tất cả";
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.White;
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(txtTitle);
             guna2Panel1.Controls.Add(guna2HtmlLabel11);
             guna2Panel1.CustomizableEdges = customizableEdges15;
@@ -257,6 +275,9 @@
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BackColor = Color.White;
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(cboCategory);
             guna2Panel3.Controls.Add(guna2HtmlLabel3);
             guna2Panel3.Controls.Add(cboTargetType);
@@ -380,27 +401,6 @@
             guna2HtmlLabel1.TabIndex = 92;
             guna2HtmlLabel1.Text = "Đối tượng nhận";
             // 
-            // guna2HtmlLabel2
-            // 
-            guna2HtmlLabel2.BackColor = Color.Transparent;
-            guna2HtmlLabel2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2HtmlLabel2.ForeColor = Color.DimGray;
-            guna2HtmlLabel2.Location = new Point(29, 39);
-            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
-            guna2HtmlLabel2.Size = new Size(322, 25);
-            guna2HtmlLabel2.TabIndex = 81;
-            guna2HtmlLabel2.Text = "Gửi thông báo cho giảng viên và học viên";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(23, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(241, 31);
-            label1.TabIndex = 80;
-            label1.Text = "Trung tâm thông báo";
-            // 
             // btnSend
             // 
             btnSend.BorderColor = Color.Gray;
@@ -411,10 +411,10 @@
             btnSend.DisabledState.CustomBorderColor = Color.DarkGray;
             btnSend.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnSend.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnSend.FillColor = Color.White;
+            btnSend.FillColor = Color.FromArgb(59, 130, 246);
             btnSend.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSend.ForeColor = Color.Black;
-            btnSend.Location = new Point(11, 623);
+            btnSend.ForeColor = Color.White;
+            btnSend.Location = new Point(3, 4);
             btnSend.Name = "btnSend";
             btnSend.ShadowDecoration.CustomizableEdges = customizableEdges24;
             btnSend.Size = new Size(178, 36);
@@ -432,31 +432,80 @@
             btnReset.DisabledState.CustomBorderColor = Color.DarkGray;
             btnReset.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnReset.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnReset.FillColor = Color.White;
+            btnReset.FillColor = Color.FromArgb(59, 130, 246);
             btnReset.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReset.ForeColor = Color.Black;
-            btnReset.Location = new Point(240, 623);
+            btnReset.ForeColor = Color.White;
+            btnReset.Location = new Point(187, 4);
             btnReset.Name = "btnReset";
             btnReset.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            btnReset.Size = new Size(164, 36);
+            btnReset.Size = new Size(178, 36);
             btnReset.TabIndex = 93;
             btnReset.Text = "Làm mới";
+            // 
+            // guna2Panel5
+            // 
+            guna2Panel5.BackColor = Color.FromArgb(235, 242, 255);
+            guna2Panel5.BorderColor = Color.Silver;
+            guna2Panel5.BorderThickness = 1;
+            guna2Panel5.Controls.Add(guna2HtmlLabel2);
+            guna2Panel5.Controls.Add(label1);
+            guna2Panel5.CustomizableEdges = customizableEdges27;
+            guna2Panel5.Location = new Point(2, 4);
+            guna2Panel5.Name = "guna2Panel5";
+            guna2Panel5.ShadowDecoration.CustomizableEdges = customizableEdges28;
+            guna2Panel5.Size = new Size(1045, 61);
+            guna2Panel5.TabIndex = 94;
+            guna2Panel5.Paint += guna2Panel5_Paint;
+            // 
+            // guna2HtmlLabel2
+            // 
+            guna2HtmlLabel2.BackColor = Color.Transparent;
+            guna2HtmlLabel2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2HtmlLabel2.ForeColor = Color.DimGray;
+            guna2HtmlLabel2.Location = new Point(15, 31);
+            guna2HtmlLabel2.Name = "guna2HtmlLabel2";
+            guna2HtmlLabel2.Size = new Size(322, 25);
+            guna2HtmlLabel2.TabIndex = 83;
+            guna2HtmlLabel2.Text = "Gửi thông báo cho giảng viên và học viên";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(9, 1);
+            label1.Name = "label1";
+            label1.Size = new Size(241, 31);
+            label1.TabIndex = 82;
+            label1.Text = "Trung tâm thông báo";
+            // 
+            // guna2Panel6
+            // 
+            guna2Panel6.BorderColor = Color.Silver;
+            guna2Panel6.BorderThickness = 1;
+            guna2Panel6.Controls.Add(btnSend);
+            guna2Panel6.Controls.Add(btnReset);
+            guna2Panel6.CustomizableEdges = customizableEdges29;
+            guna2Panel6.Location = new Point(3, 619);
+            guna2Panel6.Name = "guna2Panel6";
+            guna2Panel6.ShadowDecoration.CustomizableEdges = customizableEdges30;
+            guna2Panel6.Size = new Size(415, 44);
+            guna2Panel6.TabIndex = 0;
             // 
             // ucAdminNotificationManager
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(btnReset);
-            Controls.Add(btnSend);
+            BackColor = Color.FromArgb(248, 250, 252);
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(guna2Panel6);
+            Controls.Add(guna2Panel5);
             Controls.Add(label4);
             Controls.Add(guna2Panel4);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel1);
             Controls.Add(guna2Panel3);
-            Controls.Add(guna2HtmlLabel2);
-            Controls.Add(label1);
             Name = "ucAdminNotificationManager";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             Load += ucAdminNotificationManager_Load;
             guna2Panel4.ResumeLayout(false);
             guna2Panel2.ResumeLayout(false);
@@ -466,6 +515,9 @@
             guna2Panel3.PerformLayout();
             grbPriority.ResumeLayout(false);
             grbPriority.PerformLayout();
+            guna2Panel5.ResumeLayout(false);
+            guna2Panel5.PerformLayout();
+            guna2Panel6.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -479,8 +531,6 @@
         private Guna.UI2.WinForms.Guna2Panel guna2Panel1;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
-        private Label label1;
         private Guna.UI2.WinForms.Guna2TextBox txtTitle;
         private GroupBox grbPriority;
         private Guna.UI2.WinForms.Guna2RadioButton rdbPriorityUrgent;
@@ -496,5 +546,9 @@
         private Guna.UI2.WinForms.Guna2ComboBox cboCategory;
         private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel3;
         public Guna.UI2.WinForms.Guna2ComboBox cboTargetType;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
+        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel2;
+        private Label label1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel6;
     }
 }

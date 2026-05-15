@@ -74,6 +74,8 @@
             DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             dtpFilterFrom = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             btnFilterToday = new Guna.UI2.WinForms.Guna2Button();
@@ -119,12 +121,14 @@
             colRoomName = new DataGridViewTextBoxColumn();
             colInstructorName = new DataGridViewTextBoxColumn();
             label4 = new Label();
+            guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
             guna2Panel1.SuspendLayout();
             guna2Panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCourses).BeginInit();
             guna2Panel2.SuspendLayout();
             guna2Panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).BeginInit();
+            guna2Panel5.SuspendLayout();
             SuspendLayout();
             // 
             // dtpFilterFrom
@@ -132,6 +136,7 @@
             dtpFilterFrom.BorderRadius = 15;
             dtpFilterFrom.BorderThickness = 1;
             dtpFilterFrom.Checked = true;
+            dtpFilterFrom.CheckedState.FillColor = Color.White;
             dtpFilterFrom.CustomFormat = "dd/MM/yyyy";
             dtpFilterFrom.CustomizableEdges = customizableEdges1;
             dtpFilterFrom.FillColor = Color.White;
@@ -190,6 +195,9 @@
             // 
             // guna2Panel1
             // 
+            guna2Panel1.BackColor = Color.White;
+            guna2Panel1.BorderColor = Color.Silver;
+            guna2Panel1.BorderThickness = 1;
             guna2Panel1.Controls.Add(btnFilterWeek);
             guna2Panel1.Controls.Add(btnFilterMonth);
             guna2Panel1.Controls.Add(btnFilterAll);
@@ -200,7 +208,7 @@
             guna2Panel1.Controls.Add(btnFilterToday);
             guna2Panel1.Controls.Add(guna2HtmlLabel9);
             guna2Panel1.CustomizableEdges = customizableEdges13;
-            guna2Panel1.Location = new Point(3, 74);
+            guna2Panel1.Location = new Point(3, 76);
             guna2Panel1.Name = "guna2Panel1";
             guna2Panel1.ShadowDecoration.CustomizableEdges = customizableEdges14;
             guna2Panel1.Size = new Size(1044, 73);
@@ -271,6 +279,7 @@
             dtpFilterTo.BorderRadius = 15;
             dtpFilterTo.BorderThickness = 1;
             dtpFilterTo.Checked = true;
+            dtpFilterTo.CheckedState.FillColor = Color.White;
             dtpFilterTo.CustomFormat = "dd/MM/yyyy";
             dtpFilterTo.CustomizableEdges = customizableEdges11;
             dtpFilterTo.FillColor = Color.White;
@@ -301,7 +310,7 @@
             guna2HtmlLabel2.BackColor = Color.Transparent;
             guna2HtmlLabel2.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2HtmlLabel2.ForeColor = Color.DimGray;
-            guna2HtmlLabel2.Location = new Point(29, 43);
+            guna2HtmlLabel2.Location = new Point(11, 35);
             guna2HtmlLabel2.Name = "guna2HtmlLabel2";
             guna2HtmlLabel2.Size = new Size(270, 25);
             guna2HtmlLabel2.TabIndex = 73;
@@ -311,7 +320,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(23, 9);
+            label1.Location = new Point(5, 2);
             label1.Name = "label1";
             label1.Size = new Size(186, 31);
             label1.TabIndex = 72;
@@ -319,6 +328,8 @@
             // 
             // guna2Panel3
             // 
+            guna2Panel3.BorderColor = Color.Silver;
+            guna2Panel3.BorderThickness = 1;
             guna2Panel3.Controls.Add(txtSearchCourse);
             guna2Panel3.Controls.Add(guna2HtmlLabel3);
             guna2Panel3.Controls.Add(label2);
@@ -376,6 +387,7 @@
             // 
             dataGridViewCellStyle1.BackColor = Color.White;
             dgvCourses.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvCourses.BorderStyle = BorderStyle.FixedSingle;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -449,6 +461,9 @@
             // 
             // guna2Panel2
             // 
+            guna2Panel2.BackColor = Color.White;
+            guna2Panel2.BorderColor = Color.Silver;
+            guna2Panel2.BorderThickness = 1;
             guna2Panel2.Controls.Add(dtpEndTime);
             guna2Panel2.Controls.Add(dtpStartTime);
             guna2Panel2.Controls.Add(cbRoom);
@@ -474,6 +489,7 @@
             dtpEndTime.BorderRadius = 7;
             dtpEndTime.BorderThickness = 1;
             dtpEndTime.Checked = true;
+            dtpEndTime.CheckedState.FillColor = Color.White;
             dtpEndTime.CustomFormat = "HH:mm";
             dtpEndTime.CustomizableEdges = customizableEdges19;
             dtpEndTime.FillColor = Color.White;
@@ -494,6 +510,7 @@
             dtpStartTime.BorderRadius = 7;
             dtpStartTime.BorderThickness = 1;
             dtpStartTime.Checked = true;
+            dtpStartTime.CheckedState.FillColor = Color.White;
             dtpStartTime.CustomFormat = "HH:mm";
             dtpStartTime.CustomizableEdges = customizableEdges21;
             dtpStartTime.FillColor = Color.White;
@@ -553,7 +570,8 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.BorderColor = Color.Gray;
+            btnUpdate.BackColor = Color.Transparent;
+            btnUpdate.BorderColor = Color.FromArgb(251, 191, 36);
             btnUpdate.BorderRadius = 7;
             btnUpdate.BorderThickness = 1;
             btnUpdate.CustomizableEdges = customizableEdges27;
@@ -563,7 +581,7 @@
             btnUpdate.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnUpdate.FillColor = Color.White;
             btnUpdate.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUpdate.ForeColor = Color.Black;
+            btnUpdate.ForeColor = Color.FromArgb(251, 191, 36);
             btnUpdate.Location = new Point(148, 216);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.ShadowDecoration.CustomizableEdges = customizableEdges28;
@@ -574,7 +592,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.BorderColor = Color.Gray;
+            btnDelete.BorderColor = Color.FromArgb(239, 68, 68);
             btnDelete.BorderRadius = 7;
             btnDelete.BorderThickness = 1;
             btnDelete.CustomizableEdges = customizableEdges29;
@@ -584,7 +602,7 @@
             btnDelete.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
             btnDelete.FillColor = Color.White;
             btnDelete.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDelete.ForeColor = Color.Black;
+            btnDelete.ForeColor = Color.FromArgb(239, 68, 68);
             btnDelete.Location = new Point(262, 216);
             btnDelete.Name = "btnDelete";
             btnDelete.ShadowDecoration.CustomizableEdges = customizableEdges30;
@@ -624,9 +642,9 @@
             btnAddSchedule.DisabledState.CustomBorderColor = Color.DarkGray;
             btnAddSchedule.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
             btnAddSchedule.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
-            btnAddSchedule.FillColor = Color.White;
+            btnAddSchedule.FillColor = Color.FromArgb(59, 130, 246);
             btnAddSchedule.Font = new Font("Segoe UI Semibold", 7.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAddSchedule.ForeColor = Color.Black;
+            btnAddSchedule.ForeColor = Color.White;
             btnAddSchedule.Location = new Point(30, 216);
             btnAddSchedule.Name = "btnAddSchedule";
             btnAddSchedule.ShadowDecoration.CustomizableEdges = customizableEdges34;
@@ -691,6 +709,9 @@
             // 
             // guna2Panel4
             // 
+            guna2Panel4.BackColor = Color.White;
+            guna2Panel4.BorderColor = Color.Silver;
+            guna2Panel4.BorderThickness = 1;
             guna2Panel4.Controls.Add(dgvSchedules);
             guna2Panel4.Controls.Add(label4);
             guna2Panel4.CustomizableEdges = customizableEdges37;
@@ -704,6 +725,7 @@
             // 
             dataGridViewCellStyle4.BackColor = Color.White;
             dgvSchedules.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvSchedules.BorderStyle = BorderStyle.FixedSingle;
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(100, 88, 255);
             dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
@@ -824,18 +846,32 @@
             label4.TabIndex = 82;
             label4.Text = "Danh sách lịch đã xếp";
             // 
+            // guna2Panel5
+            // 
+            guna2Panel5.BackColor = Color.White;
+            guna2Panel5.BorderColor = Color.Silver;
+            guna2Panel5.BorderThickness = 1;
+            guna2Panel5.Controls.Add(label1);
+            guna2Panel5.Controls.Add(guna2HtmlLabel2);
+            guna2Panel5.CustomizableEdges = customizableEdges39;
+            guna2Panel5.Location = new Point(4, 5);
+            guna2Panel5.Name = "guna2Panel5";
+            guna2Panel5.ShadowDecoration.CustomizableEdges = customizableEdges40;
+            guna2Panel5.Size = new Size(1041, 65);
+            guna2Panel5.TabIndex = 80;
+            // 
             // ucScheduleManagement
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(guna2Panel5);
             Controls.Add(guna2Panel4);
             Controls.Add(guna2Panel2);
             Controls.Add(guna2Panel3);
             Controls.Add(guna2Panel1);
-            Controls.Add(guna2HtmlLabel2);
-            Controls.Add(label1);
             Name = "ucScheduleManagement";
-            Size = new Size(1050, 665);
+            Size = new Size(1048, 663);
             Load += ucScheduleManagement_Load;
             guna2Panel1.ResumeLayout(false);
             guna2Panel1.PerformLayout();
@@ -847,8 +883,9 @@
             guna2Panel4.ResumeLayout(false);
             guna2Panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).EndInit();
+            guna2Panel5.ResumeLayout(false);
+            guna2Panel5.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -898,5 +935,6 @@
         private DataGridViewTextBoxColumn colEndTime;
         private DataGridViewTextBoxColumn colRoomName;
         private DataGridViewTextBoxColumn colInstructorName;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
     }
 }
