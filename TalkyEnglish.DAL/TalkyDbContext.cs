@@ -183,6 +183,10 @@ namespace TalkyEnglish.DAL
                               .HasColumnType("float")
                               .HasDefaultValue(0.0);
 
+                entity.Ignore(g => g.CourseName);
+                entity.Ignore(g => g.TeacherName);
+                entity.Ignore(g => g.Semester);
+
                 // Quan hệ: Một lượt đăng ký sẽ có một bảng điểm
                 entity.HasOne<EnrolmentDTO>()
                       .WithMany()

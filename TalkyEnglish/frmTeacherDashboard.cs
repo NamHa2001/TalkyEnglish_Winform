@@ -76,7 +76,7 @@ namespace TalkyEnglish.GUI
             {
                 // Lấy tổng số học viên từ hàm có sẵn trong DAL/BUS bro gửi
                 int totalStudents = _userBUS.GetTotalStudents();
-              
+
 
                 // Giả sử bro muốn hiện tổng số giảng viên hoặc thông báo mới
                 int totalInstructors = _userBUS.GetTotalInstructors();
@@ -210,6 +210,12 @@ namespace TalkyEnglish.GUI
         private void label8_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGrades_Click(object sender, EventArgs e)
+        {
+            ucInstructorGrading uc = new ucInstructorGrading();
+            AddControlToBody(uc);
         }
     }
 }
