@@ -38,6 +38,7 @@ namespace TalkyEnglish.GUI
 
         private void ucTeachingAssignment_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             SetupGrids();      // 1. Xây khung cột trước
             LoadData();        // 2. Đổ dữ liệu Giảng viên/Khóa học
             LoadAssignments(); // 3. Đổ dữ liệu danh sách đã phân công
@@ -107,8 +108,11 @@ namespace TalkyEnglish.GUI
         {
             if (dgvInstructors.CurrentRow == null || dgvCourses.CurrentRow == null) return;
 
-            int instructorId = Convert.ToInt32(dgvInstructors.CurrentRow.Cells["UserID"].Value);
-            int courseId = Convert.ToInt32(dgvCourses.CurrentRow.Cells["CourseID"].Value);
+            var instrCell  = dgvInstructors.CurrentRow.Cells["UserID"].Value;
+            var courseCell = dgvCourses.CurrentRow.Cells["CourseID"].Value;
+            if (instrCell == null || courseCell == null) return;
+            if (!int.TryParse(instrCell.ToString(), out int instructorId)) return;
+            if (!int.TryParse(courseCell.ToString(), out int courseId)) return;
 
             using (var db = new TalkyDbContext())
             {
@@ -188,7 +192,7 @@ namespace TalkyEnglish.GUI
             var fullList = _userDAL.GetAllInstructors(); // Lấy lại danh sách gốc
 
             var filteredList = fullList.Where(u =>
-                u.FullName.ToLower().Contains(keyword) ||
+                (u.FullName?.ToLower().Contains(keyword) == true) ||
                 u.UserID.ToString().Contains(keyword)
             ).ToList();
 
@@ -201,7 +205,7 @@ namespace TalkyEnglish.GUI
             var fullList = _courseDAL.GetAllCourses();
 
             var filteredList = fullList.Where(c =>
-                c.CourseName.ToLower().Contains(keyword) ||
+                (c.CourseName?.ToLower().Contains(keyword) == true) ||
                 c.CourseID.ToString().Contains(keyword)
             ).ToList();
 

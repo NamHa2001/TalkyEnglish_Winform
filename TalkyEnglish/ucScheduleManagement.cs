@@ -1,11 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TalkyEnglish.BUS;
 using TalkyEnglish.DTO;
@@ -14,193 +9,306 @@ namespace TalkyEnglish.GUI
 {
     public partial class ucScheduleManagement : UserControl
     {
+        private readonly CourseBUS   _courseBus   = new CourseBUS();
+        private readonly ScheduleBUS _scheduleBus = new ScheduleBUS();
 
-        // Khai báo BUS
-        CourseBUS courseBus = new CourseBUS();
-        private int selectedCourseId = -1;
-        ScheduleBUS scheduleBus = new ScheduleBUS();
-        // Hàm nạp danh sách khóa học vào Grid bên trái (dgvCourses)
-        private void LoadCoursesToGrid()
-        {
-            var list = courseBus.GetAllCourses();
-            dgvCourses.DataSource = list;
+        private int _selectedCourseId = -1;
+        private List<ScheduleDTO> _allSchedules = new List<ScheduleDTO>();
+        private List<CourseDTO>   _allCourses   = new List<CourseDTO>();
 
-            // Nếu bro đã set DataPropertyName cho các cột colCourseCode, colCourseName 
-            // thì dữ liệu sẽ tự nhảy vào đúng chỗ.
-        }
-
-        private void LoadSchedulesToGrid()
-        {
-            dgvSchedules.AutoGenerateColumns = false; // Chặn cột thừa như cái Grid trên
-            dgvSchedules.DataSource = scheduleBus.GetAllSchedules();
-        }
-
-        public void LoadData()
-        {
-            dgvCourses.AutoGenerateColumns = false;
-            dgvSchedules.AutoGenerateColumns = false;
-            LoadCoursesToGrid(); // Hàm đổ danh sách khóa học vào dgvCourses
-                                 // Sau này có thêm hàm LoadSchedules() thì cũng quăng vào đây luôn
-            LoadSchedulesToGrid();
-        }
         public ucScheduleManagement()
         {
             InitializeComponent();
         }
 
-
-
         private void ucScheduleManagement_Load(object sender, EventArgs e)
         {
-            LoadCoursesToGrid();
+            ButtonEffectHelper.RemoveGrayEffect(this);
+
+            // Đăng ký sự kiện chưa có trong Designer.cs
+            txtSearchCourse.TextChanged += TxtSearchCourse_TextChanged;
+            btnFilterAll.Click          += (s, ev) => ApplyDayFilter(null);
+            btnFilterToday.Click        += (s, ev) => ApplyDayFilter(DayShort(DateTime.Today.DayOfWeek.ToString()));
+            btnFilterWeek.Click         += (s, ev) => ApplyDayFilter(null);
+            btnFilterMonth.Click        += (s, ev) => ApplyDayFilter(null);
+
+            LoadData();
         }
+
+        // ── Tải dữ liệu ──────────────────────────────────────────────────────────
+
+        public void LoadData()
+        {
+            dgvCourses.AutoGenerateColumns   = false;
+            dgvSchedules.AutoGenerateColumns = false;
+            LoadCoursesToGrid();
+            LoadSchedulesToGrid();
+        }
+
+        private void LoadCoursesToGrid()
+        {
+            try
+            {
+                _allCourses = _courseBus.GetAllCourses();
+                dgvCourses.DataSource = null;
+                dgvCourses.DataSource = _allCourses;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách khóa học: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadSchedulesToGrid()
+        {
+            try
+            {
+                _allSchedules = _scheduleBus.GetAllSchedules();
+                FilterSchedulesByCourse();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách lịch học: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Lọc dgvSchedules theo khóa học đang chọn (hoặc tất cả nếu chưa chọn)
+        private void FilterSchedulesByCourse()
+        {
+            dgvSchedules.DataSource = _selectedCourseId == -1
+                ? _allSchedules
+                : _allSchedules.Where(s => s.CourseID == _selectedCourseId).ToList();
+        }
+
+        // Lọc dgvSchedules theo thứ trong tuần (null = hiện tất cả)
+        private void ApplyDayFilter(string dayFilter)
+        {
+            var source = _selectedCourseId == -1
+                ? _allSchedules
+                : _allSchedules.Where(s => s.CourseID == _selectedCourseId).ToList();
+
+            if (!string.IsNullOrEmpty(dayFilter))
+                source = source.Where(s => s.DayOfWeek == dayFilter).ToList();
+
+            dgvSchedules.DataSource = source;
+        }
+
+        // ── Tìm kiếm khóa học ────────────────────────────────────────────────────
+
+        private void TxtSearchCourse_TextChanged(object sender, EventArgs e)
+        {
+            string kw = txtSearchCourse.Text.Trim().ToLower();
+            dgvCourses.DataSource = string.IsNullOrEmpty(kw)
+                ? _allCourses
+                : _allCourses
+                    .Where(c => (c.CourseName?.ToLower().Contains(kw) == true)
+                             || (c.CourseCode?.ToLower().Contains(kw) == true))
+                    .ToList();
+        }
+
+        // ── Sự kiện Grid ─────────────────────────────────────────────────────────
+
+        private void dgvCourses_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dgvCourses.Rows[e.RowIndex];
+            if (row.Cells["colCourseID"].Value == null) return;
+
+            _selectedCourseId = Convert.ToInt32(row.Cells["colCourseID"].Value);
+            string courseName  = row.Cells["colCourseName"].Value?.ToString() ?? "";
+            label3.Text = $"Lịch học của khóa: {courseName}";
+
+            FilterSchedulesByCourse();
+        }
+
+        private void dgvSchedules_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var row = dgvSchedules.Rows[e.RowIndex];
+
+            if (row.Cells["colDayOfWeek"].Value != null)
+                cbDayOfWeek.Text = row.Cells["colDayOfWeek"].Value.ToString();
+
+            if (row.Cells["colRoomName"].Value != null)
+                cbRoom.Text = row.Cells["colRoomName"].Value.ToString();
+
+            if (row.Cells["colStartTime"].Value is TimeSpan start)
+                dtpStartTime.Value = DateTime.Today.Add(start);
+
+            if (row.Cells["colEndTime"].Value is TimeSpan end)
+                dtpEndTime.Value = DateTime.Today.Add(end);
+        }
+
+        // ── Thêm lịch ────────────────────────────────────────────────────────────
 
         private void btnAddSchedule_Click(object sender, EventArgs e)
         {
-            // 1. Kiểm tra xem đã chọn khóa học chưa
-            if (selectedCourseId == -1)
+            if (_selectedCourseId == -1)
             {
-                MessageBox.Show("Vui lòng chọn một khóa học bên trái trước khi thêm lịch!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn một khóa học bên trái trước khi thêm lịch!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Kiểm tra xem đã chọn Thứ và Phòng chưa (Tránh để trống dữ liệu)
-            if (string.IsNullOrEmpty(cbDayOfWeek.Text) || string.IsNullOrEmpty(cbRoom.Text))
+            if (cbDayOfWeek.SelectedIndex < 0 || cbRoom.SelectedIndex < 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ Thứ và Phòng học bro ơi!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn đầy đủ Thứ và Phòng học!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // 3. Đóng gói dữ liệu
             TimeSpan start = dtpStartTime.Value.TimeOfDay;
-            TimeSpan end = dtpEndTime.Value.TimeOfDay;
-
-            // Kiểm tra logic thời gian cơ bản (Giờ bắt đầu phải trước giờ kết thúc)
+            TimeSpan end   = dtpEndTime.Value.TimeOfDay;
             if (start >= end)
             {
-                MessageBox.Show("Giờ bắt đầu phải nhỏ hơn giờ kết thúc chứ bro kkk!", "Lỗi thời gian", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giờ bắt đầu phải nhỏ hơn giờ kết thúc!",
+                    "Lỗi thời gian", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            ScheduleDTO newSchedule = new ScheduleDTO
+            var newSchedule = new ScheduleDTO
             {
-                CourseID = selectedCourseId,
+                CourseID  = _selectedCourseId,
                 DayOfWeek = cbDayOfWeek.Text,
                 StartTime = start,
-                EndTime = end,
-                RoomName = cbRoom.Text
+                EndTime   = end,
+                RoomName  = cbRoom.Text
             };
 
-            // 4. Gọi hàm Save (Bây giờ nó trả về string: "OK" hoặc thông báo lỗi trùng)
-            string result = scheduleBus.SaveSchedule(newSchedule);
-
+            string result = _scheduleBus.SaveSchedule(newSchedule);
             if (result == "OK")
             {
-                MessageBox.Show("Thêm lịch thành công rực rỡ!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // 5. Làm mới danh sách dưới Grid
+                MessageBox.Show("Thêm lịch học thành công!", "Thành công",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadSchedulesToGrid();
-
-                // 6. Reset nhẹ các ô nhập liệu để sẵn sàng cho lần sau
                 cbDayOfWeek.SelectedIndex = -1;
-                cbRoom.SelectedIndex = -1;
+                cbRoom.SelectedIndex      = -1;
             }
             else
             {
-                // Nếu trùng lịch, nó sẽ hiện thông báo: "Phòng này đã có lớp..." mà mình viết ở BUS
                 MessageBox.Show(result, "Cảnh báo trùng lịch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void dgvCourses_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                var row = dgvCourses.Rows[e.RowIndex];
-                selectedCourseId = Convert.ToInt32(row.Cells["colCourseID"].Value);
-
-                // Hiện tên khóa học lên một Label nào đó cho Admin yên tâm
-
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            if (dgvSchedules.CurrentRow == null) return;
-
-            int id = Convert.ToInt32(dgvSchedules.CurrentRow.Cells["colScheduleID"].Value);
-
-            DialogResult dr = MessageBox.Show("Bro chắc chắn muốn xóa lịch này chứ?", "Xác nhận", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
-            {
-                if (scheduleBus.DeleteSchedule(id))
-                {
-                    MessageBox.Show("Xóa xong rồi bro!");
-                    LoadSchedulesToGrid(); // F5 lại Grid cho sạch
-                }
-            }
-        }
-
-        private void btnClearForm_Click(object sender, EventArgs e)
-        {
-            selectedCourseId = -1;
-            cbDayOfWeek.SelectedIndex = -1;
-            cbRoom.SelectedIndex = -1;
-            dtpStartTime.Value = DateTime.Now; // Hoặc set về một giờ mặc định nào đó
-            dtpEndTime.Value = DateTime.Now;
-
-            // Nếu muốn xóa sạch lựa chọn trên Grid
-            dgvCourses.ClearSelection();
-            dgvSchedules.ClearSelection();
-        }
+        // ── Cập nhật lịch ────────────────────────────────────────────────────────
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (dgvSchedules.CurrentRow == null)
             {
-                MessageBox.Show("Chọn cái lịch cần sửa ở bảng dưới đã bro!");
+                MessageBox.Show("Vui lòng chọn một lịch học cần cập nhật!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Lấy ID từ dòng đang chọn
-            int id = Convert.ToInt32(dgvSchedules.CurrentRow.Cells["colScheduleID"].Value);
+            var idCell = dgvSchedules.CurrentRow.Cells["colScheduleID"].Value;
+            if (idCell == null || !int.TryParse(idCell.ToString(), out int id))
+            {
+                MessageBox.Show("Không thể xác định ID lịch học, vui lòng thử lại!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            ScheduleDTO upSchedule = new ScheduleDTO
+            if (cbDayOfWeek.SelectedIndex < 0 || cbRoom.SelectedIndex < 0)
+            {
+                MessageBox.Show("Vui lòng chọn đầy đủ Thứ và Phòng học!",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            TimeSpan start = dtpStartTime.Value.TimeOfDay;
+            TimeSpan end   = dtpEndTime.Value.TimeOfDay;
+            if (start >= end)
+            {
+                MessageBox.Show("Giờ bắt đầu phải nhỏ hơn giờ kết thúc!",
+                    "Lỗi thời gian", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                $"Xác nhận cập nhật lịch học?\n\n" +
+                $"Thứ: {cbDayOfWeek.Text}   |   Phòng: {cbRoom.Text}\n" +
+                $"Giờ: {dtpStartTime.Value:HH:mm} – {dtpEndTime.Value:HH:mm}",
+                "Xác nhận cập nhật", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes) return;
+
+            var upSchedule = new ScheduleDTO
             {
                 ScheduleID = id,
-                DayOfWeek = cbDayOfWeek.Text,
-                StartTime = dtpStartTime.Value.TimeOfDay,
-                EndTime = dtpEndTime.Value.TimeOfDay,
-                RoomName = cbRoom.Text
+                DayOfWeek  = cbDayOfWeek.Text,
+                StartTime  = start,
+                EndTime    = end,
+                RoomName   = cbRoom.Text
             };
 
-            string result = scheduleBus.UpdateSchedule(upSchedule);
+            string result = _scheduleBus.UpdateSchedule(upSchedule);
             if (result == "OK")
             {
-                MessageBox.Show("Cập nhật lịch thành công!");
+                MessageBox.Show("Cập nhật lịch học thành công!", "Thành công",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadSchedulesToGrid();
             }
             else
             {
-                MessageBox.Show(result);
+                MessageBox.Show(result, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void dgvSchedules_CellClick(object sender, DataGridViewCellEventArgs e)
+        // ── Xóa lịch ─────────────────────────────────────────────────────────────
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (dgvSchedules.CurrentRow == null) return;
+
+            var idCell = dgvSchedules.CurrentRow.Cells["colScheduleID"].Value;
+            if (idCell == null || !int.TryParse(idCell.ToString(), out int id)) return;
+
+            var dr = MessageBox.Show("Bạn chắc chắn muốn xóa lịch học này?",
+                "Xác nhận xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr != DialogResult.Yes) return;
+
+            if (_scheduleBus.DeleteSchedule(id))
             {
-                var row = dgvSchedules.Rows[e.RowIndex];
-                cbDayOfWeek.Text = row.Cells["colDayOfWeek"].Value.ToString();
-                cbRoom.Text = row.Cells["colRoomName"].Value.ToString();
-
-                // Gán giờ vào DateTimePicker
-                TimeSpan start = (TimeSpan)row.Cells["colStartTime"].Value;
-                dtpStartTime.Value = DateTime.Today.Add(start);
-
-                TimeSpan end = (TimeSpan)row.Cells["colEndTime"].Value;
-                dtpEndTime.Value = DateTime.Today.Add(end);
+                MessageBox.Show("Đã xóa lịch học thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadSchedulesToGrid();
+            }
+            else
+            {
+                MessageBox.Show("Xóa lịch học thất bại, vui lòng thử lại.", "Cảnh báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        // ── Làm mới form ─────────────────────────────────────────────────────────
+
+        private void btnClearForm_Click(object sender, EventArgs e)
+        {
+            _selectedCourseId         = -1;
+            label3.Text               = "Nhập thông tin lịch cho khóa học đã chọn";
+            cbDayOfWeek.SelectedIndex = -1;
+            cbRoom.SelectedIndex      = -1;
+            dtpStartTime.Value        = DateTime.Today.AddHours(8);
+            dtpEndTime.Value          = DateTime.Today.AddHours(10);
+            txtSearchCourse.Text      = "";
+            dgvCourses.ClearSelection();
+            dgvSchedules.ClearSelection();
+            dgvSchedules.DataSource = _allSchedules;
+        }
+
+        // ── Helper ───────────────────────────────────────────────────────────────
+
+        private static string DayShort(string dayEng) => dayEng switch
+        {
+            "Monday"    => "Thứ 2",
+            "Tuesday"   => "Thứ 3",
+            "Wednesday" => "Thứ 4",
+            "Thursday"  => "Thứ 5",
+            "Friday"    => "Thứ 6",
+            "Saturday"  => "Thứ 7",
+            _           => "Chủ Nhật"
+        };
     }
 }

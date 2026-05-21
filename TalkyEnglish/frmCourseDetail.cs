@@ -62,6 +62,7 @@ namespace TalkyEnglish.GUI
 
         private void frmCourseDetail_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             // Thêm dòng kiểm tra này để chắc chắn không bị Null
             if (cboStatus != null && cboLevel != null)
             {

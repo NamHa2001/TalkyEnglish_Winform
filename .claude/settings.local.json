@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($result = & \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /t:Build /p:Configuration=Debug /v:minimal 2>&1; $errors = $result | Where-Object { $_ -match \": error \" }; if \\($errors\\) { $errors } else { Write-Host \"BIEN DICH THANH CONG - AnimateOnHover ton tai!\" -ForegroundColor Green })",
+      "PowerShell($result = & \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /t:Build /p:Configuration=Debug /v:minimal 2>&1; $errors = $result | Where-Object { $_ -match \": error \" }; if \\($errors\\) { $errors } else { Write-Host \"OK - AnimationSpeed ton tai!\" -ForegroundColor Green })",
+      "PowerShell($result = & \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /t:Build /p:Configuration=Debug /v:minimal 2>&1; $errors = $result | Where-Object { $_ -match \": error \" }; if \\($errors\\) { $errors } else { $result | Where-Object { $_ -match \"->\" -and $_ -notmatch \"NU1608\" } | Select-Object -Last 5; Write-Host \"BIEN DICH THANH CONG!\" -ForegroundColor Green })",
+      "PowerShell([System.IO.Directory]::GetDirectories\\(\"C:\\\\Users\\\\MSI\\\\.nuget\\\\packages\"\\) | Where-Object { $_ -imatch \"guna\" })",
+      "PowerShell(Start-Process \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish\\\\bin\\\\Debug\\\\net8.0-windows\\\\TalkyEnglish.GUI.exe\")",
+      "PowerShell(Get-Content \"C:\\\\Temp\\\\build_log.txt\" | Where-Object { $_ -match \"error CS\" } | Select-Object -First 20)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /p:Configuration=Debug /t:Build /v:quiet 2>&1 | Select-Object -Last 8)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /p:Configuration=Debug /t:Build /v:quiet 2>&1 | Where-Object { $_ -match \": error \" } | Select-Object -First 20)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /p:Configuration=Debug /t:Build /v:quiet 2>&1 | Select-String \"Build succeeded|Error\\\\\\(s\\\\\\)|Warning\\\\\\(s\\\\\\)\" | Select-Object -Last 5)",
+      "PowerShell(& \"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\MSBuild\\\\Current\\\\Bin\\\\MSBuild.exe\" \"E:\\\\Windows Forms\\\\TalkyEnglish\\\\TalkyEnglish.sln\" /p:Configuration=Debug /t:Build 2>&1 | Select-Object -Last 3)"
+    ]
+  }
+}

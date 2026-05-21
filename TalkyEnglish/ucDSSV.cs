@@ -1,104 +1,146 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TalkyEnglish.DAL;
+using TalkyEnglish.DTO;
 
 namespace TalkyEnglish.GUI
 {
     public partial class ucDSSV : UserControl
     {
-        DataTable dtStudents;
-        private void InitMockData()
-        {
-            dtStudents = new DataTable();
-            dtStudents.Columns.Add("STT");
-            dtStudents.Columns.Add("MaHocVien");
-            dtStudents.Columns.Add("HoTen");
-            dtStudents.Columns.Add("Email");
-            dtStudents.Columns.Add("SoDT");
-            dtStudents.Columns.Add("GioiTinh");
-            dtStudents.Columns.Add("NgaySinh");
-            dtStudents.Columns.Add("KhoaHoc");
-            dtStudents.Columns.Add("NgayDangKy");
+        private DataTable _dtStudents;
 
-            // Thêm dữ liệu mẫu
-            dtStudents.Rows.Add("1", "HV001", "Nguyễn Minh Anh", "minhanh@gmail.com", "0912345678", "Nữ", "15/05/2005", "IELTS Foundation", "10/05/2026");
-            dtStudents.Rows.Add("2", "HV002", "Lê Gia Bảo", "bao.legia@gmail.com", "0987654321", "Nam", "20/10/2004", "English Comm A2", "12/05/2026");
-            dtStudents.Rows.Add("3", "HV003", "Trần Thu Thảo", "thao.tran@gmail.com", "0355123456", "Nữ", "05/12/2006", "Grammar Basic", "14/05/2026");
-            dtStudents.Rows.Add("4", "HV004", "Phạm Hoàng Nam", "nam.pham@gmail.com", "0708999888", "Nam", "12/03/2003", "IELTS Foundation", "09/05/2026");
-            dtStudents.Rows.Add("5", "HV005", "Vũ Phương Linh", "linh.vu@gmail.com", "0909123123", "Nữ", "25/08/2005", "English Comm A2", "13/05/2026");
-
-            dgvStudents.DataSource = dtStudents;
-            UpdateTotalCount(); // Cập nhật ô Tổng số
-            ApplyGridStyle();   // Nhuộm màu xanh dương bro thích
-        }
-
-        private void UpdateTotalCount()
-        {
-            // Cập nhật con số vào ô txtTongSo ở góc dưới (ảnh image_693ed0.png)
-            txtTotalStudents.Text = dgvStudents.Rows.Count.ToString();
-        }
         public ucDSSV()
         {
             InitializeComponent();
         }
 
+        private void ucDSSV_Load(object sender, EventArgs e)
+        {
+            ButtonEffectHelper.RemoveGrayEffect(this);
+            LoadStudentData();
+        }
+
+        private void LoadStudentData()
+        {
+            try
+            {
+                _dtStudents = new DataTable();
+                _dtStudents.Columns.Add("STT");
+                _dtStudents.Columns.Add("MaHocVien");
+                _dtStudents.Columns.Add("HoTen");
+                _dtStudents.Columns.Add("Email");
+                _dtStudents.Columns.Add("SoDT");
+                _dtStudents.Columns.Add("GioiTinh");
+                _dtStudents.Columns.Add("NgaySinh");
+                _dtStudents.Columns.Add("KhoaHoc");
+                _dtStudents.Columns.Add("NgayDangKy");
+
+                int instructorId = SessionManager.CurrentUser?.UserID ?? 0;
+
+                using (var db = new TalkyDbContext())
+                {
+                    var query = from e in db.Enrolments
+                                join u in db.Users    on e.StudentID equals u.UserID
+                                join c in db.Courses  on e.CourseID  equals c.CourseID
+                                join a in db.TeachingAssignments on c.CourseID equals a.CourseID
+                                where a.InstructorID == instructorId && u.Role == "Student"
+                                orderby e.EnrollmentDate descending
+                                select new
+                                {
+                                    u.StudentCode,
+                                    u.FullName,
+                                    u.Email,
+                                    u.PhoneNumber,
+                                    u.Gender,
+                                    u.Birthday,
+                                    c.CourseName,
+                                    e.EnrollmentDate
+                                };
+
+                    int stt = 1;
+                    foreach (var item in query.ToList())
+                    {
+                        _dtStudents.Rows.Add(
+                            stt++,
+                            item.StudentCode ?? "",
+                            item.FullName ?? "",
+                            item.Email ?? "",
+                            item.PhoneNumber ?? "",
+                            item.Gender ?? "",
+                            item.Birthday?.ToString("dd/MM/yyyy") ?? "",
+                            item.CourseName ?? "",
+                            item.EnrollmentDate?.ToString("dd/MM/yyyy") ?? ""
+                        );
+                    }
+                }
+
+                dgvStudents.DataSource = _dtStudents;
+                UpdateTotalCount();
+                ApplyGridStyle();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh sách học viên: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void UpdateTotalCount()
+        {
+            txtTotalStudents.Text = dgvStudents.Rows.Count.ToString();
+        }
+
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            if (_dtStudents == null) return;
+
             string keyword = txtSearch.Text.Trim().ToLower();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                dgvStudents.DataSource = _dtStudents;
+                UpdateTotalCount();
+                return;
+            }
 
-            // Lọc ảo trên DataTable
-            DataView dv = dtStudents.DefaultView;
-            dv.RowFilter = string.Format("HoTen LIKE '%{0}%' OR MaHocVien LIKE '%{0}%' OR SoDT LIKE '%{0}%'", keyword);
+            // Filter an toàn bằng LINQ thay vì RowFilter (tránh injection)
+            var filtered = _dtStudents.AsEnumerable()
+                .Where(r =>
+                    r["HoTen"].ToString().ToLower().Contains(keyword) ||
+                    r["MaHocVien"].ToString().ToLower().Contains(keyword) ||
+                    r["SoDT"].ToString().Contains(keyword))
+                .ToList();
 
-            dgvStudents.DataSource = dv.ToTable();
+            if (filtered.Count > 0)
+            {
+                var result = filtered.CopyToDataTable();
+                // Cập nhật lại STT
+                for (int i = 0; i < result.Rows.Count; i++)
+                    result.Rows[i]["STT"] = (i + 1).ToString();
+                dgvStudents.DataSource = result;
+            }
+            else
+            {
+                dgvStudents.DataSource = _dtStudents.Clone();
+            }
             UpdateTotalCount();
         }
 
-
-
         private void ApplyGridStyle()
         {
-            // 1. Chỉnh Theme về Default để mình có quyền ghi đè màu
             dgvStudents.Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default;
-
-            // 2. Nhuộm màu Header (Màu xanh dương #2563EB)
             dgvStudents.ThemeStyle.HeaderStyle.BackColor = ColorTranslator.FromHtml("#2563EB");
             dgvStudents.ThemeStyle.HeaderStyle.ForeColor = Color.White;
             dgvStudents.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-
-            // 3. Nhuộm màu dòng được chọn (Màu xanh nhạt #EBF2FF)
-          
-
-            // 4. Các thiết lập bổ trợ cho xịn
-            dgvStudents.ThemeStyle.RowsStyle.Height = 35; // Hàng cao ráo
-            dgvStudents.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(248, 249, 250); // Dòng kẻ sọc nhạt
-
-            // Dàn đều cột
+            dgvStudents.ThemeStyle.RowsStyle.Height = 35;
+            dgvStudents.ThemeStyle.AlternatingRowsStyle.BackColor = Color.FromArgb(248, 249, 250);
             dgvStudents.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Bắt buộc gọi lệnh này để Guna vẽ lại theo màu mới
             dgvStudents.ColumnHeadersHeight = 40;
         }
 
-        private void guna2Panel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void guna2HtmlLabel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ucDSSV_Load(object sender, EventArgs e)
-        {
-            InitMockData();
-        }
+        private void guna2Panel3_Paint(object sender, PaintEventArgs e) { }
+        private void guna2HtmlLabel2_Click(object sender, EventArgs e) { }
     }
 }

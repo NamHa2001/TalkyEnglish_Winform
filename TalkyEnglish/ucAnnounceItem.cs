@@ -21,6 +21,7 @@ namespace TalkyEnglish.GUI
         public ucAnnounceItem()
         {
             InitializeComponent();
+            ButtonEffectHelper.RemoveGrayEffect(this);
         }
 
         public void SetData(AnnouncementsDTO data)

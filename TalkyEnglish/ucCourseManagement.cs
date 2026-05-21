@@ -34,8 +34,8 @@ namespace TalkyEnglish.GUI
                 // 3. Cập nhật nhãn tổng số khóa học (lblTotalCourses)
                 lblTotalCourses.Text = $"Tổng số khóa học: {courses.Count}";
 
-                // 4. Định dạng lại cột Học phí (Price) cho đẹp nếu cần
-                dgvCourses.Columns["Price"].DefaultCellStyle.Format = "N0"; // Hiện 2.500.000 thay vì 2500000
+                if (dgvCourses.Columns["Price"] != null)
+                    dgvCourses.Columns["Price"].DefaultCellStyle.Format = "N0";
             }
             catch (Exception ex)
             {
@@ -53,6 +53,7 @@ namespace TalkyEnglish.GUI
 
         private void ucCourseManagement_Load_1(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             InitFilter();
             LoadData();
         }
@@ -194,7 +195,8 @@ namespace TalkyEnglish.GUI
             }
             catch (Exception ex)
             {
-                // Ghi log lỗi nếu cần: Console.WriteLine(ex.Message);
+                MessageBox.Show("Lỗi lọc dữ liệu: " + ex.Message, "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

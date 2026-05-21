@@ -9,53 +9,50 @@ namespace TalkyEnglish.DAL
 {
    public class ScheduleDAL
     {
-        private readonly TalkyDbContext _db = new TalkyDbContext();
-
-        // Tạm thời để đây, lát mình sẽ viết hàm Add vào đây sau.
-
         public bool Add(ScheduleDTO schedule)
         {
-            try
+            using (var db = new TalkyDbContext())
             {
-                _db.Schedules.Add(schedule);
-                return _db.SaveChanges() > 0;
+                try
+                {
+                    db.Schedules.Add(schedule);
+                    return db.SaveChanges() > 0;
+                }
+                catch { return false; }
             }
-            catch { return false; }
         }
 
         public bool Delete(int scheduleId)
         {
-            try
+            using (var db = new TalkyDbContext())
             {
-                var item = _db.Schedules.Find(scheduleId);
-                if (item != null)
+                try
                 {
-                    _db.Schedules.Remove(item);
-                    return _db.SaveChanges() > 0;
+                    var item = db.Schedules.Find(scheduleId);
+                    if (item == null) return false;
+                    db.Schedules.Remove(item);
+                    return db.SaveChanges() > 0;
                 }
-                return false;
+                catch { return false; }
             }
-            catch { return false; }
         }
 
         public bool Update(ScheduleDTO schedule)
         {
-            try
+            using (var db = new TalkyDbContext())
             {
-                var existing = _db.Schedules.Find(schedule.ScheduleID);
-                if (existing != null)
+                try
                 {
-                    // Cập nhật các trường dữ liệu
+                    var existing = db.Schedules.Find(schedule.ScheduleID);
+                    if (existing == null) return false;
                     existing.DayOfWeek = schedule.DayOfWeek;
                     existing.StartTime = schedule.StartTime;
-                    existing.EndTime = schedule.EndTime;
-                    existing.RoomName = schedule.RoomName;
-
-                    return _db.SaveChanges() > 0;
+                    existing.EndTime   = schedule.EndTime;
+                    existing.RoomName  = schedule.RoomName;
+                    return db.SaveChanges() > 0;
                 }
-                return false;
+                catch { return false; }
             }
-            catch { return false; }
         }
 
         public List<ScheduleDTO> GetAll()

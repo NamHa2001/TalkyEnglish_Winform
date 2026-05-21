@@ -24,6 +24,7 @@ namespace TalkyEnglish.GUI
         public ucStudentSchedule()
         {
             InitializeComponent();
+            ButtonEffectHelper.RemoveGrayEffect(this);
             LoadScheduleData();
         }
 

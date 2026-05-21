@@ -20,6 +20,7 @@ namespace TalkyEnglish.GUI
 
         private void ucProfile_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             LoadProfileData();
         }
 
@@ -144,36 +145,37 @@ namespace TalkyEnglish.GUI
                 }
             }
         }
-        private void SaveAvatar(string filePath)
-        {
-            // Ở đây bạn sẽ gọi tầng BUS để lưu vào Database
-            // Sau khi lưu thành công, hãy cập nhật lại Session
-            // SessionManager.CurrentUser.AvatarPath = newPath;
-
-            MessageBox.Show("Cập nhật ảnh đại diện thành công!", "Thông báo");
-        }
-
         private void btnUpdateProfile_Click(object sender, EventArgs e)
         {
-            // 1. Thu thập dữ liệu từ giao diện
             var currentUser = SessionManager.CurrentUser;
             if (currentUser == null) return;
 
-            currentUser.FullName = txtFullName.Text.Trim();
-            currentUser.Email = txtEmail.Text.Trim();
+            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            {
+                MessageBox.Show("Họ tên không được để trống.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            currentUser.FullName    = txtFullName.Text.Trim();
+            currentUser.Email       = txtEmail.Text.Trim();
             currentUser.PhoneNumber = txtPhone.Text.Trim();
-            currentUser.Birthday = dtpBirthday.Value;
-            currentUser.Gender = rbMale.Checked ? "Nam" : "Nữ";
+            currentUser.Birthday    = dtpBirthday.Value;
+            currentUser.Gender      = rbMale.Checked ? "Nam" : "Nữ";
 
-            // 2. Gọi tầng BUS để lưu xuống Database (Giả sử bạn có UserBUS)
-            // UserBUS userBus = new UserBUS();
-            // bool result = userBus.UpdateUserInfo(currentUser);
-
-            // 3. Thông báo và cập nhật lại hiển thị
-            // if (result) {
-            MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LoadProfileData(); // Nạp lại dữ liệu để các nhãn bên phải cập nhật theo
-                               // }
+            bool result = new TalkyEnglish.BUS.UserBUS().UpdateUserInfo(currentUser);
+            if (result)
+            {
+                SessionManager.CurrentUser = currentUser;
+                MessageBox.Show("Cập nhật thông tin thành công!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadProfileData();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thông tin thất bại. Vui lòng kiểm tra lại.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)

@@ -121,6 +121,8 @@ namespace TalkyEnglish.DAL
                 entity.Property(a => a.PriorityLevel).HasDefaultValue("Normal").HasMaxLength(20);
                 entity.Property(a => a.PublishDate).HasDefaultValueSql("GETDATE()");
 
+                entity.Ignore(a => a.IsRead);
+
                 // Thiết lập Khóa ngoại cho người gửi (Admin)
                 entity.HasOne<UserDTO>()
                       .WithMany()

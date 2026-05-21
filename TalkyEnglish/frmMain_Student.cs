@@ -73,6 +73,7 @@ namespace TalkyEnglish.GUI
         }
         private void frmMain_Student_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             // 1. Hiển thị thông tin học viên từ Session
             if (SessionManager.CurrentUser != null)
             {

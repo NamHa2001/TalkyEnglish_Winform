@@ -1,5 +1,6 @@
-using TalkyEnglish.BUS;
+﻿using TalkyEnglish.BUS;
 using TalkyEnglish.DTO;
+using TalkyEnglish.GUI;
 namespace TalkyEnglish
 
 {
@@ -12,6 +13,7 @@ namespace TalkyEnglish
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
 
         }
     }

@@ -10,9 +10,10 @@ namespace TalkyEnglish.GUI
 {
     public partial class frmDashboard_Admin : Form
     {
-        // 1. KHAI BÁO BIẾN TẦNG BUS (Rất quan trọng)
         private readonly UserBUS _userBUS = new UserBUS();
-        // Khai báo biến toàn cục trong Form chính
+        private readonly ReportBUS _reportBUS = new ReportBUS();
+        private readonly CourseBUS _courseBUS = new CourseBUS();
+
         ucInstructorManagement _ucInstructor;
         ucCourseManagement _ucCourse;
         ucTeachingAssignment _ucTeaching;
@@ -33,21 +34,16 @@ namespace TalkyEnglish.GUI
             //HienThiDuLieuBieuDo();
         }
 
-        // Hàm xử lý khi Form bắt đầu Load
         private void frmDashboard_Admin_Load(object sender, EventArgs e)
         {
-
-            // 1. Hiển thị thông tin Admin từ Session (Giống bên trang Student)
+            ButtonEffectHelper.RemoveGrayEffect(this);
             if (SessionManager.CurrentUser != null)
             {
-                // Giả sử bro có các Label tên là lblAdminName, lblAdminCode, lblAdminEmail
-                txtFullName.Text = SessionManager.CurrentUser.FullName; // Ô hiển thị "Xin chào..."
-                lblAdminCode.Text = " ID: " + (SessionManager.CurrentUser.UserID.ToString()); // Hoặc StudentCode tùy DB
+                txtFullName.Text = SessionManager.CurrentUser.FullName;
+                lblAdminCode.Text = " ID: " + (SessionManager.CurrentUser.UserID.ToString());
                 lblEmail.Text = "Email: " + SessionManager.CurrentUser.Email;
-
-                // [MÀU SẮC]: Áp dụng hệ màu Navy đậm #0F172A cho tiêu đề
                 txtFullName.ForeColor = ColorTranslator.FromHtml("#0F172A");
-                lblAdminCode.ForeColor = ColorTranslator.FromHtml("#2563EB"); // Xanh dương cho mã số
+                lblAdminCode.ForeColor = ColorTranslator.FromHtml("#2563EB");
             }
             LoadThongKeConSo();
             HienThiDuLieuBieuDo();
@@ -75,67 +71,89 @@ namespace TalkyEnglish.GUI
             pnlMainContent1.Controls.Add(uc); // Thêm UC mới vào
         }
 
-        /// <summary>
-        /// Hàm đổ dữ liệu thật từ SQL vào các TextBox thống kê
-        /// </summary>
         private void LoadThongKeConSo()
         {
             try
             {
-                // Lấy số lượng thực tế (Thay tên hàm tương ứng với BUS của bro)
-                int studentsCount = _userBUS.GetAllStudents().Count(); // Cần hàm GetAllStudents
-                int instructorsCount = _userBUS.GetTopInstructors().Count();
-                int coursesCount = new CourseBUS().GetAllCourses().Count(); // Gọi BUS khóa học
+                int studentsCount = _userBUS.GetTotalStudents();
+                int instructorsCount = _userBUS.GetTotalInstructors();
+                int coursesCount = _courseBUS.GetTotalCourses();
 
-                // Đổ vào giao diện
+                DateTime firstDay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                DateTime lastDay = firstDay.AddMonths(1).AddDays(-1);
+                decimal monthlyRevenue = _reportBUS.GetRevenueByDate(firstDay, lastDay)
+                                                    .Sum(r => r.SoTien);
+
                 txtTotalStudents.Text = studentsCount.ToString();
-
                 txtTotalCourses.Text = coursesCount.ToString();
+                label8.Text = instructorsCount.ToString();
+                txtRevenue.Text = string.Format("{0:N0} VNĐ", monthlyRevenue);
 
-                // Doanh thu: Giả sử lấy từ bảng Invoices hoặc một hàm BUS khác
-                // txtRevenue.Text = string.Format("{0:N0} VNĐ", totalRevenue);
-
-                // Chỉnh ReadOnly và Màu sắc cho con số
                 txtTotalStudents.ForeColor = ColorTranslator.FromHtml("#2563EB");
-
             }
             catch (Exception ex)
             {
-                // Xử lý lỗi im lặng để không hiện bảng thông báo liên tục khi load
                 Console.WriteLine("Lỗi load thống kê: " + ex.Message);
             }
         }
 
         private void HienThiDuLieuBieuDo()
         {
-            // --- BIỂU ĐỒ CỘT (DOANH THU THÁNG) ---
-            gunaBarDataset1.DataPoints.Clear();
-            // Số liệu dưới 5 triệu cho mỗi tháng
-            gunaBarDataset1.DataPoints.Add("Tháng 3", 2100000);
-            gunaBarDataset1.DataPoints.Add("Tháng 4", 3800000);
-            gunaBarDataset1.DataPoints.Add("Tháng 5", 4250000);
+            try
+            {
+                // --- BIỂU ĐỒ CỘT: Doanh thu 6 tháng gần nhất ---
+                gunaBarDataset1.DataPoints.Clear();
+                gunaBarDataset1.FillColors.Clear();
 
-            // Màu xanh dương chính (#2563EB)
-            gunaBarDataset1.FillColors.Add(ColorTranslator.FromHtml("#2563EB"));
-            gunaBarDataset1.Label = "Doanh thu (VNĐ)";
+                for (int i = 5; i >= 0; i--)
+                {
+                    DateTime month = DateTime.Now.AddMonths(-i);
+                    DateTime from = new DateTime(month.Year, month.Month, 1);
+                    DateTime to = from.AddMonths(1).AddDays(-1);
 
-            // --- BIỂU ĐỒ TRÒN (TỶ LỆ TRÌNH ĐỘ KHÓA HỌC) ---
-            chartStatistics.Datasets.Add(gunaBarDataset1);
-            gunaPieDataset1.DataPoints.Clear();
-            gunaPieDataset1.DataPoints.Add("Cơ bản", 50);
-            gunaPieDataset1.DataPoints.Add("Trung cấp", 35);
-            gunaPieDataset1.DataPoints.Add("Nâng cao", 15);
+                    decimal revenue = _reportBUS.GetRevenueByDate(from, to).Sum(r => r.SoTien);
+                    gunaBarDataset1.DataPoints.Add("T" + month.Month, (double)revenue);
+                }
 
-            // Phối màu theo hệ màu bro đã gửi (Xanh - Vàng - Tím)
-            gunaPieDataset1.FillColors.Add(ColorTranslator.FromHtml("#2563EB")); // Xanh
-            gunaPieDataset1.FillColors.Add(ColorTranslator.FromHtml("#FBBF24")); // Vàng
-            gunaPieDataset1.FillColors.Add(ColorTranslator.FromHtml("#8B5CF6")); // Tím
-            gunaPieDataset1.Label = "Phân loại khóa học";
-            gunaChart2.Datasets.Add(gunaPieDataset1);
+                gunaBarDataset1.FillColors.Add(ColorTranslator.FromHtml("#2563EB"));
+                gunaBarDataset1.Label = "Doanh thu (VNĐ)";
+                chartStatistics.Datasets.Add(gunaBarDataset1);
 
-            // Cập nhật lên giao diện
-            chartStatistics.Update();
-            gunaChart2.Update();
+                // --- BIỂU ĐỒ TRÒN: Phân bổ trình độ khóa học thực tế ---
+                gunaPieDataset1.DataPoints.Clear();
+                gunaPieDataset1.FillColors.Clear();
+
+                var courses = _courseBUS.GetAllCourses();
+                var levelGroups = courses
+                    .GroupBy(c => string.IsNullOrWhiteSpace(c.Level) ? "Khác" : c.Level)
+                    .Select(g => new { Level = g.Key, Count = g.Count() })
+                    .OrderByDescending(g => g.Count)
+                    .ToList();
+
+                var levelColors = new[]
+                {
+                    ColorTranslator.FromHtml("#2563EB"),
+                    ColorTranslator.FromHtml("#FBBF24"),
+                    ColorTranslator.FromHtml("#8B5CF6"),
+                    ColorTranslator.FromHtml("#10B981"),
+                };
+
+                for (int i = 0; i < levelGroups.Count; i++)
+                {
+                    gunaPieDataset1.DataPoints.Add(levelGroups[i].Level, levelGroups[i].Count);
+                    gunaPieDataset1.FillColors.Add(levelColors[i % levelColors.Length]);
+                }
+
+                gunaPieDataset1.Label = "Phân loại khóa học";
+                gunaChart2.Datasets.Add(gunaPieDataset1);
+
+                chartStatistics.Update();
+                gunaChart2.Update();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi hiển thị biểu đồ: " + ex.Message);
+            }
         }
 
         // Sự kiện nút Đăng xuất

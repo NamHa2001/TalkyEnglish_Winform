@@ -177,6 +177,15 @@ namespace TalkyEnglish.BUS
             return _userDAL.DeleteInstructor(userId);
         }
 
+        public List<UserDTO> GetAllUsersForPicker()
+        {
+            var students = _userDAL.GetAllStudents();
+            var instructors = _userDAL.GetAllInstructors();
+            return students.Concat(instructors)
+                           .OrderBy(u => u.FullName)
+                           .ToList();
+        }
+
         public bool AddStudent(UserDTO student)
         {
             if (string.IsNullOrWhiteSpace(student.FullName)) return false;

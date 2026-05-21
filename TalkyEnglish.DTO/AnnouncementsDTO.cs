@@ -37,5 +37,8 @@ namespace TalkyEnglish.DTO
 
         [DisplayName("ID Người Gửi")]
         public int SenderID { get; set; }
+
+        // Trường tính toán, không lưu DB — dùng để hiển thị trạng thái đọc trên UI
+        public bool IsRead { get; set; }
     }
 }

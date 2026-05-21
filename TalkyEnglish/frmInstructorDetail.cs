@@ -20,6 +20,7 @@ namespace TalkyEnglish.GUI
         public frmInstructorDetail()
         {
             InitializeComponent();
+            ButtonEffectHelper.RemoveGrayEffect(this);
             _isEditMode = false;
             lblTitle.Text = "THÊM GIẢNG VIÊN MỚI"; // Giả sử bạn có cái Label tiêu đề ở trên cùng
         }

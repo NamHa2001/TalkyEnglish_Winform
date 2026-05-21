@@ -131,6 +131,33 @@ namespace TalkyEnglish.BUS
 
     
 
+        public List<CourseDTO> GetCoursesByInstructor(int instructorId)
+        {
+            if (instructorId <= 0) return GetAllCourses();
+
+            var query = from c in _context.Courses
+                        join u in _context.Users on c.InstructorID equals u.UserID into ig
+                        from u in ig.DefaultIfEmpty()
+                        where c.InstructorID == instructorId
+                        select new CourseDTO
+                        {
+                            CourseID         = c.CourseID,
+                            CourseCode       = c.CourseCode,
+                            CourseName       = c.CourseName,
+                            Price            = c.Price,
+                            Description      = c.Description,
+                            Duration         = c.Duration,
+                            Level            = c.Level,
+                            Status           = c.Status,
+                            InstructorID     = c.InstructorID,
+                            CreatedAt        = c.CreatedAt,
+                            MaxStudents      = c.MaxStudents,
+                            CurrentStudents  = c.CurrentStudents,
+                            InstructorName   = u != null ? u.FullName : "Chưa phân công"
+                        };
+            return query.ToList();
+        }
+
         public List<CourseDTO> FilterCourses(string keyword, int instructorId, string level, string status, DateTime? date)
         {
             // 1. Lấy toàn bộ danh sách gốc đã kèm tên Giảng viên

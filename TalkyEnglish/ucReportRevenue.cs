@@ -20,6 +20,7 @@ namespace TalkyEnglish.GUI
         public ucReportRevenue()
         {
             InitializeComponent();
+            ButtonEffectHelper.RemoveGrayEffect(this);
             SetupReportViewer();
         }
 

@@ -29,12 +29,11 @@ namespace TalkyEnglish.GUI
         }
         private void ucReportDashboard_Load(object sender, EventArgs e)
         {
-            LoadData();
+            ButtonEffectHelper.RemoveGrayEffect(this);
             LoadSubReport(new ucReportRevenue());
         }
         public void LoadData()
         {
-            // 1. Reset lại màn hình mặc định là Báo cáo Doanh thu
             LoadSubReport(new ucReportRevenue());
 
             // 2. Tương lai: Nếu bro có làm mấy cái Thẻ KPI (Tổng tiền, Tổng học viên) 

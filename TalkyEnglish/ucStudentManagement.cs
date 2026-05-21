@@ -15,11 +15,10 @@ namespace TalkyEnglish.GUI
 {
     public partial class ucStudentManagement : UserControl
     {
-        private UserDAL _userDAL = new UserDAL();
+        private readonly UserDAL _userDAL = new UserDAL();
         // 1. Hàm nạp dữ liệu lên bảng
         private void LoadStudentData()
         {
-            UserDAL _userDAL = new UserDAL();
             List<UserDTO> students = _userDAL.GetAllStudents();
             dgvStudents.AutoGenerateColumns = false;
             dgvStudents.DataSource = students;
@@ -56,6 +55,7 @@ namespace TalkyEnglish.GUI
 
         private void ucStudentManagement_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             InitFilters();
             LoadStudentData();
         }

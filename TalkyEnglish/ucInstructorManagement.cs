@@ -88,6 +88,7 @@ namespace TalkyEnglish.GUI
 
         private void ucInstructorManagement_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             LoadData();
         }
 

@@ -90,6 +90,7 @@ namespace TalkyEnglish.GUI
 
         private void frmDangKy_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
 
         }
     }

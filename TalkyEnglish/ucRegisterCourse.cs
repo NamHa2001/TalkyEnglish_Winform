@@ -25,6 +25,7 @@ namespace TalkyEnglish.GUI
 
         private void ucRegisterCourse_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             try
             {
                 // Chỉ hiện các cột bro đã thiết kế thủ công trong Designer

@@ -15,7 +15,7 @@ namespace TalkyEnglish.GUI
     public partial class ucTuitionManagement : UserControl
     {
 
-        private TuitionBUS _tuitionBUS = new TuitionBUS();
+        private readonly TuitionBUS _tuitionBUS = new TuitionBUS();
         private List<TuitionDTO> _allTuitions = new List<TuitionDTO>(); // Chứa danh sách gốc để lọc
         private int _selectedEnrollmentID = 0; // Biến lưu tạm ID để xử lý thu tiền
         private decimal _selectedPrice = 0; // Biến lưu tạm số tiền
@@ -42,6 +42,7 @@ namespace TalkyEnglish.GUI
 
         private void ucTuitionManagement_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
 
             LoadData();
   
@@ -80,38 +81,32 @@ namespace TalkyEnglish.GUI
 
         private void dgvTuition_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Đảm bảo không click vào tiêu đề cột
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvTuition.Rows[e.RowIndex];
+            if (e.RowIndex < 0) return;
+            var row = dgvTuition.Rows[e.RowIndex];
 
-                // Lấy ID và giá tiền lưu vào biến tạm để dùng cho nút Thu tiền
-                _selectedEnrollmentID = Convert.ToInt32(row.Cells["colEnrollmentID"].Value);
-                _selectedPrice = Convert.ToDecimal(row.Cells["colPrice"].Value);
+            var idCell    = row.Cells["colEnrollmentID"].Value;
+            var priceCell = row.Cells["colPrice"].Value;
+            if (idCell == null || priceCell == null) return;
 
-                // Đổ dữ liệu sang các TextBox ở khu vực 2
-                txtStudentCode.Text = row.Cells["colStudentCode"].Value?.ToString();
-                txtFullName.Text = row.Cells["colFullName"].Value?.ToString();
-                txtCourseName.Text = row.Cells["colCourseName"].Value?.ToString();
+            if (!int.TryParse(idCell.ToString(), out int enrollId)) return;
+            if (!decimal.TryParse(priceCell.ToString(), out decimal price)) return;
 
-                DateTime? date = row.Cells["colEnrollmentDate"].Value as DateTime?;
-                txtEnrollmentDate.Text = date.HasValue ? date.Value.ToString("dd/MM/yyyy") : "";
+            _selectedEnrollmentID = enrollId;
+            _selectedPrice        = price;
 
-                txtPrice.Text = _selectedPrice.ToString("N0") + " VNĐ";
+            txtStudentCode.Text   = row.Cells["colStudentCode"].Value?.ToString() ?? "";
+            txtFullName.Text      = row.Cells["colFullName"].Value?.ToString()    ?? "";
+            txtCourseName.Text    = row.Cells["colCourseName"].Value?.ToString()  ?? "";
 
-                string status = row.Cells["colStatus"].Value?.ToString();
-                txtStatus.Text = (status == "Paid") ? "Đã đóng" : "Chưa đóng";
+            DateTime? date = row.Cells["colEnrollmentDate"].Value as DateTime?;
+            txtEnrollmentDate.Text = date?.ToString("dd/MM/yyyy") ?? "";
 
-                // Logic đỉnh cao: Nếu đã đóng tiền rồi thì Khóa nút lại không cho bấm nữa
-                if (status == "Paid" || status == "Đã đóng")
-                {
-                    btnMarkAsPaid.Enabled = false;
-                }
-                else
-                {
-                    btnMarkAsPaid.Enabled = true;
-                }
-            }
+            txtPrice.Text = _selectedPrice.ToString("N0") + " VNĐ";
+
+            string status = row.Cells["colStatus"].Value?.ToString() ?? "";
+            bool isPaid   = status == "Paid" || status == "Đã đóng";
+            txtStatus.Text       = isPaid ? "Đã đóng" : "Chưa đóng";
+            btnMarkAsPaid.Enabled = !isPaid;
         }
 
         private void btnMarkAsPaid_Click(object sender, EventArgs e)

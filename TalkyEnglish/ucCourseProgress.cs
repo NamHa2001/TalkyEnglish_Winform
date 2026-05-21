@@ -16,6 +16,7 @@ namespace TalkyEnglish.GUI
         public ucCourseProgress()
         {
             InitializeComponent();
+            ButtonEffectHelper.RemoveGrayEffect(this);
         }
         // Hàm này giúp bạn thay đổi nội dung dòng khóa học dễ dàng
         public void SetData(string courseName, string teacherName, int progress, Color iconColor)

@@ -37,7 +37,7 @@ namespace TalkyEnglish.BUS
                             var query = db.Users.AsQueryable();
 
                             if (announceDto.TargetType == "Teacher")
-                                query = query.Where(u => u.Role == "Teacher");
+                                query = query.Where(u => u.Role == "Teacher" || u.Role == "Instructor");
                             else if (announceDto.TargetType == "Student")
                                 query = query.Where(u => u.Role == "Student");
 
@@ -76,6 +76,33 @@ namespace TalkyEnglish.BUS
         public List<AnnouncementsDTO> GetAllAnnouncements()
         {
             return _announcementsDAL.GetAllAnnouncements();
+        }
+
+        public List<AnnouncementsDTO> GetByTargetType(string targetType)
+        {
+            return _announcementsDAL.GetAnnouncementsByTargetType(targetType);
+        }
+
+        public bool DeleteAnnouncement(int id)
+        {
+            if (id <= 0) return false;
+            return _announcementsDAL.DeleteAnnouncement(id);
+        }
+
+        public List<AnnouncementsDTO> GetNotificationsForStudent(int studentId)
+        {
+            return _announcementsDAL.GetNotificationsForStudent(studentId);
+        }
+
+        public List<AnnouncementsDTO> GetNotificationsForInstructor(int instructorId)
+        {
+            return _announcementsDAL.GetNotificationsForInstructor(instructorId);
+        }
+
+        public bool MarkAsRead(int announceId, int userId)
+        {
+            if (announceId <= 0 || userId <= 0) return false;
+            return _announcementsDAL.MarkAsRead(announceId, userId);
         }
     }
 }

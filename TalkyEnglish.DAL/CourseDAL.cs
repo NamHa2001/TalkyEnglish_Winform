@@ -24,6 +24,24 @@ namespace TalkyEnglish.DAL
                 }
             }
         }
+        public List<CourseDTO> GetCoursesByInstructor(int instructorId)
+        {
+            using (var db = new TalkyDbContext())
+            {
+                try
+                {
+                    return db.Courses
+                             .Where(c => c.InstructorID == instructorId)
+                             .AsNoTracking()
+                             .ToList();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Lỗi lấy khóa học theo giảng viên: " + ex.Message);
+                }
+            }
+        }
+
         public void UpdateStudentCount(int courseId)
         {
             using (var db = new TalkyDbContext())

@@ -28,7 +28,6 @@ namespace TalkyEnglish.GUI
 
                 // --- KHU VỰC NHẬP LIỆU (BÊN TRÁI) ---
                 // Lưu ý: Giảng viên dùng mã định danh tương ứng (thường là UserName hoặc ID)
-                guna2TextBox1.Text = user.UserID.ToString();
                 txtFullName.Text = user.FullName;
                 txtEmail.Text = user.Email;
                 txtPhone.Text = user.PhoneNumber;
@@ -127,16 +126,6 @@ namespace TalkyEnglish.GUI
 
         }
 
-        private void UpdateMainFormAvatar()
-        {
-            // Tìm đến Form chính và yêu cầu nạp lại ảnh đại diện nhỏ
-            var mainForm = this.FindForm() as frmTeacherDashboard;
-            if (mainForm != null)
-            {
-                // Bước này sẽ gọi hàm RefreshSmallAvatar mà anh em mình sẽ thêm vào Form chính sau
-                mainForm.RefreshSmallAvatar();
-            }
-        }
         private void LoadAvatarFromPath(string path)
         {
             if (File.Exists(path))
@@ -190,6 +179,7 @@ namespace TalkyEnglish.GUI
 
         private void ucTeacherProfile_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             LoadProfileData();
         }
     }

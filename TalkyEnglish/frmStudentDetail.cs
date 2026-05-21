@@ -87,6 +87,7 @@ namespace TalkyEnglish.GUI
 
         private void frmStudentDetail_Load(object sender, EventArgs e)
         {
+            ButtonEffectHelper.RemoveGrayEffect(this);
             InitData(); // Nạp dữ liệu vào các ComboBox trước
 
             // Nếu là chế độ Cập nhật thì mới điền dữ liệu của học viên vào
