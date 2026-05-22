@@ -1,0 +1,994 @@
+LẬP TRÌNH WINDOW
+HỆ THỐNG QUẢN LÝ TRUNG TÂM NGOẠI NGỮ
+TALKY ENGLISH
+Thành Viên:
+Nguyễn Thị Anh Thư – 2401010096
+Hà Văn Nam – 2401010517
+GVHD: Th.S Đoàn Minh Khuê
+BỘ GIÁO DỤC VÀ ĐÀO TẠO
+TRƯỜNG ĐẠI HỌC YERSIN ĐÀ LẠT
+HỌC KỲ III
+Năm học 2025 - 2026
+
+PHẦN NHẬN XÉT CỦA GIẢNG VIÊN
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+..........................................................................................................................................
+Điểm: ...............................................................................................................................
+Ngày … tháng … năm …
+Ký và ghi rõ họ tên
+
+MỤC LỤC:
+LỜI MỞ ĐẦU........................................................................................................trang 1
+NỘI DUNG.......................................................................................................................
+CHƯƠNG 1. GIỚI THIỆU ĐỀ TÀI......................................................................trang 2
+1.1 Lý do chọn đề tài.........................................................................................trang 3
+1.2 Mục tiêu và phạm vi đề tài ..........................................................................trang 4
+1.3 Công nghệ sử dụng......................................................................................trang 4
+1.4 Ý nghĩa thực tiễn của đề tài.........................................................................trang 5
+CHƯƠNG 2. PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG.....................................trang 6
+2.1 Phân tích yêu cầu.........................................................................................trang 6
+2.2 Sơ đồ Use Case tổng quan...........................................................................trang 8
+2.3 Đặc tả Use Case.........................................................................................trang 10
+2.4 Thiết kế cơ sở dữ liệu ................................................................................trang 12
+2.5 Sơ đồ ERD.................................................................................................trang 16
+CHƯƠNG 3. XÂY DỰNG CHƯƠNG TRÌNH..................................................trang 17
+3.1 Đăng nhập và phân quyền .........................................................................trang 17
+3.2 Chức năng quản trị viên ............................................................................trang 20
+3.3 Chức năng giảng viên................................................................................trang 32
+3.4 Chức năng học viên...................................................................................trang 38
+3.5 Kết nối cơ sở dữ liệu và xử lý dữ liệu......................................................trang 44
+CHƯƠNG 4. KẾT LUẬN ...................................................................................trang 47
+4.1 Kết quả đạt được........................................................................................trang 47
+4.2 Hạn chế......................................................................................................trang 48
+4.3 Hướng phát triển........................................................................................trang 49
+4.4 Tổng kết.....................................................................................................trang 50
+TÀI LIỆU THAM KHẢO ...................................................................................trang 51
+
+LỜI MỞ ĐẦU
+Trong thời đại công nghệ thông tin phát triển mạnh mẽ như hiện nay, việc ứng dụng
+phần mềm vào công tác quản lý ngày càng trở nên phổ biến và cần thiết trong nhiều lĩnh
+vực khác nhau, đặc biệt là lĩnh vực giáo dục. Các trung tâm ngoại ngữ hiện nay không chỉ
+chú trọng nâng cao chất lượng giảng dạy mà còn cần xây dựng một hệ thống quản lý hiệu
+quả nhằm hỗ trợ quản lý học viên, giảng viên, khóa học và lịch học một cách nhanh
+chóng, chính xác và thuận tiện hơn.
+Trên thực tế, nhiều trung tâm ngoại ngữ vẫn còn sử dụng phương pháp quản lý thủ
+công bằng giấy tờ hoặc file Excel, gây khó khăn trong việc lưu trữ, tìm kiếm và cập nhật
+dữ liệu. Điều này không chỉ làm mất nhiều thời gian mà còn dễ xảy ra sai sót trong quá
+trình quản lý. Vì vậy, việc xây dựng một hệ thống quản lý trung tâm ngoại ngữ là cần
+thiết nhằm hỗ trợ tối ưu hóa công tác quản lý và nâng cao hiệu quả hoạt động của trung
+tâm.
+Xuất phát từ nhu cầu thực tế đó, nhóm đã lựa chọn thực hiện đề tài "Hệ thống quản lý
+trung tâm ngoại ngữ Talky English". Hệ thống được xây dựng bằng ngôn ngữ lập trình
+C#, công nghệ WinForms kết hợp với hệ quản trị cơ sở dữ liệu SQL Server. Phần mềm hỗ
+trợ quản lý thông tin học viên, giảng viên, khóa học, lịch học và kết quả học tập một cách
+khoa học và hiệu quả hơn.
+Thông qua quá trình thực hiện đề tài, nhóm có cơ hội vận dụng các kiến thức đã học về
+lập trình ứng dụng desktop, thiết kế giao diện, quản lý cơ sở dữ liệu và phân tích thiết kế
+hệ thống vào thực tế. Đồng thời, đề tài cũng góp phần giúp nhóm nâng cao kỹ năng làm
+việc nhóm, tư duy xây dựng phần mềm và kinh nghiệm phát triển một hệ thống quản lý
+phục vụ cho lĩnh vực giáo dục.
+
+NỘI DUNG
+CHƯƠNG 1: GIỚI THIỆU ĐỀ TÀI
+
+1.1 Lý do chọn đề tài
+Hiện nay, nhiều trung tâm ngoại ngữ vẫn thực hiện việc quản lý học viên, giảng viên,
+khóa học và lịch học bằng phương pháp thủ công như ghi chép trên giấy hoặc lưu trữ
+bằng file Excel. Cách quản lý này thường gây khó khăn trong việc tìm kiếm, cập nhật và
+thống kê dữ liệu, đặc biệt khi số lượng học viên và khóa học ngày càng tăng.
+Bên cạnh đó, việc quản lý thủ công còn dễ xảy ra sai sót trong quá trình nhập liệu, mất
+nhiều thời gian khi tra cứu thông tin và gây khó khăn trong việc theo dõi kết quả học tập
+của học viên. Việc phân công giảng dạy, sắp xếp lịch học và quản lý thông tin khóa học
+cũng chưa được thực hiện một cách đồng bộ và hiệu quả.
+Nhận thấy những hạn chế đó, nhóm quyết định xây dựng "Hệ thống quản lý trung tâm
+ngoại ngữ Talky English" nhằm hỗ trợ quản lý dữ liệu một cách khoa học, nhanh chóng
+và thuận tiện hơn. Hệ thống giúp đơn giản hóa các thao tác quản lý học viên, giảng viên,
+khóa học, lịch học và kết quả học tập, đồng thời góp phần nâng cao hiệu quả hoạt động
+của trung tâm.
+Ngoài ra, đề tài còn giúp nhóm có cơ hội áp dụng các kiến thức đã học về lập trình
+WinForms, quản lý cơ sở dữ liệu SQL Server và phân tích thiết kế hệ thống vào quá trình
+xây dựng một phần mềm quản lý thực tế.
+
+1.2 Mục tiêu và phạm vi hệ thống
+Mục tiêu của đề tài là xây dựng một hệ thống quản lý trung tâm ngoại ngữ hỗ trợ quản
+lý học viên, giáo viên, khóa học và các hoạt động học tập tại trung tâm Talky English.
+Hệ thống được xây dựng nhằm giúp việc quản lý dữ liệu trở nên dễ dàng, nhanh chóng và
+hiệu quả hơn so với phương pháp quản lý thủ công truyền thống. Ngoài ra, hệ thống còn
+hỗ trợ học viên trong việc theo dõi lịch học, kết quả học tập và các thông báo từ trung
+tâm.
+Trong phạm vi của đề tài, hệ thống tập trung phát triển các chức năng chính như:
+
+Đối với Admin:
+- Quản lý học viên
+- Quản lý giáo viên
+- Quản lý khóa học
+- Quản lý lịch học
+- Phân công giảng dạy
+- Xác nhận thanh toán
+- Xem thống kê hệ thống
+
+Đối với Teacher:
+- Xem lớp được phân công
+- Thêm và sửa điểm học viên
+- Nhận xét kết quả học tập
+- Theo dõi danh sách học viên
+- Xem lịch dạy
+
+Đối với Student:
+- Đăng ký khóa học
+- Xem lịch học
+- Xem kết quả học tập
+- Nhận thông báo
+- Quản lý thông tin tài khoản cá nhân
+
+Do giới hạn về thời gian và phạm vi thực hiện, hệ thống hiện chưa hỗ trợ các chức
+năng như:
+− Thanh toán học phí trực tuyến
+− Livestream học online
+− Chat realtime
+− Ứng dụng trên nền tảng mobile
+Các chức năng trên sẽ được nghiên cứu và phát triển trong các phiên bản tiếp theo.
+
+1.3 Công nghệ sử dụng
+Để xây dựng hệ thống quản lý trung tâm ngoại ngữ Talky English, nhóm đã sử dụng
+các công nghệ và công cụ sau:
+
+Công nghệ / Công cụ    Mô tả
+C#                     Ngôn ngữ lập trình chính dùng để phát triển hệ thống
+WinForms               Công nghệ xây dựng giao diện ứng dụng desktop
+SQL Server (SSMS)      Hệ quản trị cơ sở dữ liệu dùng để lưu trữ thông tin hệ thống
+Entity Framework Core  Framework hỗ trợ kết nối và truy xuất dữ liệu (ORM)
+Guna UI2               Thư viện hỗ trợ thiết kế giao diện hiện đại và thân thiện
+ReportViewer (RDLC)    Công cụ tạo báo cáo doanh thu có thể xem trước và in
+Visual Studio          Môi trường phát triển ứng dụng
+GitHub                 Hỗ trợ quản lý source code và làm việc nhóm
+
+Hệ thống được xây dựng theo mô hình phân lớp nhằm giúp việc quản lý và bảo trì hệ
+thống trở nên dễ dàng hơn. Các thành phần chính bao gồm:
+− GUI (Graphical User Interface): Quản lý giao diện người dùng
+− BUS (Business Logic Layer): Xử lý nghiệp vụ của hệ thống
+− DAL (Data Access Object): Thực hiện truy xuất dữ liệu qua Entity Framework Core
+− DTO (Data Transfer Object): Đối tượng trung gian truyền dữ liệu giữa các tầng
+− Database: SQL Server lưu trữ toàn bộ dữ liệu của hệ thống
+
+Việc áp dụng mô hình phân lớp giúp hệ thống hoạt động ổn định, dễ nâng cấp và thuận
+tiện trong quá trình phát triển phần mềm.
+
+1.4 Ý nghĩa thực tiễn của đề tài
+Hệ thống quản lý trung tâm ngoại ngữ Talky English được xây dựng nhằm hỗ trợ quá
+trình quản lý học viên, giáo viên, khóa học và các hoạt động đào tạo tại trung tâm một
+cách hiệu quả và thuận tiện hơn.
+Thông qua hệ thống, admin có thể dễ dàng quản lý thông tin học viên, giáo viên, khóa
+học, lịch học và kết quả học tập. Việc lưu trữ dữ liệu trên hệ thống giúp giảm bớt các thao
+tác quản lý thủ công bằng giấy tờ hoặc file Excel, đồng thời hạn chế sai sót và tiết kiệm
+thời gian trong quá trình quản lý.
+Đối với giảng viên, hệ thống hỗ trợ theo dõi lớp học được phân công, cập nhật điểm số
+và nhận xét học viên nhanh chóng. Đối với học viên, hệ thống giúp tra cứu lịch học, xem
+kết quả học tập và nhận các thông báo từ trung tâm một cách thuận tiện.
+Ngoài ra, đề tài còn giúp nhóm củng cố và vận dụng các kiến thức đã học như:
+− Lập trình Windows với WinForms
+− Thiết kế giao diện người dùng
+− Quản lý cơ sở dữ liệu bằng SQL Server
+− Entity Framework Core
+− Thiết kế hệ thống theo mô hình phân lớp
+− Kỹ năng làm việc nhóm và quản lý source code
+Qua quá trình thực hiện đề tài, nhóm đã nâng cao được kỹ năng lập trình, tư duy phân
+tích hệ thống và kinh nghiệm xây dựng một phần mềm quản lý thực tế.
+
+CHƯƠNG 2: PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG
+
+2.1 Phân tích yêu cầu
+Hệ thống quản lý trung tâm ngoại ngữ Talky English được xây dựng nhằm hỗ trợ công
+tác quản lý học viên, giảng viên, khóa học, lớp học và lịch học tại trung tâm một cách
+hiệu quả và thuận tiện hơn. Hệ thống hướng đến việc thay thế phương pháp quản lý thủ
+công bằng giấy tờ hoặc file Excel, giúp việc lưu trữ, tìm kiếm và xử lý dữ liệu trở nên
+nhanh chóng, chính xác và dễ dàng hơn.
+Để đáp ứng nhu cầu sử dụng của từng đối tượng, hệ thống được phân thành ba nhóm
+người dùng chính gồm quản trị viên (Admin), giảng viên (Teacher) và học viên (Student).
+Mỗi nhóm người dùng sẽ được cấp quyền sử dụng các chức năng phù hợp với vai trò của
+mình.
+Đối với quản trị viên, hệ thống cần hỗ trợ quản lý toàn bộ dữ liệu và hoạt động của
+trung tâm. Quản trị viên có quyền thêm, sửa, xóa và cập nhật thông tin học viên, giảng
+viên, khóa học, lớp học và lịch học. Ngoài ra, quản trị viên còn có thể phân công giảng
+dạy, quản lý tài khoản người dùng, phân quyền truy cập và theo dõi các thông tin thống
+kê của hệ thống nhằm đảm bảo quá trình quản lý được thực hiện chính xác và hiệu quả.
+Đối với giảng viên, hệ thống hỗ trợ theo dõi các lớp học được phân công giảng dạy,
+xem danh sách học viên và cập nhật kết quả học tập của học viên. Giảng viên có thể nhập
+điểm, nhận xét kết quả học tập và cập nhật một số thông tin liên quan đến quá trình giảng
+dạy nhằm hỗ trợ công tác quản lý lớp học thuận tiện hơn.
+Đối với học viên, hệ thống hỗ trợ đăng ký khóa học, xem lịch học, tra cứu kết quả học tập
+và cập nhật thông tin cá nhân. Ngoài ra, học viên còn có thể theo dõi các thông báo từ
+trung tâm và xem thông tin liên quan đến khóa học mà mình tham gia.
+Bên cạnh các chức năng chính, hệ thống cần đảm bảo chức năng đăng nhập, phân quyền
+người dùng, kết nối cơ sở dữ liệu và xử lý dữ liệu ổn định nhằm đáp ứng nhu cầu quản lý
+và vận hành của trung tâm ngoại ngữ Talky English.
+
+2.2 Sơ đồ Use Case tổng quan
+Sơ đồ Use Case được sử dụng để mô tả các chức năng chính của hệ thống và mối quan
+hệ giữa người dùng với hệ thống. Đối với hệ thống quản lý trung tâm ngoại ngữ Talky
+English, có ba tác nhân chính tham gia sử dụng hệ thống gồm: quản trị viên (Admin),
+giảng viên (Teacher) và học viên (Student).
+Quản trị viên là người có quyền quản lý toàn bộ hệ thống, bao gồm quản lý học viên,
+giảng viên, khóa học, lịch học, phân công giảng dạy, quản lý tài khoản và xem thống kê
+hệ thống.
+Giảng viên là người sử dụng hệ thống để xem lớp học được phân công, theo dõi danh
+sách học viên, nhập điểm, nhận xét kết quả học tập và cập nhật thông tin giảng dạy.
+Học viên là người sử dụng hệ thống để đăng ký khóa học, xem lịch học, xem kết quả
+học tập, nhận thông báo và cập nhật thông tin cá nhân.
+Tất cả người dùng đều cần thực hiện chức năng đăng nhập trước khi sử dụng các chức
+năng tương ứng với quyền hạn của mình. Việc phân quyền giúp hệ thống đảm bảo tính
+bảo mật và tránh việc người dùng truy cập vào các chức năng không thuộc phạm vi sử
+dụng.
+
+[Hình 1. Sơ đồ Use Case tổng quan hệ thống Talky English]
+
+2.3 Đặc tả Use Case
+
+Thành phần         Nội dung
+Tên Use Case       Đăng nhập
+Tác nhân           Quản trị viên, Giảng viên, Học viên
+Mục tiêu           Cho phép người dùng truy cập vào hệ thống với đúng quyền hạn
+Tiền điều kiện     Người dùng đã có tài khoản trong hệ thống
+Luồng xử lý chính 1. Người dùng mở chương trình.
+                   2. Hệ thống hiển thị giao diện đăng nhập.
+                   3. Người dùng nhập Email và mật khẩu.
+                   4. Hệ thống kiểm tra thông tin tài khoản.
+                   5. Nếu hợp lệ, hệ thống điều hướng đến giao diện tương ứng với vai trò.
+Luồng thay thế     Nếu thông tin đăng nhập sai, hệ thống hiển thị thông báo lỗi và yêu cầu nhập lại.
+Hậu điều kiện      Người dùng đăng nhập thành công và sử dụng được các chức năng.
+
+Thành phần         Nội dung
+Tên Use Case       Quản lý học viên
+Tác nhân           Quản trị viên
+Mục tiêu           Cho phép quản trị viên thêm, sửa, xóa và tìm kiếm thông tin học viên
+Tiền điều kiện     Quản trị viên đã đăng nhập vào hệ thống
+Luồng xử lý chính 1. Quản trị viên chọn chức năng quản lý học viên.
+                   2. Hệ thống hiển thị danh sách học viên.
+                   3. Quản trị viên thực hiện thêm, sửa, xóa hoặc tìm kiếm học viên.
+                   4. Hệ thống kiểm tra dữ liệu nhập vào.
+                   5. Hệ thống lưu thay đổi vào cơ sở dữ liệu.
+                   6. Hệ thống cập nhật lại danh sách học viên.
+Luồng thay thế     Nếu dữ liệu không hợp lệ hoặc bị trùng, hệ thống hiển thị thông báo lỗi.
+Hậu điều kiện      Thông tin học viên được cập nhật trong hệ thống.
+
+Thành phần         Nội dung
+Tên Use Case       Phân công giảng dạy
+Tác nhân           Quản trị viên
+Mục tiêu           Cho phép quản trị viên phân công giảng viên phụ trách các lớp học
+Tiền điều kiện     Quản trị viên đã đăng nhập vào hệ thống
+Luồng xử lý chính 1. Quản trị viên chọn chức năng phân công giảng dạy.
+                   2. Hệ thống hiển thị danh sách giảng viên và khóa học.
+                   3. Quản trị viên chọn giảng viên và khóa học cần phân công.
+                   4. Quản trị viên xác nhận thông tin phân công.
+                   5. Hệ thống kiểm tra dữ liệu phân công.
+                   6. Hệ thống lưu thông tin phân công vào cơ sở dữ liệu.
+                   7. Hệ thống cập nhật danh sách phân công giảng dạy.
+Luồng thay thế     Nếu đã trùng phân công, hệ thống hiển thị thông báo lỗi.
+Hậu điều kiện      Giảng viên được phân công giảng dạy cho khóa học tương ứng.
+
+Thành phần         Nội dung
+Tên Use Case       Đăng ký khóa học
+Tác nhân           Học viên
+Mục tiêu           Cho phép học viên đăng ký khóa học phù hợp trong hệ thống
+Tiền điều kiện     Học viên đã đăng nhập vào hệ thống
+Luồng xử lý chính 1. Học viên chọn chức năng đăng ký khóa học.
+                   2. Hệ thống hiển thị danh sách khóa học hiện có và số chỗ còn trống.
+                   3. Học viên xem thông tin khóa học.
+                   4. Học viên chọn khóa học muốn đăng ký.
+                   5. Hệ thống kiểm tra thông tin đăng ký và số chỗ trống.
+                   6. Hệ thống lưu thông tin đăng ký và cập nhật số học viên hiện tại.
+                   7. Hệ thống hiển thị thông báo đăng ký thành công.
+Luồng thay thế     Nếu học viên đã đăng ký hoặc khóa học đã đầy, hệ thống hiển thị thông báo lỗi.
+Hậu điều kiện      Thông tin đăng ký khóa học của học viên được lưu vào hệ thống.
+
+Thành phần         Nội dung
+Tên Use Case       Xem kết quả học tập
+Tác nhân           Học viên
+Mục tiêu           Cho phép học viên tra cứu điểm số và kết quả học tập của bản thân
+Tiền điều kiện     Học viên đã đăng nhập vào hệ thống
+Luồng xử lý chính 1. Học viên chọn chức năng xem kết quả học tập.
+                   2. Hệ thống truy xuất dữ liệu điểm của học viên từ cơ sở dữ liệu.
+                   3. Hệ thống hiển thị danh sách khóa học đã tham gia.
+                   4. Học viên chọn khóa học cần xem kết quả.
+                   5. Hệ thống hiển thị điểm số, nhận xét và xếp loại học tập tương ứng.
+Luồng thay thế     Nếu chưa có dữ liệu điểm, hệ thống hiển thị thông báo chưa có kết quả.
+Hậu điều kiện      Học viên xem được kết quả học tập của mình trong hệ thống.
+
+Thành phần         Nội dung
+Tên Use Case       Quản lý điểm học viên
+Tác nhân           Giảng viên
+Mục tiêu           Cho phép giảng viên nhập, sửa và cập nhật điểm học tập của học viên
+Tiền điều kiện     Giảng viên đã đăng nhập và đã được phân công giảng dạy
+Luồng xử lý chính 1. Giảng viên chọn chức năng quản lý điểm học viên.
+                   2. Hệ thống hiển thị danh sách khóa học được phân công.
+                   3. Giảng viên chọn khóa học cần nhập điểm.
+                   4. Hệ thống hiển thị danh sách học viên trong lớp.
+                   5. Giảng viên nhập điểm chuyên cần, bài tập, thi cho từng học viên.
+                   6. Hệ thống tự động tính điểm trung bình và xếp loại.
+                   7. Hệ thống lưu điểm vào cơ sở dữ liệu.
+                   8. Hệ thống hiển thị thông báo cập nhật điểm thành công.
+Luồng thay thế     Nếu điểm nhập không hợp lệ (ngoài 0-10), hệ thống hiển thị thông báo lỗi.
+Hậu điều kiện      Điểm học tập của học viên được cập nhật trong hệ thống.
+
+2.4 Thiết kế cơ sở dữ liệu
+Hệ thống quản lý trung tâm ngoại ngữ Talky English sử dụng hệ quản trị cơ sở dữ liệu
+SQL Server để lưu trữ và quản lý dữ liệu. Cơ sở dữ liệu được thiết kế nhằm hỗ trợ việc
+quản lý người dùng, khóa học, đăng ký học, phân công giảng dạy, điểm số, điểm danh,
+hóa đơn và thông báo của trung tâm.
+Cơ sở dữ liệu của hệ thống gồm các bảng chính sau:
+
+STT   Tên bảng                  Chức năng
+1     Users                     Lưu thông tin người dùng gồm quản trị viên, giảng viên, học viên
+2     Categories                Lưu danh mục khóa học
+3     Courses                   Lưu thông tin khóa học
+4     Enrollments               Lưu thông tin đăng ký khóa học của học viên
+5     Invoices                  Lưu thông tin hóa đơn và thanh toán
+6     TeachingAssignments       Lưu thông tin phân công giảng dạy
+7     Announcements             Lưu thông báo của trung tâm
+8     Attendance                Lưu thông tin điểm danh học viên
+9     Grades                    Lưu điểm số và kết quả học tập của học viên
+10    NotificationStatuses      Lưu trạng thái thông báo của người dùng
+11    Schedules                 Lưu thông tin lịch học của khóa học
+
+Mô tả các bảng dữ liệu
+
+Bảng Users
+Bảng Users dùng để lưu thông tin người dùng trong hệ thống. Người dùng có thể là
+quản trị viên, giảng viên hoặc học viên, được phân biệt thông qua trường Role.
+Trường StudentCode được tính tự động từ UserID theo công thức: 'HV' + RIGHT('000' + CAST(UserID AS varchar), 3).
+
+Tên trường           Kiểu dữ liệu        Mô tả
+UserID               INT (PK)            Mã người dùng, tự tăng
+FullName             NVARCHAR(100)       Họ tên người dùng
+Email                VARCHAR(100)        Email đăng nhập (duy nhất)
+PasswordHash         VARCHAR(MAX)        Mật khẩu
+Role                 NVARCHAR(20)        Vai trò: Admin, Instructor, Student
+PhoneNumber          VARCHAR(15)         Số điện thoại
+Birthday             DATETIME            Ngày sinh
+Gender               NVARCHAR(20)        Giới tính
+Degree               NVARCHAR(100)       Bằng cấp của giảng viên
+Specialization       NVARCHAR(100)       Chuyên môn
+Status               NVARCHAR(50)        Trạng thái tài khoản
+CreatedAt            DATETIME            Ngày tạo tài khoản (mặc định GETDATE())
+StudentCode          VARCHAR(10)         Mã học viên (computed: HV001, HV002...)
+
+Bảng Courses
+Bảng Courses dùng để lưu thông tin các khóa học của trung tâm. Trường CourseCode
+được tính tự động theo công thức: 'KH' + RIGHT('000' + CAST(CourseID AS varchar), 3).
+
+Tên trường           Kiểu dữ liệu        Mô tả
+CourseID             INT (PK)            Mã khóa học, tự tăng
+CourseCode           VARCHAR(10)         Mã hiển thị (computed: KH001, KH002...)
+CourseName           NVARCHAR(200)       Tên khóa học
+Price                DECIMAL(18,2)       Học phí
+Description          NVARCHAR(MAX)       Mô tả khóa học
+InstructorID         INT (FK)            Mã giảng viên phụ trách
+CategoryID           INT                 Mã danh mục khóa học
+Status               NVARCHAR(50)        Trạng thái khóa học
+Level                NVARCHAR(50)        Trình độ khóa học
+Duration             NVARCHAR(100)       Thời lượng khóa học
+MaxStudents          INT                 Số học viên tối đa
+CurrentStudents      INT                 Số học viên hiện tại
+CreatedAt            DATETIME            Ngày tạo khóa học (mặc định GETDATE())
+
+Bảng Enrollments
+Bảng Enrollments dùng để lưu thông tin học viên đăng ký khóa học.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+EnrollmentID         INT (PK)            Mã đăng ký
+StudentID            INT (FK)            Mã học viên
+CourseID             INT (FK)            Mã khóa học
+EnrollmentDate       DATETIME            Ngày đăng ký (mặc định GETDATE())
+PaymentStatus        NVARCHAR(50)        Trạng thái thanh toán (Chưa đóng / Paid)
+
+Bảng TeachingAssignments
+Bảng TeachingAssignments dùng để lưu thông tin phân công giảng viên giảng dạy khóa học.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+AssignmentID         INT (PK)            Mã phân công
+InstructorID         INT (FK)            Mã giảng viên
+CourseID             INT (FK)            Mã khóa học
+AssignedDate         DATETIME            Ngày phân công
+Note                 NVARCHAR(255)       Ghi chú
+
+Bảng Schedules
+Bảng Schedules dùng để lưu thông tin lịch học định kỳ của từng khóa học.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+ScheduleID           INT (PK)            Mã lịch học
+CourseID             INT (FK)            Mã khóa học
+DayOfWeek            NVARCHAR(20)        Thứ trong tuần (Monday, Tuesday...)
+StartTime            TIME                Giờ bắt đầu
+EndTime              TIME                Giờ kết thúc
+RoomName             NVARCHAR(100)       Tên phòng học
+
+Bảng Grades
+Bảng Grades dùng để lưu điểm số và kết quả học tập của học viên.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+GradeID              INT (PK)            Mã điểm
+EnrollmentID         INT (FK)            Mã đăng ký khóa học
+MidTerm              FLOAT               Điểm giữa kỳ (0-10)
+AttendanceScore      FLOAT               Điểm bài tập / chuyên cần (0-10)
+FinalTerm            FLOAT               Điểm thi cuối kỳ (0-10)
+AverageScore         FLOAT               Điểm trung bình (CC*0.1 + BT*0.3 + Thi*0.6)
+GradeLetter          NVARCHAR(5)         Điểm chữ (A, B, C, D)
+Ranking              NVARCHAR(20)        Xếp loại (Giỏi, Khá, Trung Bình, Yếu)
+AttendancePercentage FLOAT               Tỷ lệ chuyên cần (%)
+TeacherComment       NVARCHAR(MAX)       Nhận xét của giảng viên
+CommentDate          DATETIME            Ngày nhận xét
+Note                 NVARCHAR(MAX)       Ghi chú
+
+Bảng Attendance
+Bảng Attendance dùng để lưu thông tin điểm danh của học viên trong từng buổi học.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+AttendanceID         INT (PK)            Mã điểm danh
+EnrollmentID         INT (FK)            Mã đăng ký khóa học
+AttendanceDate       DATETIME            Ngày điểm danh (mặc định GETDATE())
+IsPresent            BIT                 Trạng thái: 1 = Có mặt, 0 = Vắng mặt
+
+Bảng Invoices
+Bảng Invoices dùng để lưu thông tin hóa đơn thanh toán học phí của học viên.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+InvoiceID            INT (PK)            Mã hóa đơn
+EnrollmentID         INT (FK)            Mã đăng ký khóa học
+TotalAmount          DECIMAL(18,2)       Tổng tiền thanh toán
+PaymentMethod        NVARCHAR(50)        Phương thức thanh toán
+PaymentDate          DATETIME            Ngày thanh toán
+
+Bảng Announcements
+Bảng Announcements dùng để lưu các thông báo của trung tâm.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+AnnounceID           INT (PK)            Mã thông báo
+Title                NVARCHAR(250)       Tiêu đề thông báo
+Content              NVARCHAR(MAX)       Nội dung thông báo
+PublishDate          DATETIME            Ngày đăng thông báo (mặc định GETDATE())
+Category             NVARCHAR(50)        Loại thông báo (Lịch nghỉ, Khai giảng, Ưu đãi...)
+TargetType           NVARCHAR(50)        Đối tượng nhận (All, Teacher, Student, Individual)
+ReceiverID           INT                 Mã người nhận (khi gửi cá nhân)
+PriorityLevel        NVARCHAR(20)        Độ ưu tiên (Normal, Urgent)
+SenderID             INT (FK)            Mã người gửi (Admin)
+
+Bảng NotificationStatuses
+Bảng NotificationStatuses dùng để lưu trạng thái đọc thông báo của từng người dùng.
+
+Tên trường           Kiểu dữ liệu        Mô tả
+StatusID             INT (PK)            Mã trạng thái
+AnnounceID           INT (FK)            Mã thông báo (Cascade delete)
+UserID               INT (FK)            Mã người nhận (Cascade delete)
+IsRead               BIT                 Trạng thái đã đọc (0 = chưa đọc, 1 = đã đọc)
+ReadAt               DATETIME            Thời gian đọc
+
+Quan hệ giữa các bảng
+Các bảng trong hệ thống được liên kết với nhau thông qua khóa chính và khóa ngoại
+nhằm đảm bảo tính toàn vẹn dữ liệu.
+− Bảng Users liên kết với bảng Courses thông qua trường InstructorID.
+− Bảng Categories liên kết với bảng Courses thông qua trường CategoryID.
+− Bảng Users liên kết với bảng Enrollments thông qua trường StudentID.
+− Bảng Courses liên kết với bảng Enrollments thông qua trường CourseID.
+− Bảng Users liên kết với bảng TeachingAssignments thông qua trường InstructorID.
+− Bảng Courses liên kết với bảng TeachingAssignments thông qua trường CourseID.
+− Bảng Enrollments liên kết với bảng Grades thông qua trường EnrollmentID.
+− Bảng Enrollments liên kết với bảng Attendance thông qua trường EnrollmentID.
+− Bảng Enrollments liên kết với bảng Invoices thông qua trường EnrollmentID.
+− Bảng Users liên kết với bảng Announcements thông qua trường SenderID.
+− Bảng Announcements liên kết với bảng NotificationStatuses thông qua trường AnnounceID.
+− Bảng Courses liên kết với bảng Schedules thông qua trường CourseID.
+
+2.5 Sơ đồ ERD
+
+[Hình 2. Sơ đồ Entity Relationship Diagram (Crow's Foot) của hệ thống Talky English]
+
+Sơ đồ ERD trên thể hiện mối quan hệ giữa các bảng trong cơ sở dữ liệu của hệ thống.
+Các bảng được liên kết với nhau thông qua khóa chính và khóa ngoại nhằm đảm bảo tính
+toàn vẹn dữ liệu. Trong đó, bảng Users đóng vai trò trung tâm lưu trữ thông tin người
+dùng, bảng Courses lưu thông tin khóa học, bảng Enrollments lưu thông tin đăng ký khóa
+học, các bảng Grades, Attendance, Schedules, Invoices và Announcements hỗ trợ các chức
+năng quản lý điểm số, điểm danh, lịch học, hóa đơn và thông báo của trung tâm.
+
+CHƯƠNG 3. XÂY DỰNG CHƯƠNG TRÌNH
+
+3.1 Đăng nhập và phân quyền
+Hệ thống quản lý trung tâm ngoại ngữ Talky English được xây dựng với chức năng
+đăng nhập và phân quyền nhằm đảm bảo tính bảo mật cũng như hỗ trợ quản lý người
+dùng theo từng vai trò khác nhau. Mỗi người dùng khi truy cập hệ thống cần nhập email
+và mật khẩu để xác thực tài khoản trước khi sử dụng các chức năng của hệ thống.
+
+*Màn hình Đăng nhập
+Khi khởi động chương trình, hệ thống hiển thị giao diện đăng nhập với các thành phần:
+− Ô nhập Email
+− Ô nhập Mật khẩu (có nút hiển thị/ẩn mật khẩu)
+− Nút Đăng nhập
+− Liên kết chuyển sang trang Đăng ký tài khoản
+
+Hệ thống kiểm tra thông tin đăng nhập bằng cách so sánh email và mật khẩu với dữ
+liệu trong bảng Users. Nếu thông tin hợp lệ, hệ thống đọc trường Role để điều hướng:
+− Role = "Admin"      → Mở frmDashboard_Admin
+− Role = "Instructor" → Mở frmTeacherDashboard
+− Role = "Student"    → Mở frmMain_Student
+Thông tin người dùng sau khi đăng nhập được lưu vào SessionManager.CurrentUser
+để sử dụng xuyên suốt trong phiên làm việc.
+
+[Hình 3.1: Giao diện màn hình Đăng nhập]
+
+*Màn hình Đăng ký tài khoản
+Học viên chưa có tài khoản có thể tự đăng ký qua giao diện đăng ký với các trường:
+Họ tên, Email, Mật khẩu, Xác nhận mật khẩu và checkbox đồng ý điều khoản sử dụng.
+Hệ thống thực hiện 7 bước kiểm tra khi đăng ký:
+1. Kiểm tra checkbox điều khoản đã được chọn
+2. Kiểm tra các trường bắt buộc không được để trống
+3. Kiểm tra mật khẩu và xác nhận mật khẩu khớp nhau
+4. Kiểm tra định dạng email hợp lệ
+5. Kiểm tra email chưa tồn tại trong hệ thống
+6. Thiết lập Role = "Student" và CreatedAt = thời điểm hiện tại
+7. Lưu tài khoản vào cơ sở dữ liệu
+
+[Hình 3.2: Giao diện màn hình Đăng ký tài khoản]
+
+3.2 Chức năng quản trị viên
+Quản trị viên là người có quyền quản lý toàn bộ hoạt động của hệ thống. Sau khi đăng
+nhập thành công với quyền Admin, người dùng được chuyển đến Dashboard quản trị viên.
+
+*Dashboard tổng quan Admin
+Dashboard Admin hiển thị tổng quan hoạt động của trung tâm thông qua:
+− 4 thẻ thống kê KPI: Tổng số học viên, Tổng số khóa học, Tổng số giảng viên,
+  Doanh thu tháng hiện tại
+− Biểu đồ cột: Doanh thu 6 tháng gần nhất
+− Biểu đồ tròn: Phân bố khóa học theo trình độ (Cơ bản, Trung cấp, Nâng cao)
+− Menu điều hướng 8 chức năng bên trái màn hình
+
+[Hình 3.3: Dashboard tổng quan của Quản trị viên]
+
+*Quản lý học viên
+Chức năng quản lý học viên cho phép quản trị viên thực hiện đầy đủ các thao tác CRUD
+trên danh sách học viên. Màn hình hiển thị bảng dữ liệu với các cột: Mã học viên
+(StudentCode dạng HV001), Họ tên, Email, Số điện thoại, Giới tính, Ngày sinh và Trạng
+thái. Hệ thống hỗ trợ bộ lọc đa chiều:
+− Tìm kiếm theo tên, mã học viên hoặc email
+− Lọc theo Trạng thái (Đang học, Bảo lưu, Đã nghỉ)
+− Lọc theo Trình độ (Cơ bản, Trung cấp, Nâng cao)
+− Lọc theo Khóa học đang tham gia
+− Lọc theo khoảng thời gian đăng ký
+
+[Hình 3.4: Màn hình Quản lý học viên]
+
+Khi thêm mới hoặc chỉnh sửa, hệ thống mở form chi tiết học viên với các trường: Mã
+học viên (tự sinh), Họ tên, Email, Số điện thoại, Giới tính, Ngày sinh, Trình độ, Khóa
+học, Trạng thái và Ngày đăng ký. Khi thêm mới, mật khẩu mặc định được gán là "123456".
+Hệ thống còn hỗ trợ xuất danh sách học viên ra file Excel với đầy đủ thông tin và định
+dạng chuyên nghiệp.
+
+[Hình 3.5: Form thêm/sửa thông tin học viên]
+
+*Quản lý giảng viên
+Chức năng quản lý giảng viên cho phép quản trị viên thêm, sửa, xóa thông tin giảng
+viên. Bảng dữ liệu hiển thị thông tin: Mã giảng viên, Họ tên, Email, Số điện thoại, Chuyên
+môn, Bằng cấp, Trạng thái và danh sách khóa học đang được phân công.
+Bộ lọc hỗ trợ: Tìm kiếm theo tên/email/SĐT, lọc theo Chuyên môn, Bằng cấp, Trạng
+thái và ngày tham gia.
+Form thêm/sửa giảng viên gồm các trường: Mã giảng viên, Họ tên, Email, Số điện
+thoại, Giới tính, Ngày sinh, Chuyên môn, Bằng cấp, Trạng thái và Ngày tham gia.
+Khi thêm mới, mật khẩu mặc định được gán là "123".
+
+[Hình 3.6: Màn hình Quản lý giảng viên]
+
+[Hình 3.7: Form thêm/sửa thông tin giảng viên]
+
+*Quản lý khóa học
+Quản trị viên có thể tạo mới, cập nhật hoặc xóa các khóa học. Bảng dữ liệu hiển thị:
+Mã khóa học (CourseCode dạng KH001), Tên khóa học, Trình độ, Thời lượng, Học phí,
+Số học viên hiện tại, Số chỗ còn trống, Giảng viên phụ trách và Trạng thái.
+Form thêm/sửa khóa học gồm các trường: Tên khóa học, Thời lượng, Trình độ (Cơ
+bản/Trung cấp/Nâng cao), Mô tả, Học phí, Giảng viên phụ trách (dropdown), Số học viên
+tối đa và Trạng thái (Đang mở/Tạm đóng/Đã kết thúc).
+
+[Hình 3.8: Màn hình Quản lý khóa học]
+
+[Hình 3.9: Form thêm/sửa thông tin khóa học]
+
+*Quản lý lịch học
+Màn hình quản lý lịch học chia làm hai khu vực: bảng danh sách khóa học bên trái và
+bảng lịch học của khóa đang chọn bên phải. Quản trị viên chọn khóa học, sau đó thêm
+hoặc chỉnh sửa lịch học bằng cách chọn: Thứ trong tuần, Giờ bắt đầu, Giờ kết thúc,
+Phòng học.
+Hệ thống tự động kiểm tra trùng lịch theo quy tắc: cùng Thứ + cùng Phòng + giao thoa
+thời gian (Bắt đầu mới < Kết thúc cũ VÀ Kết thúc mới > Bắt đầu cũ). Nếu phát hiện
+trùng, hệ thống hiển thị cảnh báo và không cho phép lưu.
+Bộ lọc nhanh hỗ trợ xem: Tất cả lịch, Hôm nay, Tuần này, Tháng này.
+
+[Hình 3.10: Màn hình Quản lý lịch học]
+
+*Phân công giảng dạy
+Màn hình phân công giảng dạy hiển thị 3 bảng đồng thời: danh sách giảng viên, danh
+sách khóa học và danh sách các phân công hiện có. Quản trị viên chọn một giảng viên và
+một khóa học, sau đó nhấn nút Phân công. Hệ thống kiểm tra không cho phép phân công
+trùng (cùng giảng viên + cùng khóa học).
+Danh sách phân công hiển thị: Mã phân công, Tên giảng viên, Tên khóa học, Ngày
+phân công và Ghi chú. Có thể chỉnh sửa ghi chú hoặc xóa phân công. Hệ thống hỗ trợ
+xuất danh sách phân công ra file Excel.
+
+[Hình 3.11: Màn hình Phân công giảng dạy]
+
+*Quản lý học phí
+Màn hình quản lý học phí hiển thị danh sách tất cả lượt đăng ký khóa học kèm trạng
+thái thanh toán. Các thông tin hiển thị: Mã đăng ký, Mã học viên, Họ tên, Tên khóa học,
+Ngày đăng ký, Học phí và Trạng thái thanh toán (Chưa đóng / Đã đóng).
+Bộ lọc hỗ trợ tìm kiếm theo tên/mã học viên và lọc theo trạng thái thanh toán. Khi
+học viên đã nộp tiền trực tiếp tại trung tâm, quản trị viên chọn dòng tương ứng và nhấn
+nút "Xác nhận thanh toán". Hệ thống sử dụng Transaction để đảm bảo tính toàn vẹn dữ
+liệu: đồng thời cập nhật trạng thái Enrollment thành "Paid" và tạo bản ghi hóa đơn mới
+trong bảng Invoices.
+
+[Hình 3.12: Màn hình Quản lý học phí]
+
+*Báo cáo doanh thu
+Chức năng báo cáo doanh thu sử dụng công nghệ RDLC ReportViewer để tạo báo cáo
+chi tiết có thể xem trước và in ấn. Quản trị viên chọn khoảng thời gian báo cáo theo 3
+kiểu: Theo ngày, Theo tuần (tự động tính Thứ 2 đến Chủ Nhật) hoặc Theo tháng (tự động
+tính ngày đầu đến ngày cuối tháng).
+Báo cáo hiển thị: Mã hóa đơn, Tên học viên, Tên khóa học, Số tiền và Ngày thu.
+Hệ thống thông báo nếu không có dữ liệu trong khoảng thời gian đã chọn.
+
+[Hình 3.13: Màn hình Báo cáo doanh thu]
+
+*Quản lý thông báo
+Quản trị viên có thể soạn và gửi thông báo đến các đối tượng khác nhau trong hệ
+thống. Giao diện soạn thông báo gồm: Tiêu đề, Nội dung, Danh mục (Lịch nghỉ, Khai
+giảng, Ưu đãi...), Đối tượng nhận (Tất cả / Giảng viên / Học viên / Cá nhân cụ thể) và
+Độ ưu tiên (Bình thường / Khẩn cấp). Khi chọn gửi cá nhân, hệ thống hiển thị dropdown
+chọn người nhận cụ thể.
+Quy trình gửi thông báo gồm 3 bước:
+1. Lưu nội dung thông báo vào bảng Announcements
+2. Xác định danh sách UserID cần nhận dựa theo TargetType
+3. Tạo bản ghi NotificationStatus (IsRead = false) cho từng người nhận
+Danh sách thông báo đã gửi hiển thị phía dưới, có thể lọc theo đối tượng và xóa thông báo.
+
+[Hình 3.14: Màn hình Quản lý và gửi thông báo (Admin)]
+
+3.3 Chức năng giảng viên
+Giảng viên sau khi đăng nhập được chuyển đến Dashboard riêng với giao diện được
+thiết kế phù hợp với nhu cầu giảng dạy.
+
+*Dashboard tổng quan Giảng viên
+Dashboard giảng viên hiển thị:
+− Thẻ thống kê: Số khóa học đang dạy, Tổng số học viên đang quản lý, Số thông
+  báo chưa đọc
+− Lịch dạy hôm nay (tối đa 4 ca hiển thị)
+− 5 thông báo gần nhất từ trung tâm
+− Thông tin giảng viên: Tên, Mã GV, Email, Avatar
+− Menu 6 chức năng bên trái
+
+[Hình 3.15: Dashboard tổng quan của Giảng viên]
+
+*Xem lịch dạy
+Màn hình lịch dạy hiển thị toàn bộ lịch dạy của giảng viên đang đăng nhập dưới dạng
+bảng với các cột: Tên khóa học, Thứ trong tuần, Giờ bắt đầu, Giờ kết thúc và Phòng học.
+Hỗ trợ lọc nhanh xem lịch hôm nay hoặc toàn bộ. Giảng viên có thể xuất lịch dạy ra file
+Excel để in ấn hoặc lưu trữ.
+
+[Hình 3.16: Màn hình Lịch dạy của Giảng viên]
+
+*Danh sách học viên
+Màn hình danh sách học viên hiển thị tất cả học viên thuộc các khóa học mà giảng viên
+đang được phân công giảng dạy. Dữ liệu được truy vấn bằng cách JOIN 4 bảng: Enrollments,
+Users, Courses và TeachingAssignments, lọc theo InstructorID của giảng viên hiện tại.
+Bảng hiển thị: STT, Mã học viên, Họ tên, Email, Số điện thoại, Giới tính, Ngày sinh,
+Tên khóa học và Ngày đăng ký. Hỗ trợ tìm kiếm theo tên, mã học viên hoặc số điện
+thoại.
+
+[Hình 3.17: Màn hình Danh sách học viên của Giảng viên]
+
+*Chấm điểm học viên
+Đây là chức năng quan trọng của giảng viên. Màn hình chia làm hai khu vực:
+− Bên trái: Dropdown chọn khóa học → Bảng danh sách học viên của khóa đó
+− Bên phải: Form nhập điểm cho học viên đang chọn
+Form nhập điểm gồm: Điểm chuyên cần (0-10), Điểm bài tập (0-10), Điểm thi (0-10),
+Điểm trung bình (tự động tính, chỉ đọc), và Nhận xét của giảng viên.
+Công thức tính điểm trung bình: ĐTB = Chuyên cần × 0.1 + Bài tập × 0.3 + Thi × 0.6
+Điểm được cập nhật realtime khi giảng viên nhập từng đầu điểm. Hệ thống tự động xếp
+loại: Giỏi (≥ 8.0), Khá (≥ 6.5), Trung Bình (≥ 5.0), Yếu (< 5.0).
+Khi lưu điểm, hệ thống kiểm tra nếu đã có bản ghi điểm thì cập nhật (UPDATE), nếu
+chưa có thì tạo mới (INSERT).
+
+[Hình 3.18: Màn hình Chấm điểm học viên]
+
+*Thông báo (Giảng viên)
+Giảng viên xem các thông báo được gửi đến cho mình từ Admin. Thông báo được hiển
+thị dạng danh sách thẻ với: Tiêu đề, nội dung tóm tắt, người gửi, ngày giờ và badge độ
+ưu tiên (màu đỏ = Khẩn cấp, màu cam = Bình thường).
+Hỗ trợ lọc theo: Tất cả, Khẩn cấp, Chưa đọc. Tìm kiếm realtime theo tiêu đề hoặc nội
+dung. Thông báo đã đọc hiển thị nền xám, thông báo chưa đọc hiển thị nền trắng nổi bật.
+
+[Hình 3.19: Màn hình Thông báo của Giảng viên]
+
+*Hồ sơ cá nhân Giảng viên
+Giảng viên có thể xem và cập nhật thông tin cá nhân: Họ tên, Email, Số điện thoại,
+Giới tính, Ngày sinh. Ngoài ra, giảng viên có thể thay đổi ảnh đại diện bằng cách chọn
+file ảnh từ máy tính (định dạng JPG hoặc PNG). Ảnh được lưu vào thư mục Avatars với
+tên Avatar_{UserID}.jpg và cập nhật ngay lên Dashboard.
+
+[Hình 3.20: Màn hình Hồ sơ cá nhân của Giảng viên]
+
+3.4 Chức năng học viên
+Học viên sau khi đăng nhập được chuyển đến Dashboard học viên với giao diện thân
+thiện, dễ sử dụng.
+
+*Dashboard tổng quan Học viên
+Dashboard học viên hiển thị:
+− Ngày hiện tại (Thứ, ngày/tháng/năm)
+− 5 thông báo gần nhất từ trung tâm
+− Lịch học hôm nay
+− 3 thẻ tiến độ khóa học đang theo học (có thanh tiến trình %)
+− Thông tin học viên: Tên, Mã HV, Email, Avatar
+− Menu 5 chức năng bên trái
+
+[Hình 3.21: Dashboard tổng quan của Học viên]
+
+*Đăng ký khóa học
+Màn hình đăng ký khóa học hiển thị toàn bộ danh sách khóa học đang mở tại trung
+tâm. Bảng dữ liệu gồm: Mã khóa học, Tên khóa học, Trình độ, Thời lượng, Học phí,
+Giảng viên phụ trách, Số chỗ còn trống và Trạng thái.
+Khi học viên chọn một khóa học, phần chi tiết bên dưới hiển thị đầy đủ thông tin khóa
+học. Nhấn nút Đăng ký, hệ thống kiểm tra:
+− Học viên đã đăng nhập chưa
+− Khóa học còn chỗ trống không (AvailableSlots = MaxStudents - CurrentStudents > 0)
+− Học viên đã đăng ký khóa này trước đó chưa
+Nếu đăng ký thành công, hệ thống tự động tăng CurrentStudents của khóa học lên 1.
+
+[Hình 3.22: Màn hình Đăng ký khóa học]
+
+*Xem lịch học
+Màn hình lịch học hiển thị lịch học của tất cả khóa học mà học viên đã đăng ký. Bảng
+dữ liệu gồm: Tên khóa học, Giảng viên, Thứ trong tuần, Giờ bắt đầu, Giờ kết thúc và
+Phòng học.
+Bộ lọc nhanh hỗ trợ: Hôm nay, Tuần này, Tháng này, hoặc tự chọn khoảng ngày.
+Học viên có thể in lịch học cá nhân thông qua chức năng in tích hợp sẵn. Bản in bao
+gồm tiêu đề "THỜI KHÓA BIỂU CÁ NHÂN", tên học viên, ngày in và bảng lịch học
+đầy đủ được vẽ bằng Graphics.
+
+[Hình 3.23: Màn hình Lịch học của Học viên]
+
+*Xem kết quả học tập
+Màn hình kết quả học tập hiển thị danh sách các khóa học đã tham gia kèm điểm số.
+Bảng danh sách gồm: STT, Tên khóa học, Giảng viên, Học kỳ, Điểm trung bình và Xếp
+loại. Xếp loại được hiển thị với màu sắc phân biệt: Giỏi (xanh lá), Khá (xanh dương),
+Trung Bình (cam), Yếu (đỏ).
+Khi chọn một khóa học, phần chi tiết bên phải hiển thị: Điểm chuyên cần, Điểm bài
+tập, Điểm thi, Điểm trung bình, Xếp loại, Nhận xét của giảng viên và Ngày nhận xét.
+Học viên có thể xuất bảng điểm ra file (.xlsx hoặc .tsv) để lưu trữ.
+
+[Hình 3.24: Màn hình Kết quả học tập của Học viên]
+
+*Thông báo (Học viên)
+Học viên xem các thông báo được gửi đến từ Admin. Giao diện tương tự giảng viên
+với danh sách thẻ thông báo. Hỗ trợ lọc: Tất cả, Chưa đọc (hiển thị số lượng chưa đọc),
+Khẩn cấp. Tìm kiếm realtime theo tiêu đề và nội dung.
+Mỗi thông báo có nút "Đánh dấu đã đọc" − khi nhấn, hệ thống cập nhật bản ghi
+NotificationStatus (IsRead = true, ReadAt = thời điểm hiện tại). Thông báo đã đọc chuyển
+sang nền xám và ẩn nút đánh dấu.
+
+[Hình 3.25: Màn hình Thông báo của Học viên]
+
+*Hồ sơ cá nhân Học viên
+Học viên có thể xem và cập nhật thông tin cá nhân: Họ tên, Email, Số điện thoại, Giới
+tính, Ngày sinh. Thẻ Profile bên phải hiển thị: Tên, Mã HV, Email, Trạng thái tài khoản
+và Ngày đăng ký.
+Chức năng đổi ảnh đại diện: học viên click vào ảnh, chọn file ảnh JPG/PNG từ máy
+tính, ảnh được lưu vào thư mục Avatars và cập nhật ngay lên giao diện Dashboard.
+Chức năng đổi mật khẩu: nhập mật khẩu cũ, mật khẩu mới và xác nhận mật khẩu mới
+(yêu cầu tối thiểu 6 ký tự).
+
+[Hình 3.26: Màn hình Hồ sơ cá nhân của Học viên]
+
+3.5 Kết nối cơ sở dữ liệu và xử lý dữ liệu
+Hệ thống quản lý trung tâm ngoại ngữ Talky English được xây dựng bằng ngôn ngữ
+lập trình C# trên nền tảng Windows Forms kết hợp với hệ quản trị cơ sở dữ liệu SQL
+Server nhằm hỗ trợ lưu trữ, truy xuất và quản lý dữ liệu hiệu quả. Việc kết nối giữa
+chương trình và cơ sở dữ liệu được thực hiện thông qua Entity Framework Core giúp quá
+trình thao tác dữ liệu trở nên thuận tiện và dễ quản lý hơn.
+
+Kết nối cơ sở dữ liệu
+Hệ thống sử dụng SQL Server để lưu trữ toàn bộ dữ liệu liên quan đến người dùng,
+khóa học, lịch học, điểm số, hóa đơn và thông báo. Việc kết nối cơ sở dữ liệu được cấu
+hình thông qua chuỗi kết nối (Connection String) trong lớp TalkyDbContext.
+Thông qua Entity Framework Core, các bảng dữ liệu trong SQL Server được ánh xạ
+thành các lớp đối tượng trong C#. Điều này giúp lập trình viên có thể thao tác dữ liệu
+bằng đối tượng thay vì viết trực tiếp các câu lệnh SQL phức tạp.
+Hệ thống sử dụng AsNoTracking() cho các truy vấn đọc dữ liệu nhằm tối ưu hiệu năng.
+Các thao tác thêm, sửa, xóa được thực hiện thông qua DbContext và đồng bộ trực tiếp
+với cơ sở dữ liệu qua SaveChanges().
+
+Xử lý dữ liệu theo mô hình phân lớp
+Hệ thống được xây dựng theo mô hình phân lớp nhằm giúp việc quản lý source code,
+bảo trì và nâng cấp hệ thống trở nên dễ dàng hơn. Các thành phần chính của hệ thống bao
+gồm:
+
+GUI (Graphical User Interface)
+Đây là lớp giao diện người dùng, chịu trách nhiệm hiển thị dữ liệu và tiếp nhận thao tác
+từ người dùng. Các Form trong WinForms được sử dụng để xây dựng giao diện đăng
+nhập, quản lý học viên, quản lý khóa học, quản lý điểm và các chức năng khác của hệ
+thống. Thư viện Guna UI2 được sử dụng để tạo giao diện hiện đại và thân thiện.
+
+BUS (Business Logic Layer)
+Lớp BUS thực hiện xử lý nghiệp vụ của hệ thống. Tại đây các chức năng như kiểm tra
+đăng nhập, xử lý phân quyền, kiểm tra dữ liệu đầu vào, kiểm tra trùng lịch và xử lý các
+thao tác nghiệp vụ được thực hiện trước khi dữ liệu được lưu xuống cơ sở dữ liệu.
+Hệ thống có 9 lớp BUS chính: UserBUS, CourseBUS, EnrolmentBUS, ScheduleBUS,
+GradesBUS, AnnouncementsBUS, TuitionBUS, ReportBUS, AssignmentBUS.
+
+DAL (Data Access Layer)
+Lớp DAL chịu trách nhiệm kết nối và thao tác trực tiếp với cơ sở dữ liệu SQL Server
+thông qua Entity Framework Core. Các chức năng truy vấn, thêm, sửa, xóa dữ liệu đều
+được thực hiện thông qua lớp này nhằm đảm bảo việc truy xuất dữ liệu được tổ chức rõ
+ràng và dễ bảo trì. Hệ thống có 9 lớp DAL: UserDAL, CourseDAL, EnrolmentDAL,
+ScheduleDAL, GradesDAL, AnnouncementsDAL, TuitionDAL, ReportDAL, AssignmentDAL.
+
+DTO (Data Transfer Object)
+Lớp DTO dùng để tạo các đối tượng trung gian phục vụ cho việc truyền dữ liệu giữa
+các lớp trong hệ thống. Mỗi DTO tương ứng với một bảng dữ liệu trong cơ sở dữ liệu.
+Ngoài ra, lớp SessionManager trong DTO được sử dụng để lưu trữ thông tin người dùng
+đang đăng nhập (CurrentUser) trong suốt phiên làm việc.
+
+Quy trình xử lý dữ liệu
+Khi người dùng thực hiện một thao tác trên giao diện, dữ liệu sẽ được gửi từ lớp GUI
+đến lớp BUS để xử lý nghiệp vụ. Sau khi kiểm tra hợp lệ, dữ liệu tiếp tục được chuyển
+xuống lớp DAL để thực hiện thao tác với cơ sở dữ liệu SQL Server. Kết quả xử lý sau đó
+được trả ngược về giao diện để hiển thị cho người dùng.
+
+Ví dụ: Quy trình đăng ký khóa học
+1. Học viên chọn khóa học và nhấn nút Đăng ký trên giao diện (GUI).
+2. GUI gửi studentId và courseId đến EnrolmentBUS.RegisterCourse().
+3. BUS kiểm tra dữ liệu hợp lệ và gọi EnrolmentDAL.AddEnrollment().
+4. DAL kiểm tra học viên chưa đăng ký khóa này, sau đó INSERT vào bảng Enrollments.
+5. Nếu thành công, BUS tiếp tục gọi CourseDAL.UpdateStudentCount() để tăng CurrentStudents lên 1.
+6. Kết quả trả về GUI và hiển thị thông báo đăng ký thành công cho học viên.
+
+Ví dụ: Quy trình xác nhận thanh toán học phí
+1. Quản trị viên chọn lượt đăng ký cần xác nhận và nhấn nút "Xác nhận thanh toán" (GUI).
+2. TuitionBUS.ProcessPayment() kiểm tra dữ liệu hợp lệ.
+3. TuitionDAL.ConfirmPayment() thực hiện 2 thao tác trong cùng một Transaction:
+   − Cập nhật PaymentStatus = "Paid" trong bảng Enrollments.
+   − Tạo bản ghi hóa đơn mới trong bảng Invoices.
+4. Nếu có lỗi bất kỳ, Transaction rollback để đảm bảo tính toàn vẹn dữ liệu.
+5. Kết quả trả về GUI và cập nhật lại danh sách học phí.
+
+[Hình 3.27: Sơ đồ luồng xử lý dữ liệu theo mô hình phân lớp]
+
+Ưu điểm của mô hình phân lớp
+Việc áp dụng mô hình phân lớp giúp hệ thống:
+− Dễ quản lý và bảo trì source code.
+− Giảm sự phụ thuộc giữa các thành phần của chương trình.
+− Dễ dàng mở rộng và nâng cấp hệ thống trong tương lai.
+− Hỗ trợ làm việc nhóm hiệu quả hơn trong quá trình phát triển phần mềm.
+− Giúp việc kiểm tra và sửa lỗi trở nên thuận tiện hơn.
+Nhờ việc kết hợp giữa WinForms, SQL Server và Entity Framework Core, hệ thống Talky
+English có khả năng xử lý dữ liệu ổn định, giao diện thân thiện và đáp ứng tốt các yêu cầu
+quản lý của trung tâm ngoại ngữ.
+
+CHƯƠNG 4. KẾT LUẬN
+
+4.1 Kết quả đạt được
+Sau quá trình nghiên cứu và thực hiện đề tài, nhóm đã xây dựng được hệ thống quản lý
+trung tâm ngoại ngữ Talky English với các chức năng cơ bản đáp ứng yêu cầu quản lý và
+hỗ trợ học tập tại trung tâm.
+Hệ thống đã hoàn thành các chức năng chính như:
+− Đăng nhập và phân quyền người dùng theo vai trò Admin, Instructor và Student.
+− Quản lý học viên, giảng viên và khóa học (CRUD đầy đủ, bộ lọc đa chiều, xuất Excel).
+− Quản lý lịch học và phân công giảng dạy (có kiểm tra trùng lịch tự động).
+− Hỗ trợ học viên đăng ký khóa học với kiểm soát số chỗ còn trống.
+− Quản lý điểm số với công thức tính tự động và xếp loại học tập.
+− Quản lý hóa đơn và xác nhận thanh toán học phí sử dụng Transaction.
+− Hệ thống thông báo đa đối tượng (All/Teacher/Student/Individual) với độ ưu tiên.
+− Báo cáo doanh thu theo ngày/tuần/tháng bằng RDLC ReportViewer.
+− Hồ sơ cá nhân với tính năng đổi avatar và đổi mật khẩu.
+Ngoài ra, hệ thống đã xây dựng được cơ sở dữ liệu hoàn chỉnh bằng SQL Server với
+các bảng dữ liệu được liên kết chặt chẽ thông qua khóa chính và khóa ngoại nhằm đảm
+bảo tính toàn vẹn dữ liệu. Sơ đồ ERD của hệ thống được thiết kế theo mô hình Crow's
+Foot giúp việc quản lý và truy xuất dữ liệu trở nên hiệu quả hơn.
+Về mặt công nghệ, đề tài đã áp dụng:
+− Ngôn ngữ lập trình C# trên nền tảng .NET 8.
+− Windows Forms để xây dựng giao diện desktop.
+− SQL Server để quản lý cơ sở dữ liệu.
+− Entity Framework Core hỗ trợ kết nối và thao tác dữ liệu (ORM).
+− Guna UI2 để thiết kế giao diện hiện đại và trực quan.
+− RDLC ReportViewer cho chức năng báo cáo doanh thu.
+Bên cạnh đó, hệ thống được xây dựng theo mô hình phân lớp gồm GUI, BUS, DAL và
+DTO giúp chương trình dễ quản lý, dễ bảo trì và thuận tiện cho việc mở rộng trong tương
+lai.
+Thông qua đề tài này, nhóm đã củng cố được các kiến thức về lập trình desktop, thiết
+kế cơ sở dữ liệu, phân tích hệ thống và kỹ năng làm việc nhóm trong quá trình phát triển
+phần mềm thực tế.
+
+4.2 Hạn chế
+Mặc dù hệ thống quản lý trung tâm ngoại ngữ Talky English đã hoàn thành được các
+chức năng cơ bản, tuy nhiên trong quá trình thực hiện đề tài vẫn còn tồn tại một số hạn
+chế nhất định.
+Do giới hạn về thời gian và kinh nghiệm thực tế, hệ thống hiện tại chỉ được xây dựng
+dưới dạng ứng dụng desktop trên nền tảng Windows Forms nên chưa hỗ trợ sử dụng trên
+các thiết bị di động hoặc nền tảng web. Điều này làm hạn chế khả năng truy cập hệ thống
+ở nhiều môi trường khác nhau.
+Bên cạnh đó, hệ thống hiện chưa tích hợp các chức năng học trực tuyến như livestream,
+video call hoặc chat realtime giữa học viên và giảng viên. Các hoạt động học tập vẫn chủ
+yếu tập trung vào quản lý dữ liệu và hỗ trợ theo dõi thông tin khóa học.
+Chức năng thanh toán học phí mới chỉ dừng ở mức quản lý và xác nhận thanh toán thủ
+công, chưa hỗ trợ thanh toán trực tuyến thông qua các cổng thanh toán điện tử như
+MoMo, VNPay hoặc Internet Banking.
+Ngoài ra, hệ thống chưa hỗ trợ các chức năng nâng cao như:
+− Gửi email tự động cho học viên.
+− Thống kê và báo cáo dữ liệu nâng cao bằng biểu đồ phong phú hơn.
+− Sao lưu và phục hồi dữ liệu tự động.
+− Tích hợp trí tuệ nhân tạo hỗ trợ học tập.
+− Mã hóa mật khẩu an toàn (BCrypt/SHA256).
+Về mặt giao diện, mặc dù hệ thống đã sử dụng thư viện Guna UI2 để cải thiện tính trực
+quan nhưng giao diện vẫn chưa thật sự tối ưu trên các độ phân giải màn hình khác nhau
+và cần được cải tiến thêm để mang lại trải nghiệm người dùng tốt hơn.
+
+4.3 Hướng phát triển
+Trong tương lai, hệ thống quản lý trung tâm ngoại ngữ Talky English có thể được tiếp
+tục nghiên cứu và phát triển nhằm nâng cao hiệu quả quản lý cũng như cải thiện trải
+nghiệm người dùng.
+Trước hết, hệ thống có thể được mở rộng sang nền tảng web hoặc ứng dụng di động
+nhằm giúp học viên và giảng viên dễ dàng truy cập và sử dụng ở mọi lúc, mọi nơi. Việc
+hỗ trợ đa nền tảng sẽ giúp tăng tính tiện lợi và khả năng sử dụng của hệ thống trong thực
+tế.
+Bên cạnh đó, hệ thống có thể tích hợp các chức năng học trực tuyến như livestream,
+video call hoặc chat realtime giữa giảng viên và học viên nhằm hỗ trợ quá trình giảng dạy
+và học tập trực tuyến hiệu quả hơn.
+Về mặt thanh toán, hệ thống có thể bổ sung chức năng thanh toán học phí trực tuyến
+thông qua các cổng thanh toán điện tử như MoMo, VNPay hoặc Internet Banking nhằm
+giúp học viên thanh toán thuận tiện và nhanh chóng hơn.
+Ngoài ra, hệ thống cũng có thể phát triển thêm các chức năng nâng cao như:
+− Gửi email hoặc thông báo tự động cho học viên.
+− Thống kê và báo cáo dữ liệu bằng biểu đồ trực quan phong phú hơn.
+− Tích hợp chức năng sao lưu và phục hồi dữ liệu tự động.
+− Hỗ trợ tìm kiếm và lọc dữ liệu nâng cao.
+− Tích hợp trí tuệ nhân tạo hỗ trợ học tập và gợi ý khóa học phù hợp cho học viên.
+− Mã hóa mật khẩu an toàn và xác thực hai yếu tố (2FA).
+Trong tương lai, nhóm mong muốn tiếp tục cải thiện giao diện người dùng theo hướng
+hiện đại và thân thiện hơn nhằm nâng cao trải nghiệm sử dụng hệ thống. Đồng thời, hệ
+thống sẽ được tối ưu hiệu năng và bảo mật để đáp ứng tốt hơn nhu cầu quản lý của các
+trung tâm ngoại ngữ quy mô lớn.
+
+4.4 Tổng kết
+Sau quá trình nghiên cứu, phân tích và xây dựng hệ thống, đề tài "Hệ thống quản lý
+trung tâm ngoại ngữ Talky English" đã hoàn thành các mục tiêu cơ bản đề ra. Hệ thống
+hỗ trợ quản lý học viên, giảng viên, khóa học, lịch học, điểm số, điểm danh, hóa đơn và
+thông báo một cách hiệu quả thông qua giao diện trực quan và dễ sử dụng.
+Trong quá trình thực hiện đề tài, nhóm đã vận dụng các kiến thức về lập trình Windows
+Forms bằng ngôn ngữ C#, thiết kế cơ sở dữ liệu SQL Server, Entity Framework Core và
+mô hình phân lớp để xây dựng hệ thống hoàn chỉnh. Đồng thời, nhóm cũng nâng cao được kỹ
+năng phân tích yêu cầu, thiết kế hệ thống, xây dựng giao diện và xử lý dữ liệu trong một
+phần mềm quản lý thực tế.
+Bên cạnh những kết quả đạt được, hệ thống vẫn còn một số hạn chế như chưa hỗ trợ
+thanh toán trực tuyến, chưa có ứng dụng trên nền tảng di động và chưa tích hợp các chức
+năng học trực tuyến theo thời gian thực. Tuy nhiên, đây sẽ là nền tảng để tiếp tục nghiên
+cứu và phát triển trong tương lai nhằm hoàn thiện hệ thống hơn nữa.
+Thông qua đề tài này, nhóm đã tích lũy thêm được nhiều kinh nghiệm trong quá trình
+phát triển phần mềm và hiểu rõ hơn về quy trình xây dựng một hệ thống quản lý phục vụ
+cho lĩnh vực giáo dục và đào tạo.
+
+TÀI LIỆU THAM KHẢO
+[1] Th.S Đoàn Minh Khuê, Giáo trình Lập trình Windows, Trường Đại học Yersin Đà Lạt.
+[2] Microsoft. Windows Forms Documentation. https://learn.microsoft.com/en-us/dotnet/desktop/winforms
+[3] Microsoft. SQL Server Documentation. https://learn.microsoft.com/en-us/sql/sql-server
+[4] Microsoft. Entity Framework Core Documentation. https://learn.microsoft.com/en-us/ef/core
+[5] Giáo trình Phân tích và thiết kế hệ thống thông tin, dùng cho sinh viên ngành Công nghệ thông tin.
+[6] Giáo trình Lập trình C# và Windows Forms, dùng cho sinh viên ngành Công nghệ thông tin.
+[7] Tài liệu tham khảo về SQL Server và quản lý cơ sở dữ liệu.
+[8] Tài liệu hướng dẫn sử dụng Guna UI2 Framework trong thiết kế giao diện WinForms.
+[9] GitHub Documentation. Version Control and Source Code Management. https://docs.github.com

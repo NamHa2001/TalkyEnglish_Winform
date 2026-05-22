@@ -14,7 +14,7 @@ namespace TalkyEnglish.GUI
 {
     public partial class ucTeacherNotification : UserControl
     {
-        AnnouncementsBUS _announcementBUS = new AnnouncementsBUS();
+        private readonly AnnouncementsBUS _announcementBUS = new AnnouncementsBUS();
         public ucTeacherNotification()
         {
             InitializeComponent();
@@ -22,47 +22,47 @@ namespace TalkyEnglish.GUI
 
         public void LoadData(string filterType = "All", string searchText = "")
         {
-            // 1. Dọn dẹp danh sách cũ trong FlowLayoutPanel
             flpNotifications.Controls.Clear();
 
-            // 2. Lấy danh sách toàn bộ thông báo từ Database
-            List<AnnouncementsDTO> list = _announcementBUS.GetAllAnnouncements();
+            if (SessionManager.CurrentUser == null) return;
+
+            // Lấy thông báo đúng đối tượng kèm trạng thái đã đọc của giảng viên hiện tại
+            List<AnnouncementsDTO> list = _announcementBUS
+                .GetNotificationsForInstructor(SessionManager.CurrentUser.UserID);
 
             if (list == null) return;
 
+            int currentUserId = SessionManager.CurrentUser.UserID;
+            string kw = searchText?.Trim().ToLower() ?? "";
+
             foreach (var item in list)
             {
-                // 3. LOGIC QUAN TRỌNG: Chỉ hiện thông báo cho Giảng viên hoặc Tất cả
-                bool isTarget = (item.TargetType == "All" || item.TargetType == "Teacher");
+                // Lọc đối tượng: All, Teacher, hoặc gửi cá nhân đúng người
+                bool isTarget = item.TargetType == "All"
+                             || item.TargetType == "Teacher"
+                             || (item.TargetType == "Individual" && item.ReceiverID == currentUserId);
 
-                // 4. Kiểm tra Tìm kiếm (Tiêu đề hoặc Nội dung)
-                bool matchesSearch = string.IsNullOrEmpty(searchText) ||
-                                     item.Title.ToLower().Contains(searchText.ToLower()) ||
-                                     item.Content.ToLower().Contains(searchText.ToLower());
+                // Lọc tìm kiếm (null-safe)
+                bool matchesSearch = string.IsNullOrEmpty(kw)
+                    || (item.Title?.ToLower().Contains(kw) == true)
+                    || (item.Content?.ToLower().Contains(kw) == true);
 
-                // 5. Kiểm tra Bộ lọc Tab (Tất cả / Khẩn cấp)
-                bool matchesTab = false;
-                if (filterType == "All")
+                // Lọc tab
+                bool matchesTab = filterType switch
                 {
-                    matchesTab = true;
-                }
-                else if (filterType == "Urgent")
-                {
-                    matchesTab = (item.PriorityLevel == "Urgent");
-                }
+                    "Urgent" => item.PriorityLevel == "Urgent",
+                    "Unread" => !item.IsRead,
+                    _        => true
+                };
 
-                // 6. Đổ vào giao diện nếu thỏa mãn các điều kiện
-                if (isTarget && matchesSearch && matchesTab)
-                {
-                    // Tận dụng lại UserControl thẻ thông báo đã thiết kế
-                    ucStudentNotificationItem ucItem = new ucStudentNotificationItem();
-                    ucItem.SetData(item);
+                if (!isTarget || !matchesSearch || !matchesTab) continue;
 
-                    // Căn chỉnh chiều rộng tự động theo khung chứa
-                    ucItem.Width = flpNotifications.Width - 25;
-
-                    flpNotifications.Controls.Add(ucItem);
-                }
+                var ucItem = new ucStudentNotificationItem();
+                ucItem.SetData(item);
+                ucItem.Width = flpNotifications.Width - 25;
+                // Khi user đánh dấu đã đọc → reload để cập nhật badge số thông báo
+                ucItem.ReadStateChanged += (s, e) => LoadData(filterType, searchText);
+                flpNotifications.Controls.Add(ucItem);
             }
         }
 
@@ -84,7 +84,7 @@ namespace TalkyEnglish.GUI
 
         private void btnunread_Click(object sender, EventArgs e)
         {
-
+            LoadData("Unread", txtSearch.Text);
         }
 
         private void btnFilterAll_Click(object sender, EventArgs e)

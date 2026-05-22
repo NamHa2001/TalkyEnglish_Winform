@@ -9,8 +9,9 @@ namespace TalkyEnglish.GUI
 {
     public partial class frmTeacherDashboard : Form
     {
-        private readonly UserBUS _userBUS = new UserBUS();
-        private readonly AnnouncementsBUS _announcementBUS = new AnnouncementsBUS();
+        private readonly UserBUS           _userBUS         = new UserBUS();
+        private readonly AnnouncementsBUS  _announcementBUS = new AnnouncementsBUS();
+        private readonly ScheduleBUS       _scheduleBUS     = new ScheduleBUS();
 
         public frmTeacherDashboard()
         {
@@ -78,14 +79,11 @@ namespace TalkyEnglish.GUI
 
             try
             {
-                var bus          = new ScheduleBUS();
-                string dayVie    = GetVietnameseDay(DateTime.Today.DayOfWeek.ToString());
-                var allSchedules = bus.GetSchedulesByTeacher(SessionManager.CurrentUser.UserID);
+                string dayVie    = DayShort(DateTime.Today.DayOfWeek.ToString());
+                var allSchedules = _scheduleBUS.GetSchedulesByTeacher(SessionManager.CurrentUser.UserID);
                 var today        = allSchedules.Where(s => s.DayOfWeek == dayVie).ToList();
 
                 dgvScheduleMini.DataSource = today;
-
-                // Card vàng: số tiết hôm nay
                 label5.Text = today.Count.ToString();
             }
             catch (Exception ex)
@@ -96,10 +94,15 @@ namespace TalkyEnglish.GUI
 
         private void LoadAnnouncementsToTarget(FlowLayoutPanel targetPanel)
         {
+            if (SessionManager.CurrentUser == null) return;
             try
             {
                 targetPanel.Controls.Clear();
-                var list = _announcementBUS.GetRecentAnnouncements();
+                var list = _announcementBUS
+                    .GetNotificationsForInstructor(SessionManager.CurrentUser.UserID)
+                    .Take(5)
+                    .ToList();
+
                 foreach (var item in list)
                 {
                     var ucItem = new ucAnnounceItem();
@@ -137,14 +140,14 @@ namespace TalkyEnglish.GUI
 
         public void RefreshSmallAvatar() => LoadAvatar();
 
-        private string GetVietnameseDay(string dayEng) => dayEng switch
+        private static string DayShort(string dayEng) => dayEng switch
         {
-            "Monday"    => "Thứ Hai",
-            "Tuesday"   => "Thứ Ba",
-            "Wednesday" => "Thứ Tư",
-            "Thursday"  => "Thứ Năm",
-            "Friday"    => "Thứ Sáu",
-            "Saturday"  => "Thứ Bảy",
+            "Monday"    => "Thứ 2",
+            "Tuesday"   => "Thứ 3",
+            "Wednesday" => "Thứ 4",
+            "Thursday"  => "Thứ 5",
+            "Friday"    => "Thứ 6",
+            "Saturday"  => "Thứ 7",
             _           => "Chủ Nhật"
         };
 
